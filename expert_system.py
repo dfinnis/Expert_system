@@ -14,7 +14,7 @@ def main():
     try:
         filepath = parse_args()
         print(filepath)
-        print("Oh hi!")
+        print("Oh hi!")######!!!!!
     except:
         print("Error")
 
