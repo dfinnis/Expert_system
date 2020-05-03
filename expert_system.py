@@ -35,20 +35,25 @@ def main():
 		print(filepath)############
 		if not os.path.isfile(filepath):
 			print("Error: filepath invalid")
+			return
 
 		# f = fact('A')
 		# f.add_rule('=> B')
 		# f.add_rule('=> C')
 		# print(f.rules)
 
+		allowedSymbols = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '(', ')', '+', '!', '|', '^', '=', '>', '?'}
+		
 		with open(filepath, 'r') as file:
 			for line in file:
 				str = line.replace(" ", "").replace("\t", "").replace("\n", "").split("#")[0]
 				if str != "":
-					## if string has non sanctioned characters reject
-					# allowedSymbols_str = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ()+!|^=>?' # < "if and only if"
+					if not allowedSymbols.issuperset(str):
+						print("Error: invalid symbol in file")
+						return
+
 					print(str)
-				# print("oh yeh!")
+				# print("oh yeh!")#####
 
 		print("Oh hi!")######!!!!!
 	except:
