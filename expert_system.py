@@ -14,6 +14,8 @@ def parse_args():
 class graph:
     def __init__(self):
         self.facts = []
+        self.initial_facts = []
+        self.queries = []
 
 class fact:
 
@@ -42,7 +44,9 @@ def main():
         with open(filepath, 'r') as file:
             for line in file:
                 str = line.replace(" ", "").replace("\t", "").replace("\n", "")
-                print(str)
+                if str != "":
+                    if str[0] != '#':
+                        print(str)
                 # print("oh yeh!")
 
         print("Oh hi!")######!!!!!
