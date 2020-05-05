@@ -13,9 +13,20 @@ def parse_args():
 
 class graph:
 	def __init__(self):
-		self.facts = []
-		self.initial_facts = []
+		self.facts = [] # pointers to all facts
+		self.rules = [] # pointers to all rules
+		self.initial_facts = [] #
 		self.queries = []
+	
+	def add_initial_fact(self, initial_fact):
+		print("I am adding inital fact {}".format(initial_fact))##############
+		self.initial_facts.append(initial_fact)
+
+	def print_graph(self):
+		print("Facts: {}\n".format(self.facts))
+		print("Rules: {}\n".format(self.rules))
+		print("Initial facts: {}\n".format(self.initial_facts))
+		print("Queries: {}\n".format(self.queries))
 
 class fact:
 
@@ -44,6 +55,8 @@ def main():
 
 		allowedSymbols = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '(', ')', '+', '!', '|', '^', '=', '>', '?'}
 		
+		g = graph()
+
 		with open(filepath, 'r') as file:
 			for line in file:
 				str = line.replace(" ", "").replace("\t", "").replace("\n", "").split("#")[0]
@@ -51,10 +64,11 @@ def main():
 					if not allowedSymbols.issuperset(str):
 						print("Error: invalid symbol in file")
 						return
-
+					if str[0] == '=':
+						g.add_initial_fact(str)
 					print(str)
-				# print("oh yeh!")#####
 
+		g.print_graph()
 		print("Oh hi!")######!!!!!
 	except:
 		print("Error")
