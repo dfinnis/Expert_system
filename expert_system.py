@@ -44,46 +44,59 @@ class fact:
 		print("I am adding rule {}".format(rule))##############
 		self.rules.append(rule)
 
+def parse():
+
+	filepath = parse_args()
+	if not os.path.isfile(filepath):
+		print("Error: filepath invalid")
+		return
+
+	# f = fact('A')
+	# f.add_rule('=> B')
+	# f.add_rule('=> C')
+	# print(f.rules)
+
+	allowedSymbols = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '(', ')', '+', '!', '|', '^', '=', '>', '?'}
+		
+	g = graph()
+
+	with open(filepath, 'r') as file:
+		for line in file:
+			str = line.replace(" ", "").replace("\t", "").replace("\n", "").split("#")[0]
+			if str != "":
+				if not allowedSymbols.issuperset(str):
+					print("Error: Invalid symbol in file")
+					return
+
+				if str[0] == '=':
+					if g.initial_facts:
+						print("Error: Multiple lines of initial facts")
+						return
+					initial_facts = str.split("=")[1]
+					for letter in initial_facts:
+						g.add_initial_fact(letter)
+
+				elif str[0] == '?':
+					if g.queries:
+						print("Error: Multiple lines of queries")
+						return
+					queries = str.split("?")[1]
+					for letter in queries:
+						g.add_queries(letter)
+
+				else:
+					g.rules.append(str)
+					for letter in str:
+						if letter.isalpha() == True:
+							if letter not in g.facts:
+								g.facts.append(letter)
+								# print(letter)
+					# print(str)
+	return g
+
 def main():
 	try:
-		filepath = parse_args()
-		print(filepath)############
-		if not os.path.isfile(filepath):
-			print("Error: filepath invalid")
-			return
-
-		# f = fact('A')
-		# f.add_rule('=> B')
-		# f.add_rule('=> C')
-		# print(f.rules)
-
-		allowedSymbols = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '(', ')', '+', '!', '|', '^', '=', '>', '?'}
-		
-		g = graph()
-
-		with open(filepath, 'r') as file:
-			for line in file:
-				str = line.replace(" ", "").replace("\t", "").replace("\n", "").split("#")[0]
-				if str != "":
-					if not allowedSymbols.issuperset(str):
-						print("Error: Invalid symbol in file")
-						return
-					if str[0] == '=':
-						if g.initial_facts:
-							print("Error: Multiple lines of initial facts")
-							return
-						initial_facts = str.split("=")[1]
-						for letter in initial_facts:
-							g.add_initial_fact(letter)
-					if str[0] == '?':
-						if g.queries:
-							print("Error: Multiple lines of queries")
-							return
-						queries = str.split("?")[1]
-						for letter in queries:
-							g.add_queries(letter)
-					print(str)
-
+		g = parse()
 		g.print_graph()
 		print("Oh hi!")######!!!!!
 	except:
