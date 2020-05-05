@@ -19,15 +19,15 @@ class graph:
 		self.queries = []
 	
 	def add_initial_fact(self, initial_fact):
-		print("I am adding inital fact {}".format(initial_fact))##############
+		# print("I am adding inital fact {}".format(initial_fact))##############
 		self.initial_facts.append(initial_fact)
 
 	def add_queries(self, queries):
-		print("I am adding queries {}".format(queries))##############
+		# print("I am adding queries {}".format(queries))##############
 		self.queries.append(queries)
 
 	def print_graph(self):
-		print("Facts: {}\n".format(self.facts))
+		print("\nFacts: {}\n".format(self.facts))
 		print("Rules: {}\n".format(self.rules))
 		print("Initial facts: {}\n".format(self.initial_facts))
 		print("Queries: {}\n".format(self.queries))
@@ -72,12 +72,16 @@ def main():
 						if g.initial_facts:
 							print("Error: Multiple lines of initial facts")
 							return
-						g.add_initial_fact(str.split("=")[1])
+						initial_facts = str.split("=")[1]
+						for letter in initial_facts:
+							g.add_initial_fact(letter)
 					if str[0] == '?':
 						if g.queries:
 							print("Error: Multiple lines of queries")
 							return
-						g.add_queries(str.split("?")[1])
+						queries = str.split("?")[1]
+						for letter in queries:
+							g.add_queries(letter)
 					print(str)
 
 		g.print_graph()
