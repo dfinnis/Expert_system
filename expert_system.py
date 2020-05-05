@@ -22,6 +22,10 @@ class graph:
 		print("I am adding inital fact {}".format(initial_fact))##############
 		self.initial_facts.append(initial_fact)
 
+	def add_queries(self, queries):
+		print("I am adding queries {}".format(queries))##############
+		self.queries.append(queries)
+
 	def print_graph(self):
 		print("Facts: {}\n".format(self.facts))
 		print("Rules: {}\n".format(self.rules))
@@ -62,10 +66,18 @@ def main():
 				str = line.replace(" ", "").replace("\t", "").replace("\n", "").split("#")[0]
 				if str != "":
 					if not allowedSymbols.issuperset(str):
-						print("Error: invalid symbol in file")
+						print("Error: Invalid symbol in file")
 						return
 					if str[0] == '=':
-						g.add_initial_fact(str)
+						if g.initial_facts:
+							print("Error: Multiple lines of initial facts")
+							return
+						g.add_initial_fact(str.split("=")[1])
+					if str[0] == '?':
+						if g.queries:
+							print("Error: Multiple lines of queries")
+							return
+						g.add_queries(str.split("?")[1])
 					print(str)
 
 		g.print_graph()
