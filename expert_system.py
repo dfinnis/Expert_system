@@ -27,6 +27,17 @@ class fact:
 	# 	print("I am adding rule {}".format(rule))##############
 	# 	self.rules.append(rule)
 
+class rule:
+
+	def __init__(self):
+		self.rule = rule
+		self.left = []
+		self.right = []
+
+	def parse_rule(self, rule):
+		for letter in rule:
+			print(letter)
+
 class graph:
 	def __init__(self):
 		self.facts = [] # pointers to all facts
@@ -38,6 +49,12 @@ class graph:
 		# print("I am adding inital fact {}".format(initial_fact))##############
 		f = fact(symbol)
 		self.facts.append(f)
+
+	def add_rule(self, rule):
+		r = rule()
+		r.parse_rule(rule)
+		self.rules.append(r)
+		## link facts to rule
 
 	def add_initial_fact(self, initial_fact):
 		assigned_true = False
@@ -93,32 +110,33 @@ def parse():
 
 	with open(filepath, 'r') as file:
 		for line in file:
-			str = line.replace(" ", "").replace("\t", "").replace("\n", "").split("#")[0]
-			if str != "":
-				if not allowedSymbols.issuperset(str):
+			line = line.replace(" ", "").replace("\t", "").replace("\n", "").split("#")[0]
+			if line != "":
+				if not allowedSymbols.issuperset(line):
 					error_exit("Invalid symbol in file")
 
-				if str[0] == '=':
+				if line[0] == '=':
 					if g.initial_facts:
 						error_exit("Multiple lines of initial facts")
-					initial_facts = str.split("=")[1]
+					initial_facts = line.split("=")[1]
 					for letter in initial_facts:
 						g.add_initial_fact(letter)
 
-				elif str[0] == '?':
+				elif line[0] == '?':
 					if g.queries:
 						error_exit("Multiple lines of queries")
-					queries = str.split("?")[1]
+					queries = line.split("?")[1]
 					for letter in queries:
 						g.add_queries(letter)
 
 				else:
-					g.rules.append(str)
-					for letter in str:
+					# g.add_rule(line)
+					g.rules.append(line)
+					for letter in line:
 						if letter.isalpha() == True:
 							if letter not in g.facts:
 								g.add_fact(letter)
-					# print(str)
+					# print(line)
 	return g
 
 def main():
