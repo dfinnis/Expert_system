@@ -30,13 +30,16 @@ class fact:
 class rule:
 
 	def __init__(self):
-		self.rule = rule
-		self.left = []
-		self.right = []
+		pass
+		# self.rule = line
+		# self.rule = 
+		# self.left = []
+		# self.right = []
 
 	def parse_rule(self, rule):
-		for letter in rule:
-			print(letter)
+		self.rule = rule
+	# 	for letter in rule:
+	# 		print(letter)
 
 class graph:
 	def __init__(self):
@@ -50,9 +53,10 @@ class graph:
 		f = fact(symbol)
 		self.facts.append(f)
 
-	def add_rule(self, rule):
+	def add_rule(self, line):
+		# print(line)######
 		r = rule()
-		r.parse_rule(rule)
+		r.parse_rule(line)
 		self.rules.append(r)
 		## link facts to rule
 
@@ -85,8 +89,12 @@ class graph:
 			print(fact.symbol)
 			print(fact.true)
 
-		print("\nRules: {}\n".format(self.rules))
-		print("Initial facts: {}\n".format(self.initial_facts))
+		print("\nRules:")
+		for rule in self.rules:
+			print(rule.rule)
+
+		# print("\nRules: {}\n".format(self.rules))
+		print("\nInitial facts: {}\n".format(self.initial_facts))
 		print("Queries: {}\n".format(self.queries))
 
 def error_exit(error_msg):
@@ -130,12 +138,12 @@ def parse():
 						g.add_queries(letter)
 
 				else:
-					# g.add_rule(line)
-					g.rules.append(line)
 					for letter in line:
 						if letter.isalpha() == True:
 							if letter not in g.facts:
 								g.add_fact(letter)
+					g.add_rule(line)
+					# g.rules.append(line)
 					# print(line)
 	return g
 
