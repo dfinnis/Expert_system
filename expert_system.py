@@ -1,5 +1,6 @@
 import argparse
 import os
+import sys
 
 def parse_args():
 	my_parser = argparse.ArgumentParser(description="Expert system solves propositional calculus.")
@@ -32,6 +33,10 @@ class graph:
 		print("Initial facts: {}\n".format(self.initial_facts))
 		print("Queries: {}\n".format(self.queries))
 
+def error_exit(error_msg):
+	print("Error: {}".format(error_msg))
+	sys.exit()
+
 class fact:
 
 	def __init__(self, symbol):
@@ -48,8 +53,7 @@ def parse():
 
 	filepath = parse_args()
 	if not os.path.isfile(filepath):
-		print("Error: filepath invalid")
-		return
+		error_exit("Invalid filepath")
 
 	# f = fact('A')
 	# f.add_rule('=> B')
@@ -65,21 +69,18 @@ def parse():
 			str = line.replace(" ", "").replace("\t", "").replace("\n", "").split("#")[0]
 			if str != "":
 				if not allowedSymbols.issuperset(str):
-					print("Error: Invalid symbol in file")
-					return
+					error_exit("Invalid symbol in file")
 
 				if str[0] == '=':
 					if g.initial_facts:
-						print("Error: Multiple lines of initial facts")
-						return
+						error_exit("Multiple lines of initial facts")
 					initial_facts = str.split("=")[1]
 					for letter in initial_facts:
 						g.add_initial_fact(letter)
 
 				elif str[0] == '?':
 					if g.queries:
-						print("Error: Multiple lines of queries")
-						return
+						error_exit("Multiple lines of queries")
 					queries = str.split("?")[1]
 					for letter in queries:
 						g.add_queries(letter)
@@ -100,7 +101,8 @@ def main():
 		g.print_graph()
 		print("Oh hi!")######!!!!!
 	except:
-		print("Error")
+		# print("Error")
+		pass
 
 if __name__ == '__main__':
 	main()

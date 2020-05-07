@@ -373,4 +373,55 @@ else
 	echo "actual output:  $output\n"
 fi
 
+#### -- ERROR -- ####
+echo "\n\x1b[1merror tests:\x1b[0m"
+
+cmd="python3 expert_system.py input/invalid/bullshit_filepath"
+output=$(eval "$cmd")
+desired="Error: Invalid filepath"
+if [ "$output" == "$desired" ]
+then
+	echo "\x1b[32minvalid filepath:\tOK\x1b[0m"
+else
+	echo "\x1b[31minvalid filepath:\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+
+cmd="python3 expert_system.py input/invalid/invalid_symbol.txt"
+output=$(eval "$cmd")
+desired="Error: Invalid symbol in file"
+if [ "$output" == "$desired" ]
+then
+	echo "\x1b[32minvalid symbol:\t\tOK\x1b[0m"
+else
+	echo "\x1b[31minvalid symbol:\t\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+
+cmd="python3 expert_system.py input/invalid/2_initial_fact_lines.txt"
+output=$(eval "$cmd")
+desired="Error: Multiple lines of initial facts"
+if [ "$output" == "$desired" ]
+then
+	echo "\x1b[32m2 initial fact lines:\tOK\x1b[0m"
+else
+	echo "\x1b[31m2 initial fact lines:\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+
+cmd="python3 expert_system.py input/invalid/2_query_lines.txt"
+output=$(eval "$cmd")
+desired="Error: Multiple lines of queries"
+if [ "$output" == "$desired" ]
+then
+	echo "\x1b[32m2 query lines:\t\tOK\x1b[0m"
+else
+	echo "\x1b[31m2 query lines:\t\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+
 echo "\n\x1b[1mAll Expert System tests finished\x1b[0m\n"
