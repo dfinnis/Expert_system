@@ -40,24 +40,22 @@ class graph:
 		self.facts.append(f)
 
 	def add_initial_fact(self, initial_fact):
-		# print("I am adding inital fact {}".format(initial_fact))##############
 		assigned_true = False
 		for fact in self.facts:
-			# print(fact.symbol)
 			if initial_fact == fact.symbol:
 				fact.assign_true()
 				assigned_true = True
 				break
 		if not assigned_true:
 			error_exit("Inital fact not in rules")
-		self.initial_facts.append(initial_fact)##??????
+		self.initial_facts.append(initial_fact)#######??????
 
 	def add_queries(self, queries):
 		# print("I am adding queries {}".format(queries))##############
 		self.queries.append(queries)
 
 	def print_graph(self):
-		# print("\nFacts: {}\n".format(self.facts))
+
 		for fact in self.facts:
 			print(fact.symbol)
 			print(fact.true)
