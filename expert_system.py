@@ -50,12 +50,20 @@ class graph:
 			error_exit("Inital fact not in rules")
 		self.initial_facts.append(initial_fact)#######??????
 
-	def add_queries(self, queries):
+	def add_queries(self, query):
 		# print("I am adding queries {}".format(queries))##############
-		self.queries.append(queries)
+		found_fact = False
+		for fact in self.facts:
+			if query == fact.symbol:
+				found_fact = True
+				break
+		if not found_fact:
+			error_exit("Query not in rules")
+		self.queries.append(query)
 
 	def print_graph(self):
 
+		print("Facts:")
 		for fact in self.facts:
 			print(fact.symbol)
 			print(fact.true)

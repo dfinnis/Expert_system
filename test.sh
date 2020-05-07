@@ -438,7 +438,7 @@ fi
 
 cmd="python3 expert_system.py input/invalid/query_not_in_rules.txt"
 output=$(eval "$cmd")
-desired="Error: Query fact not in rules"
+desired="Error: Query not in rules"
 if [ "$output" == "$desired" ]
 then
 	echo "\x1b[32mquery !in rules:\tOK\x1b[0m"
