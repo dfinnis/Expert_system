@@ -19,6 +19,7 @@ class fact:
 		self.symbol = symbol
 		self.true = False
 		self.rules = []
+		self.rules_in = []
 
 	def assign_true(self):
 		self.true = True
@@ -26,6 +27,10 @@ class fact:
 	def add_rule(self, rule):
 		# print("I am adding rule {}".format(rule))##############
 		self.rules.append(rule)
+
+	def add_rule_in(self, rule):
+		# print("I am adding rule {}".format(rule))##############
+		self.rules_in.append(rule)
 
 class rule:
 
@@ -71,10 +76,12 @@ class graph:
 					for fact in self.facts:
 						if letter == fact.symbol:
 							fact.add_rule(rule)
-				# fact.assign_true()
-				# assigned_true = True
-				# break
-				# 	print(letter)######
+
+			for letter in rule.right:
+				if letter.isalpha():
+					for fact in self.facts:
+						if letter == fact.symbol:
+							fact.add_rule_in(rule)
 
 
 
@@ -107,15 +114,21 @@ class graph:
 		for fact in self.facts:
 			print(fact.symbol)
 			print(fact.true)
+			print("Rules:")
 			for rule in fact.rules:
-				print(rule.left)#######
-				print(rule.right)#######
+				print("rule.left: {}".format(rule.left))
+				print("rule.right: {}".format(rule.right))
+			print("Rules in:")
+			for rule in fact.rules_in:
+				print("rule.left: {}".format(rule.left))
+				print("rule.right: {}".format(rule.right))
+		
 
-		print("\nRules:")
+		print("\nAll Rules:")
 		for rule in self.rules:
 			# print(rule.rule)
-			print(rule.left)
-			print(rule.right)
+			print("rule.left: {}".format(rule.left))
+			print("rule.right: {}".format(rule.right))
 
 		# print("\nRules: {}\n".format(self.rules))
 		print("\nInitial facts: {}\n".format(self.initial_facts))
