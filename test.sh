@@ -424,4 +424,28 @@ else
 	echo "actual output:  $output\n"
 fi
 
+cmd="python3 expert_system.py input/invalid/inital_fact_not_in_rules.txt"
+output=$(eval "$cmd")
+desired="Error: Inital fact not in rules"
+if [ "$output" == "$desired" ]
+then
+	echo "\x1b[32minital fact !in rules:\tOK\x1b[0m"
+else
+	echo "\x1b[31minital fact !in rules:\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+
+cmd="python3 expert_system.py input/invalid/query_not_in_rules.txt"
+output=$(eval "$cmd")
+desired="Error: Query fact not in rules"
+if [ "$output" == "$desired" ]
+then
+	echo "\x1b[32mquery !in rules:\tOK\x1b[0m"
+else
+	echo "\x1b[31mquery !in rules:\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+
 echo "\n\x1b[1mAll Expert System tests finished\x1b[0m\n"

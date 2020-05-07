@@ -12,42 +12,63 @@ def parse_args():
 	filepath = args.Filepath
 	return filepath
 
+class fact:
+
+	def __init__(self, symbol):
+		# print("I, {}, am initialized".format(symbol))############
+		self.symbol = symbol
+		self.true = False
+		self.rules = []
+
+	def assign_true(self):
+		self.true = True
+
+	# def add_rule(self, rule):
+	# 	print("I am adding rule {}".format(rule))##############
+	# 	self.rules.append(rule)
+
 class graph:
 	def __init__(self):
 		self.facts = [] # pointers to all facts
 		self.rules = [] # pointers to all rules
 		self.initial_facts = [] #
 		self.queries = []
-	
+
+	def add_fact(self, symbol):
+		# print("I am adding inital fact {}".format(initial_fact))##############
+		f = fact(symbol)
+		self.facts.append(f)
+
 	def add_initial_fact(self, initial_fact):
 		# print("I am adding inital fact {}".format(initial_fact))##############
-		self.initial_facts.append(initial_fact)
+		assigned_true = False
+		for fact in self.facts:
+			# print(fact.symbol)
+			if initial_fact == fact.symbol:
+				fact.assign_true()
+				assigned_true = True
+				break
+		if not assigned_true:
+			error_exit("Inital fact not in rules")
+		self.initial_facts.append(initial_fact)##??????
 
 	def add_queries(self, queries):
 		# print("I am adding queries {}".format(queries))##############
 		self.queries.append(queries)
 
 	def print_graph(self):
-		print("\nFacts: {}\n".format(self.facts))
-		print("Rules: {}\n".format(self.rules))
+		# print("\nFacts: {}\n".format(self.facts))
+		for fact in self.facts:
+			print(fact.symbol)
+			print(fact.true)
+
+		print("\nRules: {}\n".format(self.rules))
 		print("Initial facts: {}\n".format(self.initial_facts))
 		print("Queries: {}\n".format(self.queries))
 
 def error_exit(error_msg):
 	print("Error: {}".format(error_msg))
 	sys.exit()
-
-class fact:
-
-	def __init__(self, symbol):
-		print("I, {}, am initialized".format(symbol))############
-		self.symbol = symbol
-		self.true = False
-		self.rules = []
-
-	def add_rule(self, rule):
-		print("I am adding rule {}".format(rule))##############
-		self.rules.append(rule)
 
 def parse():
 
@@ -90,8 +111,7 @@ def parse():
 					for letter in str:
 						if letter.isalpha() == True:
 							if letter not in g.facts:
-								g.facts.append(letter)
-								# print(letter)
+								g.add_fact(letter)
 					# print(str)
 	return g
 
