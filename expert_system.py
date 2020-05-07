@@ -37,9 +37,14 @@ class rule:
 		# self.right = []
 
 	def parse_rule(self, rule):
-		self.rule = rule
-	# 	for letter in rule:
-	# 		print(letter)
+		# self.rule = rule
+		self.left = rule.split("=>")[0]
+		self.right = rule.split("=>")[1]
+		# self.symbol = 
+		# self.left = []
+		# self.right = []
+	# 	for letter in rule:###
+	# 		print(letter)#####
 
 class graph:
 	def __init__(self):
@@ -91,7 +96,9 @@ class graph:
 
 		print("\nRules:")
 		for rule in self.rules:
-			print(rule.rule)
+			# print(rule.rule)
+			print(rule.left)
+			print(rule.right)
 
 		# print("\nRules: {}\n".format(self.rules))
 		print("\nInitial facts: {}\n".format(self.initial_facts))
