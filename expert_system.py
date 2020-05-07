@@ -23,9 +23,9 @@ class fact:
 	def assign_true(self):
 		self.true = True
 
-	# def add_rule(self, rule):
-	# 	print("I am adding rule {}".format(rule))##############
-	# 	self.rules.append(rule)
+	def add_rule(self, rule):
+		# print("I am adding rule {}".format(rule))##############
+		self.rules.append(rule)
 
 class rule:
 
@@ -37,10 +37,9 @@ class rule:
 		# self.right = []
 
 	def parse_rule(self, rule):
-		# self.rule = rule
 		self.left = rule.split("=>")[0]
 		self.right = rule.split("=>")[1]
-		# self.symbol = 
+
 		# self.left = []
 		# self.right = []
 	# 	for letter in rule:###
@@ -64,6 +63,21 @@ class graph:
 		r.parse_rule(line)
 		self.rules.append(r)
 		## link facts to rule
+	
+	def link_facts_rules(self):
+		for rule in self.rules:
+			for letter in rule.left:
+				if letter.isalpha():
+					for fact in self.facts:
+						if letter == fact.symbol:
+							fact.add_rule(rule)
+				# fact.assign_true()
+				# assigned_true = True
+				# break
+				# 	print(letter)######
+
+
+
 
 	def add_initial_fact(self, initial_fact):
 		assigned_true = False
@@ -93,6 +107,9 @@ class graph:
 		for fact in self.facts:
 			print(fact.symbol)
 			print(fact.true)
+			for rule in fact.rules:
+				print(rule.left)#######
+				print(rule.right)#######
 
 		print("\nRules:")
 		for rule in self.rules:
@@ -152,6 +169,8 @@ def parse():
 					g.add_rule(line)
 					# g.rules.append(line)
 					# print(line)
+	
+	g.link_facts_rules()
 	return g
 
 def main():
