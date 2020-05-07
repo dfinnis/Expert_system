@@ -182,14 +182,21 @@ def parse():
 					g.add_rule(line)
 					# g.rules.append(line)
 					# print(line)
-	
+
 	g.link_facts_rules()
 	return g
+
+def print_results(g):
+	for query in g.queries:		
+		for fact in g.facts:
+			if query == fact.symbol:
+				print("{} is {}".format(query, fact.true))
 
 def main():
 	try:
 		g = parse()
 		g.print_graph()
+		print_results(g)
 		print("Oh hi!")######!!!!!
 	except:
 		# print("Error")
