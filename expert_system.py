@@ -134,7 +134,7 @@ class graph:
 						# print(fact.symbol)#####
 						if parent == fact.symbol:
 							# print("fact.true = {}".format(fact.true))#########
-							if fact.initially_true == True:
+							if fact.deduced_true == True:
 								true += 1
 							break
 
@@ -142,7 +142,6 @@ class graph:
 			# print("# true = {}".format(true))########
 			
 			if parents == true:
-				# print("make children true")##########
 				for child in rule.children:
 					if len(child) == 1: ## SIMPLE CASE
 						for fact in self.facts:
@@ -242,6 +241,7 @@ def main():
 		if graph:
 			g.print_graph()
 		g.solve()
+		# g.solve()
 		print_results(g)
 		# print("Oh hi!")######!!!!!
 	except:
