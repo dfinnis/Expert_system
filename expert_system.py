@@ -204,10 +204,11 @@ def print_results(g):
 	for query in g.queries:
 		for fact in g.facts:
 			if query == fact.symbol:
-				if fact.true == True:
-					print("\x1b[32m{} is True\x1b[0m".format(query))
-				else:
-					print("\x1b[31m{} is False\x1b[0m".format(query))					
+				print("{} is {}".format(query, fact.true))
+				# if fact.true == True:
+				# 	print("\x1b[32m{} is True\x1b[0m".format(query))
+				# else:
+				# 	print("\x1b[31m{} is False\x1b[0m".format(query))					
 
 def main():
 	try:

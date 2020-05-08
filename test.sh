@@ -9,10 +9,10 @@ echo "\x1b[1mand tests:\x1b[0m"
 
 cmd="python3 expert_system.py input/correction/and_1.txt"
 output=$(eval "$cmd")
-desired="A is true
-F is true
-K is true
-P is true"
+desired="A is True
+F is True
+K is True
+P is True"
 if [ "$output" == "$desired" ]
 then
 	((passed+=1))
@@ -26,10 +26,10 @@ fi
 
 cmd="python3 expert_system.py input/correction/and_2.txt"
 output=$(eval "$cmd")
-desired="A is true
-F is true
-K is false
-P is true"
+desired="A is True
+F is True
+K is False
+P is True"
 if [ "$output" == "$desired" ]
 then
 	((passed+=1))
@@ -46,7 +46,7 @@ echo "\n\x1b[1mor tests:\x1b[0m"
 
 cmd="python3 expert_system.py input/correction/or_1.txt"
 output=$(eval "$cmd")
-desired="A is false"
+desired="A is False"
 if [ "$output" == "$desired" ]
 then
 	((passed+=1))
@@ -60,7 +60,7 @@ fi
 
 cmd="python3 expert_system.py input/correction/or_2.txt"
 output=$(eval "$cmd")
-desired="A is true"
+desired="A is True"
 if [ "$output" == "$desired" ]
 then
 	((passed+=1))
@@ -74,7 +74,7 @@ fi
 
 cmd="python3 expert_system.py input/correction/or_3.txt"
 output=$(eval "$cmd")
-desired="A is true"
+desired="A is True"
 if [ "$output" == "$desired" ]
 then
 	((passed+=1))
@@ -88,7 +88,7 @@ fi
 
 cmd="python3 expert_system.py input/correction/or_4.txt"
 output=$(eval "$cmd")
-desired="A is true"
+desired="A is True"
 if [ "$output" == "$desired" ]
 then
 	((passed+=1))
@@ -105,7 +105,7 @@ echo "\n\x1b[1mxor tests:\x1b[0m"
 
 cmd="python3 expert_system.py input/correction/xor_1.txt"
 output=$(eval "$cmd")
-desired="A is false"
+desired="A is False"
 if [ "$output" == "$desired" ]
 then
 	((passed+=1))
@@ -119,7 +119,7 @@ fi
 
 cmd="python3 expert_system.py input/correction/xor_2.txt"
 output=$(eval "$cmd")
-desired="A is true"
+desired="A is True"
 if [ "$output" == "$desired" ]
 then
 	((passed+=1))
@@ -133,7 +133,7 @@ fi
 
 cmd="python3 expert_system.py input/correction/xor_3.txt"
 output=$(eval "$cmd")
-desired="A is true"
+desired="A is True"
 if [ "$output" == "$desired" ]
 then
 	((passed+=1))
@@ -147,7 +147,7 @@ fi
 
 cmd="python3 expert_system.py input/correction/xor_4.txt"
 output=$(eval "$cmd")
-desired="A is false"
+desired="A is False"
 if [ "$output" == "$desired" ]
 then
 	((passed+=1))
@@ -164,7 +164,7 @@ echo "\n\x1b[1mnot tests:\x1b[0m"
 
 cmd="python3 expert_system.py input/correction/not_1.txt"
 output=$(eval "$cmd")
-desired="A is false"
+desired="A is False"
 if [ "$output" == "$desired" ]
 then
 	((passed+=1))
@@ -178,7 +178,7 @@ fi
 
 cmd="python3 expert_system.py input/correction/not_2.txt"
 output=$(eval "$cmd")
-desired="A is true"
+desired="A is True"
 if [ "$output" == "$desired" ]
 then
 	((passed+=1))
@@ -192,7 +192,7 @@ fi
 
 cmd="python3 expert_system.py input/correction/not_3.txt"
 output=$(eval "$cmd")
-desired="A is false"
+desired="A is False"
 if [ "$output" == "$desired" ]
 then
 	((passed+=1))
@@ -206,7 +206,7 @@ fi
 
 cmd="python3 expert_system.py input/correction/not_4.txt"
 output=$(eval "$cmd")
-desired="A is false"
+desired="A is False"
 if [ "$output" == "$desired" ]
 then
 	((passed+=1))
@@ -223,7 +223,7 @@ echo "\n\x1b[1msame conclusion tests:\x1b[0m"
 
 cmd="python3 expert_system.py input/correction/same_conclusion_1.txt"
 output=$(eval "$cmd")
-desired="A is false"
+desired="A is False"
 if [ "$output" == "$desired" ]
 then
 	((passed+=1))
@@ -237,7 +237,7 @@ fi
 
 cmd="python3 expert_system.py input/correction/same_conclusion_2.txt"
 output=$(eval "$cmd")
-desired="A is true"
+desired="A is True"
 if [ "$output" == "$desired" ]
 then
 	((passed+=1))
@@ -251,7 +251,7 @@ fi
 
 cmd="python3 expert_system.py input/correction/same_conclusion_3.txt"
 output=$(eval "$cmd")
-desired="A is true"
+desired="A is True"
 if [ "$output" == "$desired" ]
 then
 	((passed+=1))
@@ -265,7 +265,7 @@ fi
 
 cmd="python3 expert_system.py input/correction/same_conclusion_4.txt"
 output=$(eval "$cmd")
-desired="A is true"
+desired="A is True"
 if [ "$output" == "$desired" ]
 then
 	((passed+=1))
@@ -282,7 +282,7 @@ echo "\n\x1b[1mparenthesis tests:\x1b[0m"
 
 cmd="python3 expert_system.py input/correction/parenthesis_1.txt"
 output=$(eval "$cmd")
-desired="E is false"
+desired="E is False"
 if [ "$output" == "$desired" ]
 then
 	((passed+=1))
@@ -296,7 +296,7 @@ fi
 
 cmd="python3 expert_system.py input/correction/parenthesis_2.txt"
 output=$(eval "$cmd")
-desired="E is true"
+desired="E is True"
 if [ "$output" == "$desired" ]
 then
 	((passed+=1))
@@ -310,7 +310,7 @@ fi
 
 cmd="python3 expert_system.py input/correction/parenthesis_3.txt"
 output=$(eval "$cmd")
-desired="E is false"
+desired="E is False"
 if [ "$output" == "$desired" ]
 then
 	((passed+=1))
@@ -324,7 +324,7 @@ fi
 
 cmd="python3 expert_system.py input/correction/parenthesis_4.txt"
 output=$(eval "$cmd")
-desired="E is false"
+desired="E is False"
 if [ "$output" == "$desired" ]
 then
 	((passed+=1))
@@ -338,7 +338,7 @@ fi
 
 cmd="python3 expert_system.py input/correction/parenthesis_5.txt"
 output=$(eval "$cmd")
-desired="E is false"
+desired="E is False"
 if [ "$output" == "$desired" ]
 then
 	((passed+=1))
@@ -352,7 +352,7 @@ fi
 
 cmd="python3 expert_system.py input/correction/parenthesis_6.txt"
 output=$(eval "$cmd")
-desired="E is true"
+desired="E is True"
 if [ "$output" == "$desired" ]
 then
 	((passed+=1))
@@ -366,7 +366,7 @@ fi
 
 cmd="python3 expert_system.py input/correction/parenthesis_7.txt"
 output=$(eval "$cmd")
-desired="E is false"
+desired="E is False"
 if [ "$output" == "$desired" ]
 then
 	((passed+=1))
@@ -380,7 +380,7 @@ fi
 
 cmd="python3 expert_system.py input/correction/parenthesis_8.txt"
 output=$(eval "$cmd")
-desired="E is false"
+desired="E is False"
 if [ "$output" == "$desired" ]
 then
 	((passed+=1))
@@ -394,7 +394,7 @@ fi
 
 cmd="python3 expert_system.py input/correction/parenthesis_9.txt"
 output=$(eval "$cmd")
-desired="E is false"
+desired="E is False"
 if [ "$output" == "$desired" ]
 then
 	((passed+=1))
@@ -408,7 +408,7 @@ fi
 
 cmd="python3 expert_system.py input/correction/parenthesis_10.txt"
 output=$(eval "$cmd")
-desired="E is true"
+desired="E is True"
 if [ "$output" == "$desired" ]
 then
 	((passed+=1))
@@ -422,7 +422,7 @@ fi
 
 cmd="python3 expert_system.py input/correction/parenthesis_11.txt"
 output=$(eval "$cmd")
-desired="E is true"
+desired="E is True"
 if [ "$output" == "$desired" ]
 then
 	((passed+=1))
