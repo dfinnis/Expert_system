@@ -35,15 +35,19 @@ class fact:
 class rule:
 
 	def __init__(self):
-		pass
-		# self.rule = line
-		# self.rule = 
-		# self.parent = []
-		# self.child = []
+		# pass
+		# # self.rule = line
+		# # self.rule = 
+		self.parents = []
+		self.children = []
 
 	def parse_rule(self, rule):
-		self.parent = rule.split("=>")[0]
-		self.child = rule.split("=>")[1]
+		left = rule.split("=>")[0]
+		self.parents = left.split("+")
+		right = rule.split("=>")[1]
+		self.children = right.split("+")		
+		# self.parent = rule.split("=>")[0]
+		# self.child = rule.split("=>")[1]
 
 class graph:
 	def __init__(self):
@@ -88,43 +92,57 @@ class graph:
 
 	def link_facts_rules(self):
 		for rule in self.rules:
-			for letter in rule.parent:
-				if letter.isalpha():
-					for fact in self.facts:
-						if letter == fact.symbol:
-							fact.add_child_rule(rule)
+			# print(rule.parents)#####	
+			for parent in rule.parents:
+				# print(parent)#
+				for letter in parent:
+					if letter.isalpha():
+						for fact in self.facts:
+							if letter == fact.symbol:
+								fact.add_child_rule(rule)
+			for child in rule.children:
+				for letter in child:
+					if letter.isalpha():
+						for fact in self.facts:
+							if letter == fact.symbol:
+								fact.add_parent_rule(rule)
 
-			for letter in rule.child:
-				if letter.isalpha():
-					for fact in self.facts:
-						if letter == fact.symbol:
-							fact.add_parent_rule(rule)
+
+
+			# for letter in rule.parent:
+			# 	if letter.isalpha():
+			# 		for fact in self.facts:
+			# 			if letter == fact.symbol:
+			# 				fact.add_child_rule(rule)
+			# for letter in rule.child:
+			# 	if letter.isalpha():
+			# 		for fact in self.facts:
+			# 			if letter == fact.symbol:
+			# 				fact.add_parent_rule(rule)
 
 	def print_graph(self):
 
-		print("Facts:")
+		print("\x1b[1mFacts:\x1b[0m")
 		for fact in self.facts:
 			print(fact.symbol)
 			print(fact.true)
-			print("Rules:")
+			print("Child rules:")
 			for rule in fact.child_rules:
-				print("rule.parent: {}".format(rule.parent))
-				print("rule.child: {}".format(rule.child))
-			print("Rules in:")
+				print("rule.parent: {}".format(rule.parents))
+				print("rule.child: {}".format(rule.children))
+			print("Parent rules:")
 			for rule in fact.parent_rules:
-				print("rule.parent: {}".format(rule.parent))
-				print("rule.child: {}".format(rule.child))
-		
+				print("rule.parent: {}".format(rule.parents))
+				print("rule.child: {}".format(rule.children))
+			print
 
-		print("\nAll Rules:")
+		print("\n\x1b[1mAll Rules:\x1b[0m")
 		for rule in self.rules:
-			# print(rule.rule)
-			print("rule.parent: {}".format(rule.parent))
-			print("rule.child: {}".format(rule.child))
+			print("rule.parents: {}".format(rule.parents))
+			print("rule.children: {}".format(rule.children))
 
-		# print("\nRules: {}\n".format(self.rules))
-		print("\nInitial facts: {}\n".format(self.initial_facts))
-		print("Queries: {}\n".format(self.queries))
+		print("\n\x1b[1mInitial facts:\x1b[0m {}\n".format(self.initial_facts))
+		print("\x1b[1mQueries:\x1b[0m {}\n".format(self.queries))
 
 def error_exit(error_msg):
 	print("Error: {}".format(error_msg))
@@ -198,4 +216,6 @@ def main():
 
 if __name__ == '__main__':
 	main()
-		
+
+### if all parents true, all children made true
+### parenthesis: cut out new rule, put between parent and current rule
