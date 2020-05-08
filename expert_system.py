@@ -18,19 +18,19 @@ class fact:
 		# print("I, {}, am initialized".format(symbol))############
 		self.symbol = symbol
 		self.true = False
-		self.rules = []
-		self.rules_in = []
+		self.child_rules = []
+		self.parent_rules = []
 
 	def assign_true(self):
 		self.true = True
 
-	def add_rule(self, rule):
+	def add_child_rule(self, rule):
 		# print("I am adding rule {}".format(rule))##############
-		self.rules.append(rule)
+		self.child_rules.append(rule)
 
-	def add_rule_in(self, rule):
+	def add_parent_rule(self, rule):
 		# print("I am adding rule {}".format(rule))##############
-		self.rules_in.append(rule)
+		self.parent_rules.append(rule)
 
 class rule:
 
@@ -75,13 +75,13 @@ class graph:
 				if letter.isalpha():
 					for fact in self.facts:
 						if letter == fact.symbol:
-							fact.add_rule(rule)
+							fact.add_child_rule(rule)
 
 			for letter in rule.right:
 				if letter.isalpha():
 					for fact in self.facts:
 						if letter == fact.symbol:
-							fact.add_rule_in(rule)
+							fact.add_parent_rule(rule)
 
 
 
@@ -115,11 +115,11 @@ class graph:
 			print(fact.symbol)
 			print(fact.true)
 			print("Rules:")
-			for rule in fact.rules:
+			for rule in fact.child_rules:
 				print("rule.left: {}".format(rule.left))
 				print("rule.right: {}".format(rule.right))
 			print("Rules in:")
-			for rule in fact.rules_in:
+			for rule in fact.parent_rules:
 				print("rule.left: {}".format(rule.left))
 				print("rule.right: {}".format(rule.right))
 		
