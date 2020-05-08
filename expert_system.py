@@ -22,12 +22,10 @@ class fact:
 	def __init__(self, symbol):
 		# print("I, {}, am initialized".format(symbol))############
 		self.symbol = symbol
-		self.true = False
 		self.child_rules = []
 		self.parent_rules = []
-
-	def assign_true(self):
-		self.true = True
+		self.initially_true = False
+		self.deduced_true = False
 
 	def add_child_rule(self, rule):
 		# print("I am adding rule {}".format(rule))##############
@@ -36,6 +34,12 @@ class fact:
 	def add_parent_rule(self, rule):
 		# print("I am adding rule {}".format(rule))##############
 		self.parent_rules.append(rule)
+
+	def initialize_true(self):
+		self.initially_true = True
+	
+	def deduce_true(self):
+		self.deduced_true = True
 
 class rule:
 
@@ -77,7 +81,8 @@ class graph:
 		assigned_true = False
 		for fact in self.facts:
 			if initial_fact == fact.symbol:
-				fact.assign_true()
+				fact.initialize_true()
+				fact.deduce_true()
 				assigned_true = True
 				break
 		if not assigned_true:
@@ -112,18 +117,45 @@ class graph:
 
 	def solve(self):
 		# print("solvingtime!")##########
+
 		for rule in self.rules:
-			# ADD
+			parents = 0
+			true = 0
 			for parent in rule.parents:
+				# print("parent = {}".format(parent))##########
+				parents += 1
 				if not parent:
 					error_exit("Bad Syntax, + missing symbol")
+
+				if len(parent) == 1: ## ADD
+					# print(parent)####
+					for fact in self.facts:
+						# print("fact.symbol = {}".format(fact.symbol))#########
+						# print(fact.symbol)#####
+						if parent == fact.symbol:
+							# print("fact.true = {}".format(fact.true))#########
+							if fact.initially_true == True:
+								true += 1
+							break
+
+			# print("# parents = {}".format(parents))#######
+			# print("# true = {}".format(true))########
+			
+			if parents == true:
+				# print("make children true")##########
+				for child in rule.children:
+					if len(child) == 1: ## SIMPLE CASE
+						for fact in self.facts:
+							fact.deduce_true()
+			# print ############
+
 
 	def print_graph(self):
 
 		print("\n\x1b[1mFacts:\x1b[0m")
 		for fact in self.facts:
 			print(fact.symbol)
-			print(fact.true)
+			print(fact.initially_true)
 			print("Child rules:")
 			for rule in fact.child_rules:
 				print("rule.parent: {}".format(rule.parents))
@@ -197,7 +229,7 @@ def print_results(g):
 	for query in g.queries:
 		for fact in g.facts:
 			if query == fact.symbol:
-				print("{} is {}".format(query, fact.true)) ## No color
+				print("{} is {}".format(query, fact.deduced_true)) ## No color
 				# if fact.true == True:
 				# 	print("\x1b[32m{} is True\x1b[0m".format(query))
 				# else:
