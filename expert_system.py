@@ -38,15 +38,15 @@ class rule:
 		pass
 		# self.rule = line
 		# self.rule = 
-		# self.left = []
-		# self.right = []
+		# self.parent = []
+		# self.child = []
 
 	def parse_rule(self, rule):
-		self.left = rule.split("=>")[0]
-		self.right = rule.split("=>")[1]
+		self.parent = rule.split("=>")[0]
+		self.child = rule.split("=>")[1]
 
-		# self.left = []
-		# self.right = []
+		# self.parent = []
+		# self.child = []
 	# 	for letter in rule:###
 	# 		print(letter)#####
 
@@ -71,13 +71,13 @@ class graph:
 	
 	def link_facts_rules(self):
 		for rule in self.rules:
-			for letter in rule.left:
+			for letter in rule.parent:
 				if letter.isalpha():
 					for fact in self.facts:
 						if letter == fact.symbol:
 							fact.add_child_rule(rule)
 
-			for letter in rule.right:
+			for letter in rule.child:
 				if letter.isalpha():
 					for fact in self.facts:
 						if letter == fact.symbol:
@@ -116,19 +116,19 @@ class graph:
 			print(fact.true)
 			print("Rules:")
 			for rule in fact.child_rules:
-				print("rule.left: {}".format(rule.left))
-				print("rule.right: {}".format(rule.right))
+				print("rule.parent: {}".format(rule.parent))
+				print("rule.child: {}".format(rule.child))
 			print("Rules in:")
 			for rule in fact.parent_rules:
-				print("rule.left: {}".format(rule.left))
-				print("rule.right: {}".format(rule.right))
+				print("rule.parent: {}".format(rule.parent))
+				print("rule.child: {}".format(rule.child))
 		
 
 		print("\nAll Rules:")
 		for rule in self.rules:
 			# print(rule.rule)
-			print("rule.left: {}".format(rule.left))
-			print("rule.right: {}".format(rule.right))
+			print("rule.parent: {}".format(rule.parent))
+			print("rule.child: {}".format(rule.child))
 
 		# print("\nRules: {}\n".format(self.rules))
 		print("\nInitial facts: {}\n".format(self.initial_facts))
