@@ -172,7 +172,11 @@ def parse():
 				else:
 					for letter in line:
 						if letter.isalpha() == True:
-							if letter not in g.facts:
+							found = False
+							for fact in g.facts:
+								if letter == fact.symbol:
+									found = True
+							if not found:
 								g.add_fact(letter)
 					g.add_rule(line)
 					# g.rules.append(line)
@@ -182,7 +186,7 @@ def parse():
 	return g
 
 def print_results(g):
-	for query in g.queries:		
+	for query in g.queries:
 		for fact in g.facts:
 			if query == fact.symbol:
 				if fact.true == True:
