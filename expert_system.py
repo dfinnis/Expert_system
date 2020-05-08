@@ -63,23 +63,6 @@ class graph:
 		r.parse_rule(line)
 		self.rules.append(r)
 		## link facts to rule
-	
-	def link_facts_rules(self):
-		for rule in self.rules:
-			for letter in rule.parent:
-				if letter.isalpha():
-					for fact in self.facts:
-						if letter == fact.symbol:
-							fact.add_child_rule(rule)
-
-			for letter in rule.child:
-				if letter.isalpha():
-					for fact in self.facts:
-						if letter == fact.symbol:
-							fact.add_parent_rule(rule)
-
-
-
 
 	def add_initial_fact(self, initial_fact):
 		assigned_true = False
@@ -102,6 +85,20 @@ class graph:
 		if not found_fact:
 			error_exit("Query not in rules")
 		self.queries.append(query)
+
+	def link_facts_rules(self):
+		for rule in self.rules:
+			for letter in rule.parent:
+				if letter.isalpha():
+					for fact in self.facts:
+						if letter == fact.symbol:
+							fact.add_child_rule(rule)
+
+			for letter in rule.child:
+				if letter.isalpha():
+					for fact in self.facts:
+						if letter == fact.symbol:
+							fact.add_parent_rule(rule)
 
 	def print_graph(self):
 
@@ -138,11 +135,6 @@ def parse():
 	filepath = parse_args()
 	if not os.path.isfile(filepath):
 		error_exit("Invalid filepath")
-
-	# f = fact('A')
-	# f.add_rule('=> B')
-	# f.add_rule('=> C')
-	# print(f.rules)
 
 	allowedSymbols = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '(', ')', '+', '!', '|', '^', '=', '>', '?'}
 		
