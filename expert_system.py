@@ -8,9 +8,14 @@ def parse_args():
 					   metavar='filepath',
 					   type=str,
 					   help='provide a valid input file. Rules, facts and queries')
+	my_parser.add_argument('-g',
+                        '--graph',
+                        action='store_true',
+                        help='Display graph of facts and rules nodes')
 	args = my_parser.parse_args()
 	filepath = args.Filepath
-	return filepath
+	graph = args.graph
+	return filepath, graph
 
 class fact:
 
@@ -122,7 +127,7 @@ class graph:
 
 	def print_graph(self):
 
-		print("\x1b[1mFacts:\x1b[0m")
+		print("\n\x1b[1mFacts:\x1b[0m")
 		for fact in self.facts:
 			print(fact.symbol)
 			print(fact.true)
@@ -148,9 +153,9 @@ def error_exit(error_msg):
 	print("Error: {}".format(error_msg))
 	sys.exit()
 
-def parse():
+def parse(filepath):
 
-	filepath = parse_args()
+	# filepath, graph = parse_args()
 	if not os.path.isfile(filepath):
 		error_exit("Invalid filepath")
 
@@ -206,10 +211,12 @@ def print_results(g):
 
 def main():
 	try:
-		g = parse()
-		g.print_graph()
+		filepath, graph = parse_args()
+		g = parse(filepath)
+		if graph:
+			g.print_graph()
 		print_results(g)
-		print("Oh hi!")######!!!!!
+		# print("Oh hi!")######!!!!!
 	except:
 		# print("Error")
 		pass
