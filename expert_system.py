@@ -97,9 +97,7 @@ class graph:
 
 	def link_facts_rules(self):
 		for rule in self.rules:
-			# print(rule.parents)#####	
 			for parent in rule.parents:
-				# print(parent)#
 				for letter in parent:
 					if letter.isalpha():
 						for fact in self.facts:
@@ -112,18 +110,13 @@ class graph:
 							if letter == fact.symbol:
 								fact.add_parent_rule(rule)
 
-
-
-			# for letter in rule.parent:
-			# 	if letter.isalpha():
-			# 		for fact in self.facts:
-			# 			if letter == fact.symbol:
-			# 				fact.add_child_rule(rule)
-			# for letter in rule.child:
-			# 	if letter.isalpha():
-			# 		for fact in self.facts:
-			# 			if letter == fact.symbol:
-			# 				fact.add_parent_rule(rule)
+	def solve(self):
+		# print("solvingtime!")##########
+		for rule in self.rules:
+			# ADD
+			for parent in rule.parents:
+				if not parent:
+					error_exit("Bad Syntax, + missing symbol")
 
 	def print_graph(self):
 
@@ -204,7 +197,7 @@ def print_results(g):
 	for query in g.queries:
 		for fact in g.facts:
 			if query == fact.symbol:
-				print("{} is {}".format(query, fact.true))
+				print("{} is {}".format(query, fact.true)) ## No color
 				# if fact.true == True:
 				# 	print("\x1b[32m{} is True\x1b[0m".format(query))
 				# else:
@@ -216,6 +209,7 @@ def main():
 		g = parse(filepath)
 		if graph:
 			g.print_graph()
+		g.solve()
 		print_results(g)
 		# print("Oh hi!")######!!!!!
 	except:

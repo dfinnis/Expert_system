@@ -521,6 +521,20 @@ else
 fi
 ((count+=1))
 
+cmd="python3 expert_system.py input/invalid/missing_symbol.txt"
+output=$(eval "$cmd")
+desired="Error: Bad Syntax, + missing symbol"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32m+ missing symbol:\tOK\x1b[0m"
+else
+	echo "\x1b[31m+ missing symbol:\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
 #### -- TOTAL -- ####
 echo "\n\n\x1b[1mAll Expert System tests finished\x1b[0m"
 
