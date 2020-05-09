@@ -118,7 +118,15 @@ class graph:
 	def solve(self):
 		print("\n\n\x1b[1m#### ----solvingtime! ----####\x1b[0m")##########
 
+		## if list of operations empty
+		rules = []
+		print("\n\n\x1b[33m#### ---- RULES LIST: {} ----####\x1b[0m".format(rules))########
 		for rule in self.rules:
+			rules.append(rule)
+		for rule in rules:
+			print("\n\n\x1b[33m#### ---- RULES LIST: {} => {} ----####\x1b[0m".format(rule.parents, rule.children))########
+
+		for rule in rules:
 			print("rule = {} => {}".format(rule.parents, rule.children))##########
 			parents = 0
 			true = 0
@@ -154,9 +162,16 @@ class graph:
 								print("child = {}, fact = {}".format(child, fact.symbol))								
 								print("deduce true!")
 								fact.deduce_true()
+								###add rule to list of rules
+								# rules.append(rule)
+			# rules.remove(rule)
+			# for rule in rules:
+				# print("\n\n\x1b[1m#### ---- RULES LIST: {} => {} ----####\x1b[0m".format(rule.parents, rule.children))########
+			
+
 			print ############
 		
-		print("\n\n\x1b[1m#### ---- GRAPH ----####\x1b[0m")##########		
+		print("\n\n\x1b[1m#### ---- GRAPH ----####\x1b[0m")##########
 		self.print_graph()########
 
 	def print_graph(self):
@@ -258,5 +273,5 @@ if __name__ == '__main__':
 	main()
 
 ### if all parents true, all children made true
-### parenthesis: cut out new rule, put between parent and current rule
+### parenthesis: cut out new rule, put between parent and current rule (append list to list)
 ### make list of parents/children to process, add add new symbols(facts) to list as children are deduced
