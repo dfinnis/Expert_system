@@ -535,6 +535,90 @@ else
 fi
 ((count+=1))
 
+cmd="python3 expert_system.py input/invalid/combined_conditions_1.txt"
+output=$(eval "$cmd")
+desired="Error: Bad Syntax, combined conditions"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mcombined conditions_1:\tOK\x1b[0m"
+else
+	echo "\x1b[31mcombined conditions_1:\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
+cmd="python3 expert_system.py input/invalid/combined_conditions_2.txt"
+output=$(eval "$cmd")
+desired="Error: Bad Syntax, combined conditions"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mcombined conditions_2:\tOK\x1b[0m"
+else
+	echo "\x1b[31mcombined conditions_2:\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
+cmd="python3 expert_system.py input/invalid/combined_conditions_3.txt"
+output=$(eval "$cmd")
+desired="Error: Bad Syntax, combined conditions"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mcombined conditions_3:\tOK\x1b[0m"
+else
+	echo "\x1b[31mcombined conditions_3:\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
+cmd="python3 expert_system.py input/invalid/combined_conditions_4.txt"
+output=$(eval "$cmd")
+desired="Error: Bad Syntax, combined conditions"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mcombined conditions_4:\tOK\x1b[0m"
+else
+	echo "\x1b[31mcombined conditions_4:\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
+cmd="python3 expert_system.py input/invalid/combined_conditions_5.txt"
+output=$(eval "$cmd")
+desired="Error: Bad Syntax, combined conditions"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mcombined conditions_5:\tOK\x1b[0m"
+else
+	echo "\x1b[31mcombined conditions_5:\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
+cmd="python3 expert_system.py input/invalid/combined_conditions_6.txt"
+output=$(eval "$cmd")
+desired="Error: Bad Syntax, combined conditions"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mcombined conditions_6:\tOK\x1b[0m"
+else
+	echo "\x1b[31mcombined conditions_6:\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
 #### -- TOTAL -- ####
 echo "\n\n\x1b[1mAll Expert System tests finished\x1b[0m"
 

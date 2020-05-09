@@ -130,7 +130,6 @@ class graph:
 
 		while rules:
 			for rule in rules:
-				### remove rule from rules
 				# print("rule = {} => {}".format(rule.parents, rule.children))##########
 				parents = 0
 				true = 0
@@ -142,6 +141,8 @@ class graph:
 
 					# print("len(parent) = {}".format(len(parent)))######
 					if len(parent) == 1: ## ADD
+						if not parent.isalpha():
+							error_exit("Bad Syntax, non-alphabet symbol")
 						# print(parent)####
 						for fact in self.facts:#########################################
 							# print("fact.symbol = {}".format(fact.symbol))#########
@@ -151,6 +152,14 @@ class graph:
 									# print("fact is true!")#########
 									true += 1
 								break
+
+					if len(parent) == 2: ## NOT
+						if parent[0] != "!" or not parent[1].isalpha():
+							if not parent.isalpha():
+								error_exit("Bad Syntax, combined conditions")
+
+						# for fact in self.facts:#########################################
+
 
 				# print("# parents = {}".format(parents))#######
 				# print("# true = {}".format(true))########
@@ -166,7 +175,7 @@ class graph:
 									# print("child = {}, fact = {}".format(child, fact.symbol))								
 									# print("deduce true!")
 									fact.deduce_true()
-									###add rule to list of rules
+									## add rule to list of rules
 									for rule_orig in rules_original:
 										# print("\n\x1b[35m#### ---- APPENDING RULE: RULE ORIG = {} => {} ----####\x1b[0m".format(rule_orig.parents, rule_orig.children))########
 										for parent_orig in rule_orig.parents:
@@ -175,16 +184,10 @@ class graph:
 												# print("\n\x1b[35m#### ---- APPENDING RULE: CHILD: {} ----####\x1b[0m".format(child))########
 												# print("\n\x1b[35m#### ---- APPENDING RULE: PARENT: {} ----####\x1b[0m".format(parent_orig))########
 												rules.append(rule_orig)
-									# rules.append(rule)
 				rules.remove(rule)
 				# for rule in rules:
 				# 	print("\n\n\x1b[1m#### ---- RULES LIST: {} => {} ----####\x1b[0m".format(rule.parents, rule.children))########
-
-
 				# print ############
-		
-		# print("\n\n\x1b[1m#### ---- GRAPH ----####\x1b[0m")##########
-		# self.print_graph()########
 
 	def print_graph(self):
 
