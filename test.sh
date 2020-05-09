@@ -16,9 +16,9 @@ P is True"
 if [ "$output" == "$desired" ]
 then
 	((passed+=1))
-	echo "\x1b[32mand_1:\t\tOK\x1b[0m"
+	echo "\x1b[32mand_1:\t\t\tOK\x1b[0m"
 else
-	echo "\x1b[31mand_1:\t\tERROR\x1b[0m"
+	echo "\x1b[31mand_1:\t\t\tERROR\x1b[0m"
 	echo "desired output: $desired"
 	echo "actual output:  $output\n"
 fi
@@ -33,9 +33,9 @@ P is True"
 if [ "$output" == "$desired" ]
 then
 	((passed+=1))
-	echo "\x1b[32mand_2:\t\tOK\x1b[0m"
+	echo "\x1b[32mand_2:\t\t\tOK\x1b[0m"
 else
-	echo "\x1b[31mand_2:\t\tERROR\x1b[0m"
+	echo "\x1b[31mand_2:\t\t\tERROR\x1b[0m"
 	echo "desired output: $desired"
 	echo "actual output:  $output\n"
 fi
@@ -50,9 +50,9 @@ desired="A is False"
 if [ "$output" == "$desired" ]
 then
 	((passed+=1))
-	echo "\x1b[32mor_1:\t\tOK\x1b[0m"
+	echo "\x1b[32mor_1:\t\t\tOK\x1b[0m"
 else
-	echo "\x1b[31mor_1:\t\tERROR\x1b[0m"
+	echo "\x1b[31mor_1:\t\t\tERROR\x1b[0m"
 	echo "desired output: $desired"
 	echo "actual output:  $output\n"
 fi
@@ -64,9 +64,9 @@ desired="A is True"
 if [ "$output" == "$desired" ]
 then
 	((passed+=1))
-	echo "\x1b[32mor_2:\t\tOK\x1b[0m"
+	echo "\x1b[32mor_2:\t\t\tOK\x1b[0m"
 else
-	echo "\x1b[31mor_2:\t\tERROR\x1b[0m"
+	echo "\x1b[31mor_2:\t\t\tERROR\x1b[0m"
 	echo "desired output: $desired"
 	echo "actual output:  $output\n"
 fi
@@ -78,9 +78,9 @@ desired="A is True"
 if [ "$output" == "$desired" ]
 then
 	((passed+=1))
-	echo "\x1b[32mor_3:\t\tOK\x1b[0m"
+	echo "\x1b[32mor_3:\t\t\tOK\x1b[0m"
 else
-	echo "\x1b[31mor_3:\t\tERROR\x1b[0m"
+	echo "\x1b[31mor_3:\t\t\tERROR\x1b[0m"
 	echo "desired output: $desired"
 	echo "actual output:  $output\n"
 fi
@@ -92,9 +92,9 @@ desired="A is True"
 if [ "$output" == "$desired" ]
 then
 	((passed+=1))
-	echo "\x1b[32mor_4:\t\tOK\x1b[0m"
+	echo "\x1b[32mor_4:\t\t\tOK\x1b[0m"
 else
-	echo "\x1b[31mor_4:\t\tERROR\x1b[0m"
+	echo "\x1b[31mor_4:\t\t\tERROR\x1b[0m"
 	echo "desired output: $desired"
 	echo "actual output:  $output\n"
 fi
@@ -109,9 +109,9 @@ desired="A is False"
 if [ "$output" == "$desired" ]
 then
 	((passed+=1))
-	echo "\x1b[32mxor_1:\t\tOK\x1b[0m"
+	echo "\x1b[32mxor_1:\t\t\tOK\x1b[0m"
 else
-	echo "\x1b[31mxor_1:\t\tERROR\x1b[0m"
+	echo "\x1b[31mxor_1:\t\t\tERROR\x1b[0m"
 	echo "desired output: $desired"
 	echo "actual output:  $output\n"
 fi
@@ -123,9 +123,9 @@ desired="A is True"
 if [ "$output" == "$desired" ]
 then
 	((passed+=1))
-	echo "\x1b[32mxor_2:\t\tOK\x1b[0m"
+	echo "\x1b[32mxor_2:\t\t\tOK\x1b[0m"
 else
-	echo "\x1b[31mxor_2:\t\tERROR\x1b[0m"
+	echo "\x1b[31mxor_2:\t\t\tERROR\x1b[0m"
 	echo "desired output: $desired"
 	echo "actual output:  $output\n"
 fi
@@ -137,9 +137,9 @@ desired="A is True"
 if [ "$output" == "$desired" ]
 then
 	((passed+=1))
-	echo "\x1b[32mxor_3:\t\tOK\x1b[0m"
+	echo "\x1b[32mxor_3:\t\t\tOK\x1b[0m"
 else
-	echo "\x1b[31mxor_3:\t\tERROR\x1b[0m"
+	echo "\x1b[31mxor_3:\t\t\tERROR\x1b[0m"
 	echo "desired output: $desired"
 	echo "actual output:  $output\n"
 fi
@@ -151,9 +151,9 @@ desired="A is False"
 if [ "$output" == "$desired" ]
 then
 	((passed+=1))
-	echo "\x1b[32mxor_4:\t\tOK\x1b[0m"
+	echo "\x1b[32mxor_4:\t\t\tOK\x1b[0m"
 else
-	echo "\x1b[31mxor_4:\t\tERROR\x1b[0m"
+	echo "\x1b[31mxor_4:\t\t\tERROR\x1b[0m"
 	echo "desired output: $desired"
 	echo "actual output:  $output\n"
 fi
@@ -168,9 +168,9 @@ desired="A is False"
 if [ "$output" == "$desired" ]
 then
 	((passed+=1))
-	echo "\x1b[32mnot_1:\t\tOK\x1b[0m"
+	echo "\x1b[32mnot_1:\t\t\tOK\x1b[0m"
 else
-	echo "\x1b[31mnot_1:\t\tERROR\x1b[0m"
+	echo "\x1b[31mnot_1:\t\t\tERROR\x1b[0m"
 	echo "desired output: $desired"
 	echo "actual output:  $output\n"
 fi
@@ -182,9 +182,9 @@ desired="A is True"
 if [ "$output" == "$desired" ]
 then
 	((passed+=1))
-	echo "\x1b[32mnot_2:\t\tOK\x1b[0m"
+	echo "\x1b[32mnot_2:\t\t\tOK\x1b[0m"
 else
-	echo "\x1b[31mnot_2:\t\tERROR\x1b[0m"
+	echo "\x1b[31mnot_2:\t\t\tERROR\x1b[0m"
 	echo "desired output: $desired"
 	echo "actual output:  $output\n"
 fi
@@ -196,9 +196,9 @@ desired="A is False"
 if [ "$output" == "$desired" ]
 then
 	((passed+=1))
-	echo "\x1b[32mnot_3:\t\tOK\x1b[0m"
+	echo "\x1b[32mnot_3:\t\t\tOK\x1b[0m"
 else
-	echo "\x1b[31mnot_3:\t\tERROR\x1b[0m"
+	echo "\x1b[31mnot_3:\t\t\tERROR\x1b[0m"
 	echo "desired output: $desired"
 	echo "actual output:  $output\n"
 fi
@@ -210,9 +210,9 @@ desired="A is False"
 if [ "$output" == "$desired" ]
 then
 	((passed+=1))
-	echo "\x1b[32mnot_4:\t\tOK\x1b[0m"
+	echo "\x1b[32mnot_4:\t\t\tOK\x1b[0m"
 else
-	echo "\x1b[31mnot_4:\t\tERROR\x1b[0m"
+	echo "\x1b[31mnot_4:\t\t\tERROR\x1b[0m"
 	echo "desired output: $desired"
 	echo "actual output:  $output\n"
 fi
@@ -227,9 +227,9 @@ desired="A is False"
 if [ "$output" == "$desired" ]
 then
 	((passed+=1))
-	echo "\x1b[32msame_conclusion_1:\t\tOK\x1b[0m"
+	echo "\x1b[32msame_conclusion_1:\tOK\x1b[0m"
 else
-	echo "\x1b[31msame_conclusion_1:\t\tERROR\x1b[0m"
+	echo "\x1b[31msame_conclusion_1:\tERROR\x1b[0m"
 	echo "desired output: $desired"
 	echo "actual output:  $output\n"
 fi
@@ -241,9 +241,9 @@ desired="A is True"
 if [ "$output" == "$desired" ]
 then
 	((passed+=1))
-	echo "\x1b[32msame_conclusion_2:\t\tOK\x1b[0m"
+	echo "\x1b[32msame_conclusion_2:\tOK\x1b[0m"
 else
-	echo "\x1b[31msame_conclusion_2:\t\tERROR\x1b[0m"
+	echo "\x1b[31msame_conclusion_2:\tERROR\x1b[0m"
 	echo "desired output: $desired"
 	echo "actual output:  $output\n"
 fi
@@ -255,9 +255,9 @@ desired="A is True"
 if [ "$output" == "$desired" ]
 then
 	((passed+=1))
-	echo "\x1b[32msame_conclusion_3:\t\tOK\x1b[0m"
+	echo "\x1b[32msame_conclusion_3:\tOK\x1b[0m"
 else
-	echo "\x1b[31msame_conclusion_3:\t\tERROR\x1b[0m"
+	echo "\x1b[31msame_conclusion_3:\tERROR\x1b[0m"
 	echo "desired output: $desired"
 	echo "actual output:  $output\n"
 fi
@@ -269,9 +269,9 @@ desired="A is True"
 if [ "$output" == "$desired" ]
 then
 	((passed+=1))
-	echo "\x1b[32msame_conclusion_4:\t\tOK\x1b[0m"
+	echo "\x1b[32msame_conclusion_4:\tOK\x1b[0m"
 else
-	echo "\x1b[31msame_conclusion_4:\t\tERROR\x1b[0m"
+	echo "\x1b[31msame_conclusion_4:\tERROR\x1b[0m"
 	echo "desired output: $desired"
 	echo "actual output:  $output\n"
 fi
