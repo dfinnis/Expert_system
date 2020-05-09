@@ -157,18 +157,22 @@ class graph:
 			print(fact.initially_true)
 			print("Child rules:")
 			for rule in fact.child_rules:
-				print("rule.parent: {}".format(rule.parents))
-				print("rule.child: {}".format(rule.children))
+				# print("rule.parent: {}".format(rule.parents))
+				# print("rule.child: {}".format(rule.children))
+				print("{} => {}".format(rule.parents, rule.children))
 			print("Parent rules:")
 			for rule in fact.parent_rules:
-				print("rule.parent: {}".format(rule.parents))
-				print("rule.child: {}".format(rule.children))
+				# print("rule.parent: {}".format(rule.parents))
+				# print("rule.child: {}".format(rule.children))
+				print("{} => {}".format(rule.parents, rule.children))
 			print
 
 		print("\n\x1b[1mAll Rules:\x1b[0m")
 		for rule in self.rules:
-			print("rule.parents: {}".format(rule.parents))
-			print("rule.children: {}".format(rule.children))
+			print("{} => {}".format(rule.parents, rule.children))
+			# print("rule.parents: {}".format(rule.parents))
+			# print("rule.children: {}".format(rule.children))
+			print
 
 		print("\n\x1b[1mInitial facts:\x1b[0m {}\n".format(self.initial_facts))
 		print("\x1b[1mQueries:\x1b[0m {}\n".format(self.queries))
@@ -241,7 +245,6 @@ def main():
 		if graph:
 			g.print_graph()
 		g.solve()
-		# g.solve()
 		print_results(g)
 		# print("Oh hi!")######!!!!!
 	except:
@@ -253,3 +256,4 @@ if __name__ == '__main__':
 
 ### if all parents true, all children made true
 ### parenthesis: cut out new rule, put between parent and current rule
+### make list of parents/children to process, add add new symbols(facts) to list as children are deduced
