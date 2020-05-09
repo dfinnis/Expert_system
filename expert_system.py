@@ -144,7 +144,7 @@ class graph:
 						if not parent.isalpha():
 							error_exit("Bad Syntax, non-alphabet symbol")
 						# print(parent)####
-						for fact in self.facts:#########################################
+						for fact in self.facts:
 							# print("fact.symbol = {}".format(fact.symbol))#########
 							if parent == fact.symbol:
 								# print("fact.true = {}".format(fact.deduced_true))#########
@@ -154,11 +154,19 @@ class graph:
 								break
 
 					if len(parent) == 2: ## NOT
+						# print("\x1b[31mparent = {}\x1b[0m".format(parent))##########
 						if parent[0] != "!" or not parent[1].isalpha():
-							if not parent.isalpha():
-								error_exit("Bad Syntax, combined conditions")
-
-						# for fact in self.facts:#########################################
+							error_exit("Bad Syntax, combined conditions")
+							# if not parent.isalpha():
+						
+						for fact in self.facts:
+							# print("fact.symbol = {}".format(fact.symbol))#########
+							if parent[1] == fact.symbol:
+								# print("fact.true = {}".format(fact.deduced_true))#########
+								if fact.deduced_true == False:
+									# print("fact is true!")#########
+									true += 1
+								break
 
 
 				# print("# parents = {}".format(parents))#######
