@@ -188,6 +188,7 @@ class graph:
 
 	def print_graph(self):
 
+		print("\n\n\x1b[1m#### ---- GRAPH ----####\x1b[0m")## before/after
 		print("\n\x1b[1mRules:\x1b[0m")
 		for rule in self.rules:
 			print("{} => {}".format(rule.parents, rule.children))
@@ -198,14 +199,16 @@ class graph:
 		print("\x1b[1mFacts:\x1b[0m")
 		for fact in self.facts:
 			print(fact.symbol)
-			print(fact.deduced_true)
-			print("Child rules:")
+			print("initially true = {}".format(fact.initially_true))
+			print("deduced true =   {}".format(fact.deduced_true))
+			print("child rules:")
 			for rule in fact.child_rules:
 				print("{} => {}".format(rule.parents, rule.children))
-			print("Parent rules:")
+			print("parent rules:")
 			for rule in fact.parent_rules:
 				print("{} => {}".format(rule.parents, rule.children))
 			print
+		print
 
 def error_exit(error_msg):
 	print("Error: {}".format(error_msg))
@@ -272,9 +275,11 @@ def main():
 	try:
 		filepath, graph = parse_args()
 		g = parse(filepath)
+		# if graph:
+		# 	g.print_graph()
+		g.solve()
 		if graph:
 			g.print_graph()
-		g.solve()
 		print_results(g)
 		# print("Oh hi!")######!!!!!
 	except:
