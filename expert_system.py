@@ -120,56 +120,70 @@ class graph:
 
 		## if list of operations empty
 		rules = []
+		rules_original = []
 		print("\n\n\x1b[33m#### ---- RULES LIST: {} ----####\x1b[0m".format(rules))########
 		for rule in self.rules:
 			rules.append(rule)
+			rules_original.append(rule)
 		for rule in rules:
 			print("\n\n\x1b[33m#### ---- RULES LIST: {} => {} ----####\x1b[0m".format(rule.parents, rule.children))########
+		for rule in rules_original:
+			print("\n\n\x1b[34m#### ---- RULES LIST: {} => {} ----####\x1b[0m".format(rule.parents, rule.children))########
 
-		for rule in rules:
-			print("rule = {} => {}".format(rule.parents, rule.children))##########
-			parents = 0
-			true = 0
-			for parent in rule.parents:
-				print("parent = {}".format(parent))##########
-				parents += 1
-				if not parent:
-					error_exit("Bad Syntax, + missing symbol")
+		while rules:
+			for rule in rules:
+				### remove rule from rules
+				print("rule = {} => {}".format(rule.parents, rule.children))##########
+				parents = 0
+				true = 0
+				for parent in rule.parents:
+					print("parent = {}".format(parent))##########
+					parents += 1
+					if not parent:
+						error_exit("Bad Syntax, + missing symbol")
 
-				print("len(parent) = {}".format(len(parent)))######
-				if len(parent) == 1: ## ADD
-					print(parent)####
-					for fact in self.facts:#########################################
-						print("fact.symbol = {}".format(fact.symbol))#########
-						if parent == fact.symbol:
-							print("fact.true = {}".format(fact.deduced_true))#########
-							if fact.deduced_true == True:
-								print("fact is true!")#########
-								true += 1
-							break
+					print("len(parent) = {}".format(len(parent)))######
+					if len(parent) == 1: ## ADD
+						print(parent)####
+						for fact in self.facts:#########################################
+							print("fact.symbol = {}".format(fact.symbol))#########
+							if parent == fact.symbol:
+								print("fact.true = {}".format(fact.deduced_true))#########
+								if fact.deduced_true == True:
+									print("fact is true!")#########
+									true += 1
+								break
 
-			print("# parents = {}".format(parents))#######
-			print("# true = {}".format(true))########
-			
-			if parents == true:
-				print("Make children true")##########
-				for child in rule.children:
-					print("child = {}".format(child))
-					if len(child) == 1: ## SIMPLE CASE
-						print("child len 1")
-						for fact in self.facts:#############################
-							if child == fact.symbol:
-								print("child = {}, fact = {}".format(child, fact.symbol))								
-								print("deduce true!")
-								fact.deduce_true()
-								###add rule to list of rules
-								# rules.append(rule)
-			# rules.remove(rule)
-			# for rule in rules:
-				# print("\n\n\x1b[1m#### ---- RULES LIST: {} => {} ----####\x1b[0m".format(rule.parents, rule.children))########
-			
+				print("# parents = {}".format(parents))#######
+				print("# true = {}".format(true))########
 
-			print ############
+				if parents == true:
+					print("Make children true")##########
+					for child in rule.children:
+						print("child = {}".format(child))
+						if len(child) == 1: ## SIMPLE CASE
+							print("child len 1")
+							for fact in self.facts:#############################
+								if child == fact.symbol:
+									print("child = {}, fact = {}".format(child, fact.symbol))								
+									print("deduce true!")
+									fact.deduce_true()
+									###add rule to list of rules
+									for rule_orig in rules_original:
+										print("\n\x1b[35m#### ---- APPENDING RULE: RULE ORIG = {} => {} ----####\x1b[0m".format(rule_orig.parents, rule_orig.children))########
+										for parent_orig in rule_orig.parents:
+											if child == parent_orig:
+												print("\n\x1b[35m#### ---- APPENDING RULE: {} => {} ----####\x1b[0m".format(rule_orig.parents, rule_orig.children))########
+												print("\n\x1b[35m#### ---- APPENDING RULE: CHILD: {} ----####\x1b[0m".format(child))########
+												print("\n\x1b[35m#### ---- APPENDING RULE: PARENT: {} ----####\x1b[0m".format(parent_orig))########
+												rules.append(rule_orig)
+									# rules.append(rule)
+				rules.remove(rule)
+				# for rule in rules:
+				# 	print("\n\n\x1b[1m#### ---- RULES LIST: {} => {} ----####\x1b[0m".format(rule.parents, rule.children))########
+
+
+				print ############
 		
 		print("\n\n\x1b[1m#### ---- GRAPH ----####\x1b[0m")##########
 		self.print_graph()########
