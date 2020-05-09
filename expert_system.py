@@ -142,6 +142,7 @@ class graph:
 					# print("len(parent) = {}".format(len(parent)))######
 					if len(parent) == 1: ## ADD
 						if not parent.isalpha():
+							# print("parent = {}".format(parent))##########
 							error_exit("Bad Syntax, non-alphabet symbol")
 						# print(parent)####
 						for fact in self.facts:
@@ -153,7 +154,7 @@ class graph:
 									true += 1
 								break
 
-					if len(parent) == 2: ## NOT
+					elif len(parent) == 2: ## NOT
 						# print("\x1b[31mparent = {}\x1b[0m".format(parent))##########
 						if parent[0] != "!" or not parent[1].isalpha():
 							error_exit("Bad Syntax, combined conditions")
@@ -167,6 +168,29 @@ class graph:
 									# print("fact is true!")#########
 									true += 1
 								break
+					
+					# else: ## OR / XOR / (parenthesis for now)
+					# 	print("\x1b[31mparent = {}\x1b[0m".format(parent))##########
+					# 	parent = parent.split("|")
+					# 	print("\x1b[32mparent = {}\x1b[0m".format(parent))##########
+					# 	if len(parent) == 1: ## OR
+					# 		if not parent.isalpha():
+					# 			error_exit("Bad Syntax, non-alphabet symbol with |")####### do we get here?????
+					# 		# print(parent)####
+					# 		for fact in self.facts:
+					# 			# print("fact.symbol = {}".format(fact.symbol))#########
+					# 			if parent == fact.symbol:
+					# 				# print("fact.true = {}".format(fact.deduced_true))#########
+					# 				if fact.deduced_true == True:
+					# 					# print("fact is true!")#########
+					# 					true += 1
+					# 				break
+
+
+						# elif len(parent) == 2: ## OR NOT
+						# # else: ## XOR
+
+
 
 
 				# print("# parents = {}".format(parents))#######
