@@ -116,66 +116,69 @@ class graph:
 								fact.add_parent_rule(rule)
 
 	def solve(self):
-		# print("solvingtime!")##########
+		print("\n\n\x1b[1m#### ----solvingtime! ----####\x1b[0m")##########
 
 		for rule in self.rules:
+			print("rule = {} => {}".format(rule.parents, rule.children))##########
 			parents = 0
 			true = 0
 			for parent in rule.parents:
-				# print("parent = {}".format(parent))##########
+				print("parent = {}".format(parent))##########
 				parents += 1
 				if not parent:
 					error_exit("Bad Syntax, + missing symbol")
 
+				print("len(parent) = {}".format(len(parent)))######
 				if len(parent) == 1: ## ADD
-					# print(parent)####
-					for fact in self.facts:
-						# print("fact.symbol = {}".format(fact.symbol))#########
-						# print(fact.symbol)#####
+					print(parent)####
+					for fact in self.facts:#########################################
+						print("fact.symbol = {}".format(fact.symbol))#########
 						if parent == fact.symbol:
-							# print("fact.true = {}".format(fact.true))#########
+							print("fact.true = {}".format(fact.deduced_true))#########
 							if fact.deduced_true == True:
+								print("fact is true!")#########
 								true += 1
 							break
 
-			# print("# parents = {}".format(parents))#######
-			# print("# true = {}".format(true))########
+			print("# parents = {}".format(parents))#######
+			print("# true = {}".format(true))########
 			
 			if parents == true:
+				print("Make children true")##########
 				for child in rule.children:
+					print("child = {}".format(child))
 					if len(child) == 1: ## SIMPLE CASE
-						for fact in self.facts:
-							fact.deduce_true()
-			# print ############
-
+						print("child len 1")
+						for fact in self.facts:#############################
+							if child == fact.symbol:
+								print("child = {}, fact = {}".format(child, fact.symbol))								
+								print("deduce true!")
+								fact.deduce_true()
+			print ############
+		
+		print("\n\n\x1b[1m#### ---- GRAPH ----####\x1b[0m")##########		
+		self.print_graph()########
 
 	def print_graph(self):
 
-		print("\n\x1b[1mFacts:\x1b[0m")
-		for fact in self.facts:
-			print(fact.symbol)
-			print(fact.initially_true)
-			print("Child rules:")
-			for rule in fact.child_rules:
-				# print("rule.parent: {}".format(rule.parents))
-				# print("rule.child: {}".format(rule.children))
-				print("{} => {}".format(rule.parents, rule.children))
-			print("Parent rules:")
-			for rule in fact.parent_rules:
-				# print("rule.parent: {}".format(rule.parents))
-				# print("rule.child: {}".format(rule.children))
-				print("{} => {}".format(rule.parents, rule.children))
-			print
-
-		print("\n\x1b[1mAll Rules:\x1b[0m")
+		print("\n\x1b[1mRules:\x1b[0m")
 		for rule in self.rules:
 			print("{} => {}".format(rule.parents, rule.children))
-			# print("rule.parents: {}".format(rule.parents))
-			# print("rule.children: {}".format(rule.children))
-			print
 
 		print("\n\x1b[1mInitial facts:\x1b[0m {}\n".format(self.initial_facts))
 		print("\x1b[1mQueries:\x1b[0m {}\n".format(self.queries))
+
+		print("\x1b[1mFacts:\x1b[0m")
+		for fact in self.facts:
+			print(fact.symbol)
+			print(fact.deduced_true)
+			print("Child rules:")
+			for rule in fact.child_rules:
+				print("{} => {}".format(rule.parents, rule.children))
+			print("Parent rules:")
+			for rule in fact.parent_rules:
+				print("{} => {}".format(rule.parents, rule.children))
+			print
 
 def error_exit(error_msg):
 	print("Error: {}".format(error_msg))
