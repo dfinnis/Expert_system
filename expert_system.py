@@ -20,7 +20,6 @@ def parse_args():
 class fact:
 
 	def __init__(self, symbol):
-		# print("I, {}, am initialized".format(symbol))############
 		self.symbol = symbol
 		self.child_rules = []
 		self.parent_rules = []
@@ -28,11 +27,9 @@ class fact:
 		self.deduced_true = False
 
 	def add_child_rule(self, rule):
-		# print("I am adding rule {}".format(rule))##############
 		self.child_rules.append(rule)
 
 	def add_parent_rule(self, rule):
-		# print("I am adding rule {}".format(rule))##############
 		self.parent_rules.append(rule)
 
 	def initialize_true(self):
@@ -44,9 +41,6 @@ class fact:
 class rule:
 
 	def __init__(self):
-		# pass
-		# # self.rule = line
-		# # self.rule = 
 		self.parents = []
 		self.children = []
 
@@ -54,9 +48,7 @@ class rule:
 		left = rule.split("=>")[0]
 		self.parents = left.split("+")
 		right = rule.split("=>")[1]
-		self.children = right.split("+")		
-		# self.parent = rule.split("=>")[0]
-		# self.child = rule.split("=>")[1]
+		self.children = right.split("+")
 
 class graph:
 	def __init__(self):
@@ -66,16 +58,13 @@ class graph:
 		self.queries = []
 
 	def add_fact(self, symbol):
-		# print("I am adding inital fact {}".format(initial_fact))##############
 		f = fact(symbol)
 		self.facts.append(f)
 
 	def add_rule(self, line):
-		# print(line)######
 		r = rule()
 		r.parse_rule(line)
 		self.rules.append(r)
-		## link facts to rule
 
 	def add_initial_fact(self, initial_fact):
 		assigned_true = False
@@ -87,10 +76,9 @@ class graph:
 				break
 		if not assigned_true:
 			error_exit("Inital fact not in rules")
-		self.initial_facts.append(initial_fact)#######??????
+		self.initial_facts.append(initial_fact)
 
 	def add_queries(self, query):
-		# print("I am adding queries {}".format(queries))##############
 		found_fact = False
 		for fact in self.facts:
 			if query == fact.symbol:
@@ -261,7 +249,7 @@ class graph:
 												break
 
 									# else:
-										# error_exit("Bad Syntax, 2 many combined condtions")
+										# error_exit("Bad Syntax, 2 many combined condtions") ### catch all other errors??!!!!!
 									
 								if xor_true == 1:
 									true += 1
@@ -304,7 +292,7 @@ class graph:
 
 	def print_graph(self):
 
-		print("\n\n\x1b[1m#### ---- GRAPH ----####\x1b[0m")## before/after
+		print("\n\n\x1b[1m#### ---- GRAPH ----####\x1b[0m")
 		print("\n\x1b[1mRules:\x1b[0m")
 		for rule in self.rules:
 			print("{} => {}".format(rule.parents, rule.children))
@@ -331,8 +319,6 @@ def error_exit(error_msg):
 	sys.exit()
 
 def parse(filepath):
-
-	# filepath, graph = parse_args()
 	if not os.path.isfile(filepath):
 		error_exit("Invalid filepath")
 
@@ -371,8 +357,6 @@ def parse(filepath):
 							if not found:
 								g.add_fact(letter)
 					g.add_rule(line)
-					# g.rules.append(line)
-					# print(line)
 
 	g.link_facts_rules()
 	return g
@@ -391,15 +375,11 @@ def main():
 	try:
 		filepath, graph = parse_args()
 		g = parse(filepath)
-		# if graph:
-		# 	g.print_graph()
 		g.solve()
 		if graph:
 			g.print_graph()
 		print_results(g)
-		# print("Oh hi!")######!!!!!
 	except:
-		# print("Error")
 		pass
 
 if __name__ == '__main__':
