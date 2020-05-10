@@ -24,6 +24,7 @@ class fact:
 		self.parent_rules = []
 		self.initially_true = False
 		self.deduced_true = False
+		self.undetermined = False
 
 	def add_child_rule(self, rule):
 		self.child_rules.append(rule)
@@ -38,6 +39,11 @@ class fact:
 		# if self.initially_true == True:########
 		# 	error_exit("circular Logic, infinite loop")############
 		self.deduced_true = True
+	
+	def deduce_undetermined(self):
+		# if self.initially_true == True:########
+		# 	error_exit("circular Logic, infinite loop")############
+		self.undetermined = True
 
 class rule:
 	def __init__(self):
@@ -129,13 +135,14 @@ class graph:
 			# 					break
 
 
-		# for rule in rules:
-		# 	print("\n\n\x1b[33m#### ---- RULES LIST: {} => {} ----####\x1b[0m".format(rule.parents, rule.children))########
-		# for rule in rules_original:
+		# for rule in rules:#########
+			# print("\n\n\x1b[33m#### ---- RULES LIST: {} => {} ----####\x1b[0m".format(rule.parents, rule.children))########
+		# for rule in rules_original:#########
 		# 	print("\n\n\x1b[34m#### ---- RULES LIST: {} => {} ----####\x1b[0m".format(rule.parents, rule.children))########
 
 		while rules:
 			for rule in rules:
+				# print("\n\n\x1b[35m#### ---- RULE: {} => {} ----####\x1b[0m".format(rule.parents, rule.children))########
 				# print("rule = {} => {}".format(rule.parents, rule.children))##########
 				parents = 0
 				true = 0
@@ -217,21 +224,21 @@ class graph:
 								parents_xor = parent.split("^")
 								# print("\x1b[32mparent = {}\x1b[0m".format(parent))##########
 
-								# found_true = False
 								xor_true = 0
 								for parent in parents_xor:
 									# print("\x1b[32mparent = {}\x1b[0m".format(parent))##########
 									if len(parent) == 1: ## XOR
-									# 	# print("\x1b[31mparent 1 = {}\x1b[0m".format(parent))##########
+										# print("\x1b[31mparent 1 = {}\x1b[0m".format(parent))##########!!!!!!
 										if not parent.isalpha():
 											error_exit("Bad Syntax, non-alphabet symbol with ^")## can we get here?!!!!
 										for fact in self.facts:
-									# 		# print("fact.symbol = {}".format(fact.symbol))#########
+											# print("fact.symbol = {}".format(fact.symbol))#########
 											if parent == fact.symbol:
-									# 			# print("fact.true = {}".format(fact.deduced_true))#########
+												# print("fact.true = {}".format(fact.deduced_true))#########
 												if fact.deduced_true == True:
 													# print("xor +1 is true!")#########
 													xor_true += 1
+													# print("xor_true: {}".format(xor_true))
 
 									elif len(parent) == 2: ## XOR not
 
@@ -252,6 +259,7 @@ class graph:
 										# error_exit("Bad Syntax, 2 many combined condtions") ### catch all other errors??!!!!!
 									
 								if xor_true == 1:
+									# print("Here I am!!")
 									true += 1
 								
 
@@ -261,6 +269,7 @@ class graph:
 				# print("# parents = {}".format(parents))#######
 				# print("# true = {}".format(true))########
 
+				## Deduce True
 				if parents == true:
 					# print("Make children true")##########
 					for child in rule.children:
@@ -389,3 +398,4 @@ if __name__ == '__main__':
 ### parenthesis: cut out new rule, put between parent and current rule (append list to list)
 ### make list of parents/children to process, add add new symbols(facts) to list as children are deduced
 ### protect against circular logic
+### contradiction in the facts, or a syntax error
