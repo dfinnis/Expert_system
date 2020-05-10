@@ -6,7 +6,7 @@ G => H
 L + M => K 
 O + P => L + N 
 N => M
-! + ! => D 
+! | ! => D 
 
 =DEIJOP
 

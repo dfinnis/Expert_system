@@ -169,22 +169,25 @@ class graph:
 									true += 1
 								break
 					
-					# else: ## OR / XOR / (parenthesis for now)
-					# 	print("\x1b[31mparent = {}\x1b[0m".format(parent))##########
-					# 	parent = parent.split("|")
-					# 	print("\x1b[32mparent = {}\x1b[0m".format(parent))##########
-					# 	if len(parent) == 1: ## OR
-					# 		if not parent.isalpha():
-					# 			error_exit("Bad Syntax, non-alphabet symbol with |")####### do we get here?????
-					# 		# print(parent)####
-					# 		for fact in self.facts:
-					# 			# print("fact.symbol = {}".format(fact.symbol))#########
-					# 			if parent == fact.symbol:
-					# 				# print("fact.true = {}".format(fact.deduced_true))#########
-					# 				if fact.deduced_true == True:
-					# 					# print("fact is true!")#########
-					# 					true += 1
-					# 				break
+					else: ## OR / XOR / (parenthesis for now)
+						# print("\x1b[31mparent = {}\x1b[0m".format(parent))##########
+						parents = parent.split("|")
+						# print("\x1b[32mparent = {}\x1b[0m".format(parent))##########
+						for parent in parents:
+							# print("\x1b[32mlen(parent) = {}\x1b[0m".format(len(parent)))##########
+							if len(parent) == 1: ## OR
+								# print("\x1b[31mparent 1 = {}\x1b[0m".format(parent))##########
+								if not parent.isalpha():
+									error_exit("Bad Syntax, non-alphabet symbol with |")####### do we get here?????
+								# print(parent)####
+								for fact in self.facts:
+									# print("fact.symbol = {}".format(fact.symbol))#########
+									if parent == fact.symbol:
+										# print("fact.true = {}".format(fact.deduced_true))#########
+										if fact.deduced_true == True:
+											# print("fact is true!")#########
+											true += 1
+										break
 
 
 						# elif len(parent) == 2: ## OR NOT

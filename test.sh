@@ -635,7 +635,7 @@ fi
 
 cmd="python3 expert_system.py input/invalid/non-alphabet_or.txt"
 output=$(eval "$cmd")
-desired="Error: Bad Syntax, non-alphabet symbol"
+desired="Error: Bad Syntax, non-alphabet symbol with |"
 if [ "$output" == "$desired" ]
 then
 	((passed+=1))
