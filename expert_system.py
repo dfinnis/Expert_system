@@ -121,8 +121,26 @@ class graph:
 		rules_original = []
 		# print("\n\n\x1b[33m#### ---- RULES LIST: {} ----####\x1b[0m".format(rules))########
 		for rule in self.rules:
-			rules.append(rule)
 			rules_original.append(rule)
+			rules.append(rule)####### add all rules?
+
+			# for parent in rule.parents:
+			# 	# print("\n\n\x1b[33m#### ---- parent: {} ----####\x1b[0m".format(parent))########
+			# 	for letter in parent:
+			# 		# print("\n\n\x1b[33m#### ---- letter: {} ----####\x1b[0m".format(letter))########
+			# 		if letter.isalpha():
+			# 			# print("\n\n\x1b[33m#### ---- letter is alpha ----####\x1b[0m")########
+			# 			for fact in self.facts:
+			# 				# print("\n\n\x1b[33m#### ---- fact: {} ----####\x1b[0m".format(fact.symbol))########
+			# 				if letter == fact.symbol: ############## add not ????!!!!!!!!!!!!
+			# 					# print("\n\n\x1b[33m#### ---- letter = fact ----####\x1b[0m")########		
+			# 					# print("\n\n\x1b[33m#### ---- fact is {} ----####\x1b[0m".format(fact.initially_true))########
+			# 					if fact.initially_true == True:
+			# 						# print("\n\n\x1b[33m#### ---- fact is true!!!! ----####\x1b[0m")########	
+			# 						rules.append(rule)
+			# 					break
+
+
 		# for rule in rules:
 		# 	print("\n\n\x1b[33m#### ---- RULES LIST: {} => {} ----####\x1b[0m".format(rule.parents, rule.children))########
 		# for rule in rules_original:
@@ -270,11 +288,15 @@ class graph:
 									for rule_orig in rules_original:
 										# print("\n\x1b[35m#### ---- APPENDING RULE: RULE ORIG = {} => {} ----####\x1b[0m".format(rule_orig.parents, rule_orig.children))########
 										for parent_orig in rule_orig.parents:
-											if child == parent_orig:
-												# print("\n\x1b[35m#### ---- APPENDING RULE: {} => {} ----####\x1b[0m".format(rule_orig.parents, rule_orig.children))########
-												# print("\n\x1b[35m#### ---- APPENDING RULE: CHILD: {} ----####\x1b[0m".format(child))########
-												# print("\n\x1b[35m#### ---- APPENDING RULE: PARENT: {} ----####\x1b[0m".format(parent_orig))########
-												rules.append(rule_orig)
+											# print(parent_orig)#############
+											for letter in parent_orig:
+												if letter.isalpha():
+													# print(letter)#############
+													if child == letter:
+														# print("\n\x1b[35m#### ---- APPENDING RULE: {} => {} ----####\x1b[0m".format(rule_orig.parents, rule_orig.children))########
+														# print("\n\x1b[35m#### ---- APPENDING RULE: CHILD: {} ----####\x1b[0m".format(child))########
+														# print("\n\x1b[35m#### ---- APPENDING RULE: PARENT: {} ----####\x1b[0m".format(parent_orig))########
+														rules.append(rule_orig)
 				rules.remove(rule)
 				# for rule in rules:
 				# 	print("\n\n\x1b[1m#### ---- RULES LIST: {} => {} ----####\x1b[0m".format(rule.parents, rule.children))########

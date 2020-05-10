@@ -131,8 +131,37 @@ else
 fi
 ((count+=1))
 
-####
+#### -- MORE OR -- ####
 echo
+
+cmd="python3 expert_system.py input/valid/or_long.txt"
+output=$(eval "$cmd")
+desired="Z is True"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mor_long:\t\tOK\x1b[0m"
+else
+	echo "\x1b[31mor_long:\t\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
+cmd="python3 expert_system.py input/valid/or_long_2.txt"
+output=$(eval "$cmd")
+desired="A is False"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mor_long_2:\t\tOK\x1b[0m"
+else
+	echo "\x1b[31mor_long_2:\t\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
 #### -- OR NOT -- ####
 
 cmd="python3 expert_system.py input/valid/or_not_1.txt"
@@ -259,6 +288,37 @@ then
 	echo "\x1b[32mxor_4:\t\t\tOK\x1b[0m"
 else
 	echo "\x1b[31mxor_4:\t\t\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
+#### -- MORE OR -- ####
+echo
+
+cmd="python3 expert_system.py input/valid/xor_long.txt"
+output=$(eval "$cmd")
+desired="Z is True"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mxor_long:\t\tOK\x1b[0m"
+else
+	echo "\x1b[31mxor_long:\t\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
+cmd="python3 expert_system.py input/valid/xor_long_2.txt"
+output=$(eval "$cmd")
+desired="Z is False"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mxor_long_2:\t\tOK\x1b[0m"
+else
+	echo "\x1b[31mxor_long_2:\t\tERROR\x1b[0m"
 	echo "desired output: $desired"
 	echo "actual output:  $output\n"
 fi
