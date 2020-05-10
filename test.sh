@@ -100,6 +100,78 @@ else
 fi
 ((count+=1))
 
+####
+
+cmd="python3 expert_system.py input/valid/or_not_1.txt"
+output=$(eval "$cmd")
+desired="A is True"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mor_not_1:\t\tOK\x1b[0m"
+else
+	echo "\x1b[31mor_not_1:\t\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
+cmd="python3 expert_system.py input/valid/or_not_2.txt"
+output=$(eval "$cmd")
+desired="A is False"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mor_not_2:\t\tOK\x1b[0m"
+else
+	echo "\x1b[31mor_not_2:\t\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
+cmd="python3 expert_system.py input/valid/or_not_3.txt"
+output=$(eval "$cmd")
+desired="A is True"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mor_not_3:\t\tOK\x1b[0m"
+else
+	echo "\x1b[31mor_not_3:\t\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
+cmd="python3 expert_system.py input/valid/or_not_4.txt"
+output=$(eval "$cmd")
+desired="A is True"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mor_not_4:\t\tOK\x1b[0m"
+else
+	echo "\x1b[31mor_not_4:\t\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
+cmd="python3 expert_system.py input/valid/or_not_5.txt"
+output=$(eval "$cmd")
+desired="A is True"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mor_not_5:\t\tOK\x1b[0m"
+else
+	echo "\x1b[31mor_not_5:\t\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
 #### -- XOR -- ####
 echo "\n\x1b[1mxor tests:\x1b[0m"
 
@@ -614,6 +686,20 @@ then
 	echo "\x1b[32mcombined conditions_6:\tOK\x1b[0m"
 else
 	echo "\x1b[31mcombined conditions_6:\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
+cmd="python3 expert_system.py input/invalid/combined_conditions_or.txt"
+output=$(eval "$cmd")
+desired="Error: Bad Syntax, 2 combined conditions"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mcombined conditions_or:\tOK\x1b[0m"
+else
+	echo "\x1b[31mcombined conditions_or:\tERROR\x1b[0m"
 	echo "desired output: $desired"
 	echo "actual output:  $output\n"
 fi

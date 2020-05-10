@@ -192,8 +192,21 @@ class graph:
 								if found_true == True:
 									break
 
-						# elif len(parent) == 2: ## OR NOT
-						# # else: ## XOR
+							elif len(parent) == 2: ## OR NOT
+								if parent[0] != "!" or not parent[1].isalpha():
+									# print("\x1b[32mparent = {}\x1b[0m".format(parent))##########
+									error_exit("Bad Syntax, 2 combined conditions")
+								# print("\x1b[32mparent = {}\x1b[0m".format(parent))##########
+								for fact in self.facts:
+								# print("fact.symbol = {}".format(fact.symbol))#########
+									if parent[1] == fact.symbol:
+									# print("fact.true = {}".format(fact.deduced_true))#########
+										if fact.deduced_true == False:
+										# print("fact is true!")#########
+											true += 1
+										break
+
+							# else: ## XOR
 
 
 
@@ -332,3 +345,4 @@ if __name__ == '__main__':
 ### if all parents true, all children made true
 ### parenthesis: cut out new rule, put between parent and current rule (append list to list)
 ### make list of parents/children to process, add add new symbols(facts) to list as children are deduced
+### protect against circular logic
