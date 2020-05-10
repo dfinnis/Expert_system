@@ -325,7 +325,6 @@ fi
 ((count+=1))
 
 #### -- XOR NOT -- ####
-echo
 
 cmd="python3 expert_system.py input/valid/xor_not_1.txt"
 output=$(eval "$cmd")
@@ -922,6 +921,34 @@ then
 	echo "\x1b[32mnon-alphabet symbol_or:\tOK\x1b[0m"
 else
 	echo "\x1b[31mnon-alphabet symbol_or:\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
+cmd="python3 expert_system.py input/invalid/infinite_loop.txt"
+output=$(eval "$cmd")
+desired="Error: circular Logic, infinite loop"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32minfinite loop:\tOK\x1b[0m"
+else
+	echo "\x1b[31minfinite loop:\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
+cmd="python3 expert_system.py input/invalid/infinite_loop_2.txt"
+output=$(eval "$cmd")
+desired="Error: circular Logic, infinite loop"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32minfinite loop:\tOK\x1b[0m"
+else
+	echo "\x1b[31minfinite loop:\tERROR\x1b[0m"
 	echo "desired output: $desired"
 	echo "actual output:  $output\n"
 fi

@@ -18,7 +18,6 @@ def parse_args():
 	return filepath, graph
 
 class fact:
-
 	def __init__(self, symbol):
 		self.symbol = symbol
 		self.child_rules = []
@@ -36,10 +35,11 @@ class fact:
 		self.initially_true = True
 	
 	def deduce_true(self):
+		# if self.initially_true == True:########
+		# 	error_exit("circular Logic, infinite loop")############
 		self.deduced_true = True
 
 class rule:
-
 	def __init__(self):
 		self.parents = []
 		self.children = []

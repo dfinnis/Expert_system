@@ -11,7 +11,4 @@ N => M
 
 ?AFKP 
 
-# A is true
-# F is true
-# K is true
-# P is true
+# Invalid
