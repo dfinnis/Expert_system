@@ -1,0 +1,9 @@
+#### ---- BONUS ---- ####
+1. test.sh
+2. -g print graph
+2.
+3.
+4.
+5.
+
+-l print logic??

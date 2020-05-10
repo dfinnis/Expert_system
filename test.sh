@@ -101,6 +101,8 @@ fi
 ((count+=1))
 
 ####
+echo
+####
 
 cmd="python3 expert_system.py input/valid/or_not_1.txt"
 output=$(eval "$cmd")

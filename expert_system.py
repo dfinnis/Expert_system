@@ -206,7 +206,34 @@ class graph:
 											true += 1
 										break
 
-							# else: ## XOR
+							else: ## XOR
+								# print("\x1b[32mparent = {}\x1b[0m".format(parent))##########
+								parents_xor = parent.split("^")
+								# print("\x1b[32mparent = {}\x1b[0m".format(parent))##########
+
+								# found_true = False
+								xor_true = 0
+								for parent in parents_xor:
+									# print("\x1b[32mparent = {}\x1b[0m".format(parent))##########
+									if len(parent) == 1: ## XOR
+									# 	# print("\x1b[31mparent 1 = {}\x1b[0m".format(parent))##########
+										if not parent.isalpha():
+											error_exit("Bad Syntax, non-alphabet symbol with ^")## can we get here?!!!!
+										for fact in self.facts:
+									# 		# print("fact.symbol = {}".format(fact.symbol))#########
+											if parent == fact.symbol:
+									# 			# print("fact.true = {}".format(fact.deduced_true))#########
+												if fact.deduced_true == True:
+													# print("xor +1 is true!")#########
+													xor_true += 1
+
+									# elif len(parent) == 2: ## XOR not
+									# else:
+										# error_exit("Bad Syntax, many combined condtions")
+									
+								if xor_true == 1:
+									true += 1
+								
 
 
 
