@@ -171,15 +171,15 @@ class graph:
 					
 					else: ## OR / XOR / (parenthesis for now)
 						# print("\x1b[31mparent = {}\x1b[0m".format(parent))##########
-						parents = parent.split("|")
+						parents_or = parent.split("|")
 						# print("\x1b[32mparent = {}\x1b[0m".format(parent))##########
-						for parent in parents:
+						found_true = False
+						for parent in parents_or:
 							# print("\x1b[32mlen(parent) = {}\x1b[0m".format(len(parent)))##########
 							if len(parent) == 1: ## OR
 								# print("\x1b[31mparent 1 = {}\x1b[0m".format(parent))##########
 								if not parent.isalpha():
-									error_exit("Bad Syntax, non-alphabet symbol with |")####### do we get here?????
-								# print(parent)####
+									error_exit("Bad Syntax, non-alphabet symbol with |")
 								for fact in self.facts:
 									# print("fact.symbol = {}".format(fact.symbol))#########
 									if parent == fact.symbol:
@@ -187,8 +187,10 @@ class graph:
 										if fact.deduced_true == True:
 											# print("fact is true!")#########
 											true += 1
+											found_true = True
 										break
-
+								if found_true == True:
+									break
 
 						# elif len(parent) == 2: ## OR NOT
 						# # else: ## XOR
