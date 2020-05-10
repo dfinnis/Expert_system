@@ -102,7 +102,7 @@ fi
 
 ####
 echo
-####
+#### -- OR NOT -- ####
 
 cmd="python3 expert_system.py input/valid/or_not_1.txt"
 output=$(eval "$cmd")
@@ -228,6 +228,107 @@ then
 	echo "\x1b[32mxor_4:\t\t\tOK\x1b[0m"
 else
 	echo "\x1b[31mxor_4:\t\t\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
+#### -- XOR NOT -- ####
+echo
+
+cmd="python3 expert_system.py input/valid/xor_not_1.txt"
+output=$(eval "$cmd")
+desired="A is True"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mxor_not_1:\t\tOK\x1b[0m"
+else
+	echo "\x1b[31mxor_not_1:\t\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
+cmd="python3 expert_system.py input/valid/xor_not_2.txt"
+output=$(eval "$cmd")
+desired="A is False"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mxor_not_2:\t\tOK\x1b[0m"
+else
+	echo "\x1b[31mxor_not_2:\t\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
+cmd="python3 expert_system.py input/valid/xor_not_3.txt"
+output=$(eval "$cmd")
+desired="A is False"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mxor_not_3:\t\tOK\x1b[0m"
+else
+	echo "\x1b[31mxor_not_3:\t\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
+cmd="python3 expert_system.py input/valid/xor_not_4.txt"
+output=$(eval "$cmd")
+desired="A is True"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mxor_not_4:\t\tOK\x1b[0m"
+else
+	echo "\x1b[31mxor_not_4:\t\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
+cmd="python3 expert_system.py input/valid/xor_not_5.txt"
+output=$(eval "$cmd")
+desired="A is False"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mxor_not_5:\t\tOK\x1b[0m"
+else
+	echo "\x1b[31mxor_not_5:\t\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
+cmd="python3 expert_system.py input/valid/xor_not_6.txt"
+output=$(eval "$cmd")
+desired="A is False"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mxor_not_6:\t\tOK\x1b[0m"
+else
+	echo "\x1b[31mxor_not_6:\t\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
+cmd="python3 expert_system.py input/valid/xor_not_7.txt"
+output=$(eval "$cmd")
+desired="A is True"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mxor_not_7:\t\tOK\x1b[0m"
+else
+	echo "\x1b[31mxor_not_7:\t\tERROR\x1b[0m"
 	echo "desired output: $desired"
 	echo "actual output:  $output\n"
 fi

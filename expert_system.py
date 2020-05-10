@@ -227,9 +227,23 @@ class graph:
 													# print("xor +1 is true!")#########
 													xor_true += 1
 
-									# elif len(parent) == 2: ## XOR not
+									elif len(parent) == 2: ## XOR not
+
+										if parent[0] != "!" or not parent[1].isalpha():
+											# print("\x1b[32mparent = {}\x1b[0m".format(parent))##########
+											error_exit("Bad Syntax, many combined conditions")
+										# print("\x1b[32mparent = {}\x1b[0m".format(parent))##########
+										for fact in self.facts:
+										# print("fact.symbol = {}".format(fact.symbol))#########
+											if parent[1] == fact.symbol:
+											# print("fact.true = {}".format(fact.deduced_true))#########
+												if fact.deduced_true == False:
+												# print("fact is true!")#########
+													xor_true += 1
+												break
+
 									# else:
-										# error_exit("Bad Syntax, many combined condtions")
+										# error_exit("Bad Syntax, 2 many combined condtions")
 									
 								if xor_true == 1:
 									true += 1
