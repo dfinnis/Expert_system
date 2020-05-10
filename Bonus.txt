@@ -1,9 +1,9 @@
-#### ---- BONUS ---- ####
+#### -- BONUS -- ####
 1. test.sh
-2. -g print graph
-2.
-3.
+2. unit tests
+3. -g print graph
 4.
 5.
+
 
 -l print logic??

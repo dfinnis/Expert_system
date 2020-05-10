@@ -41,6 +41,37 @@ else
 fi
 ((count+=1))
 
+#### -- MORE AND -- ####
+echo
+
+cmd="python3 expert_system.py input/valid/and_long.txt"
+output=$(eval "$cmd")
+desired="Z is True"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mand_long:\t\tOK\x1b[0m"
+else
+	echo "\x1b[31mand_long:\t\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
+cmd="python3 expert_system.py input/valid/and_long_2.txt"
+output=$(eval "$cmd")
+desired="A is False"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mand_long_2:\t\tOK\x1b[0m"
+else
+	echo "\x1b[31mand_long_2:\t\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
 #### -- OR -- ####
 echo "\n\x1b[1mor tests:\x1b[0m"
 
