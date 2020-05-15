@@ -40,6 +40,11 @@ class fact:
 		# 	error_exit("circular Logic, infinite loop")############
 		self.deduced_true = True
 	
+	def deduce_false(self):
+		# if self.initially_true == True:########
+		# 	error_exit("circular Logic, infinite loop")############
+		self.deduced_true = False
+	
 	def deduce_undetermined(self):
 		# if self.initially_true == True:########
 		# 	error_exit("circular Logic, infinite loop")############
@@ -244,7 +249,7 @@ class graph:
 
 										if parent[0] != "!" or not parent[1].isalpha():
 											# print("\x1b[32mparent = {}\x1b[0m".format(parent))##########
-											error_exit("Bad Syntax, many combined conditions")
+											error_exit("Bad Syntax, many combined conditions")######## test how can we get here??!!!!!!
 										# print("\x1b[32mparent = {}\x1b[0m".format(parent))##########
 										for fact in self.facts:
 										# print("fact.symbol = {}".format(fact.symbol))#########
@@ -294,6 +299,34 @@ class graph:
 														# print("\n\x1b[35m#### ---- APPENDING RULE: CHILD: {} ----####\x1b[0m".format(child))########
 														# print("\n\x1b[35m#### ---- APPENDING RULE: PARENT: {} ----####\x1b[0m".format(parent_orig))########
 														rules.append(rule_orig)
+
+				## Deduce False
+				else:
+					# print("Make children false")##########
+					for child in rule.children:
+						# print("child = {}".format(child))
+						if len(child) == 1: ## SIMPLE CASE
+							# print("child len 1")
+							for fact in self.facts:
+								if child == fact.symbol:
+									# print("child = {}, fact = {}".format(child, fact.symbol))########
+									fact.deduce_false()
+
+									## add rule to list of rules
+									# for rule_orig in rules_original:
+									# 	# print("\n\x1b[35m#### ---- APPENDING RULE: RULE ORIG = {} => {} ----####\x1b[0m".format(rule_orig.parents, rule_orig.children))########
+									# 	for child_orig in rule_orig.children:
+									# 		# print(parent_orig)#############
+									# 		for letter in child_orig:
+									# 			if letter.isalpha():
+									# 				# print(letter)#############
+									# 				if child == letter:
+									# 					# print("\n\x1b[35m#### ---- APPENDING RULE: {} => {} ----####\x1b[0m".format(rule_orig.parents, rule_orig.children))########
+									# 					# print("\n\x1b[35m#### ---- APPENDING RULE: CHILD: {} ----####\x1b[0m".format(child))########
+									# 					# print("\n\x1b[35m#### ---- APPENDING RULE: PARENT: {} ----####\x1b[0m".format(parent_orig))########
+									# 					rules.append(rule_orig)
+
+
 				rules.remove(rule)
 				# for rule in rules:
 				# 	print("\n\n\x1b[1m#### ---- RULES LIST: {} => {} ----####\x1b[0m".format(rule.parents, rule.children))########
