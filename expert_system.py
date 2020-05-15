@@ -311,12 +311,12 @@ class graph:
 										if child == fact.symbol:
 											fact.deduce_undetermined()
 
-							# children_or = child.split("|")
-							# for child in children_or:
-							# 	if len(child) == 1: ## SIMPLE CASE ########
-							# 		for fact in self.facts:
-							# 			if child == fact.symbol:
-							# 				fact.deduce_undetermined()
+								children_xor = child.split("^")
+								for child in children_xor:
+									if len(child) == 1: ## SIMPLE CASE ########
+										for fact in self.facts:
+											if child == fact.symbol:
+												fact.deduce_undetermined()
 
 
 				## Deduce False

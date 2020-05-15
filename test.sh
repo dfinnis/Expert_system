@@ -362,9 +362,9 @@ C is Undetermined"
 if [ "$output" == "$desired" ]
 then
 	((passed+=1))
-	echo "\x1b[32mundetermined_xor:\tOK\x1b[0m"
+	echo "\x1b[32mxor_undetermined:\tOK\x1b[0m"
 else
-	echo "\x1b[31mundetermined_xor:\tERROR\x1b[0m"
+	echo "\x1b[31mxor_undetermined:\tERROR\x1b[0m"
 	echo "desired output: $desired"
 	echo "actual output:  $output\n"
 fi
@@ -378,9 +378,9 @@ D is Undetermined"
 if [ "$output" == "$desired" ]
 then
 	((passed+=1))
-	echo "\x1b[32mundetermined_xor_2:\tOK\x1b[0m"
+	echo "\x1b[32mxor_undetermined_2:\tOK\x1b[0m"
 else
-	echo "\x1b[31mundetermined_xor_2:\tERROR\x1b[0m"
+	echo "\x1b[31mxor_undetermined_2:\tERROR\x1b[0m"
 	echo "desired output: $desired"
 	echo "actual output:  $output\n"
 fi
