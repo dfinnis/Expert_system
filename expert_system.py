@@ -197,12 +197,12 @@ class graph:
 							for parent in parents_xor:
 								if len(parent) == 1: ## XOR
 									if not parent.isalpha():
-										error_exit("Bad Syntax, non-alphabet symbol with ^")## can we get here?!!!!
+										error_exit("Bad Syntax, non-alphabet symbol with ^")
 								elif len(parent) == 2: ## XOR not
 									if parent[0] != "!" or not parent[1].isalpha():
-										error_exit("Bad Syntax, many combined conditions")## can we get here?!!!!
-								# else:
-									# error_exit("Bad Syntax, 2 many combined condtions") ### catch all other errors??!!! ## can we get here?!!!!
+										error_exit("Bad Syntax, many combined conditions")
+								else:
+									error_exit("Bad Syntax, too many combined conditions")
 
 
 		# for rule in rules:#########
