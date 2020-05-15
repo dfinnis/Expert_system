@@ -36,18 +36,12 @@ class fact:
 		self.initially_true = True
 	
 	def deduce_true(self):
-		# if self.initially_true == True:########
-		# 	error_exit("circular Logic, infinite loop")############
 		self.deduced_true = True
 	
 	def deduce_false(self):
-		# if self.initially_true == True:########
-		# 	error_exit("circular Logic, infinite loop")############
 		self.deduced_true = False
 	
 	def deduce_undetermined(self):
-		# if self.initially_true == True:########
-		# 	error_exit("circular Logic, infinite loop")############
 		self.undetermined = True
 
 class rule:
@@ -63,9 +57,9 @@ class rule:
 
 class graph:
 	def __init__(self):
-		self.facts = [] # pointers to all facts
-		self.rules = [] # pointers to all rules
-		self.initial_facts = [] #
+		self.facts = [] 
+		self.rules = []
+		self.initial_facts = []
 		self.queries = []
 
 	def add_fact(self, symbol):
@@ -309,6 +303,21 @@ class graph:
 														# print("\n\x1b[35m#### ---- APPENDING RULE: CHILD: {} ----####\x1b[0m".format(child))########
 														# print("\n\x1b[35m#### ---- APPENDING RULE: PARENT: {} ----####\x1b[0m".format(parent_orig))########
 														rules.append(rule_orig)
+						else:
+							children_or = child.split("|")
+							for child in children_or:
+								if len(child) == 1: ## SIMPLE CASE ########
+									for fact in self.facts:
+										if child == fact.symbol:
+											fact.deduce_undetermined()
+
+							# children_or = child.split("|")
+							# for child in children_or:
+							# 	if len(child) == 1: ## SIMPLE CASE ########
+							# 		for fact in self.facts:
+							# 			if child == fact.symbol:
+							# 				fact.deduce_undetermined()
+
 
 				## Deduce False
 				else:
@@ -417,11 +426,14 @@ def print_results(g):
 	for query in g.queries:
 		for fact in g.facts:
 			if query == fact.symbol:
-				print("{} is {}".format(query, fact.deduced_true)) ## No color
-				# if fact.true == True:
-				# 	print("\x1b[32m{} is True\x1b[0m".format(query))
-				# else:
-				# 	print("\x1b[31m{} is False\x1b[0m".format(query))					
+				if fact.undetermined == True:
+					print("{} is Undetermined".format(query)) ## No color ######### Yellow!!!!!!	
+				else:
+					print("{} is {}".format(query, fact.deduced_true)) ## No color
+					# if fact.true == True:
+					# 	print("\x1b[32m{} is True\x1b[0m".format(query))
+					# else:
+					# 	print("\x1b[31m{} is False\x1b[0m".format(query))					
 
 def main():
 	try:
