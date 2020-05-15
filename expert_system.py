@@ -172,12 +172,45 @@ class graph:
 														rules_tree.append(rule_orig)
 														break
 
+		## Bad syntax check
+		for rule in rules_original:
+			for parent in rule.parents:
+				if not parent:
+					error_exit("Bad Syntax, + missing symbol")
+				if len(parent) == 1: ## ADD
+					if not parent.isalpha():
+						error_exit("Bad Syntax, non-alphabet symbol")
+				elif len(parent) == 2: ## NOT
+					if parent[0] != "!" or not parent[1].isalpha():
+						error_exit("Bad Syntax, combined conditions")
+				else: ## OR / XOR / (parenthesis for now)
+					parents_or = parent.split("|")
+					for parent in parents_or:
+						if len(parent) == 1: ## OR
+							if not parent.isalpha():
+								error_exit("Bad Syntax, non-alphabet symbol with |")
+						elif len(parent) == 2: ## OR NOT
+							if parent[0] != "!" or not parent[1].isalpha():
+								error_exit("Bad Syntax, 2 combined conditions")
+						else: ## XOR
+							parents_xor = parent.split("^")
+							for parent in parents_xor:
+								if len(parent) == 1: ## XOR
+									if not parent.isalpha():
+										error_exit("Bad Syntax, non-alphabet symbol with ^")## can we get here?!!!!
+								elif len(parent) == 2: ## XOR not
+									if parent[0] != "!" or not parent[1].isalpha():
+										error_exit("Bad Syntax, many combined conditions")## can we get here?!!!!
+								# else:
+									# error_exit("Bad Syntax, 2 many combined condtions") ### catch all other errors??!!! ## can we get here?!!!!
+
 
 		# for rule in rules:#########
 			# print("\n\n\x1b[33m#### ---- RULES LIST: {} => {} ----####\x1b[0m".format(rule.parents, rule.children))########
 		# for rule in rules_original:#########
 		# 	print("\n\n\x1b[34m#### ---- RULES LIST: {} => {} ----####\x1b[0m".format(rule.parents, rule.children))########
 
+		## Apply rules
 		while rules:
 			for rule in rules:
 				# print("\n\n\x1b[35m#### ---- RULE: {} => {} ----####\x1b[0m".format(rule.parents, rule.children))########
@@ -187,14 +220,9 @@ class graph:
 				for parent in rule.parents:
 					# print("parent = {}".format(parent))##########
 					parents += 1
-					if not parent:
-						error_exit("Bad Syntax, + missing symbol")
 
 					# print("len(parent) = {}".format(len(parent)))######
 					if len(parent) == 1: ## ADD
-						if not parent.isalpha():
-							# print("parent = {}".format(parent))##########
-							error_exit("Bad Syntax, non-alphabet symbol")
 						# print(parent)####
 						for fact in self.facts:
 							# print("fact.symbol = {}".format(fact.symbol))#########
@@ -207,8 +235,6 @@ class graph:
 
 					elif len(parent) == 2: ## NOT
 						# print("\x1b[31mparent = {}\x1b[0m".format(parent))##########
-						if parent[0] != "!" or not parent[1].isalpha():
-							error_exit("Bad Syntax, combined conditions")
 							# if not parent.isalpha():
 						
 						for fact in self.facts:
@@ -229,8 +255,6 @@ class graph:
 							# print("\x1b[32mlen(parent) = {}\x1b[0m".format(len(parent)))##########
 							if len(parent) == 1: ## OR
 								# print("\x1b[31mparent 1 = {}\x1b[0m".format(parent))##########
-								if not parent.isalpha():
-									error_exit("Bad Syntax, non-alphabet symbol with |")
 								for fact in self.facts:
 									# print("fact.symbol = {}".format(fact.symbol))#########
 									if parent == fact.symbol:
@@ -244,9 +268,6 @@ class graph:
 									break
 
 							elif len(parent) == 2: ## OR NOT
-								if parent[0] != "!" or not parent[1].isalpha():
-									# print("\x1b[32mparent = {}\x1b[0m".format(parent))##########
-									error_exit("Bad Syntax, 2 combined conditions")
 								# print("\x1b[32mparent = {}\x1b[0m".format(parent))##########
 								for fact in self.facts:
 								# print("fact.symbol = {}".format(fact.symbol))#########
@@ -267,8 +288,6 @@ class graph:
 									# print("\x1b[32mparent = {}\x1b[0m".format(parent))##########
 									if len(parent) == 1: ## XOR
 										# print("\x1b[31mparent 1 = {}\x1b[0m".format(parent))##########!!!!!!
-										if not parent.isalpha():
-											error_exit("Bad Syntax, non-alphabet symbol with ^")## can we get here?!!!!
 										for fact in self.facts:
 											# print("fact.symbol = {}".format(fact.symbol))#########
 											if parent == fact.symbol:
@@ -279,10 +298,6 @@ class graph:
 													# print("xor_true: {}".format(xor_true))
 
 									elif len(parent) == 2: ## XOR not
-
-										if parent[0] != "!" or not parent[1].isalpha():
-											# print("\x1b[32mparent = {}\x1b[0m".format(parent))##########
-											error_exit("Bad Syntax, many combined conditions")######## test how can we get here??!!!!!!
 										# print("\x1b[32mparent = {}\x1b[0m".format(parent))##########
 										for fact in self.facts:
 										# print("fact.symbol = {}".format(fact.symbol))#########
@@ -293,7 +308,7 @@ class graph:
 													xor_true += 1
 												break
 
-									# else:
+									# else:###########
 										# error_exit("Bad Syntax, 2 many combined condtions") ### catch all other errors??!!!!!
 									
 								if xor_true == 1:
