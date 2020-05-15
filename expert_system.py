@@ -109,15 +109,11 @@ class graph:
 								fact.add_parent_rule(rule)
 
 	def solve(self):
-		# print("\n\n\x1b[1m#### ----solvingtime! ----####\x1b[0m")##########
+
 		rules = []
 		rules_original = []
-		# print("\n\n\x1b[33m#### ---- RULES LIST: {} ----####\x1b[0m".format(rules))########
 		for rule in self.rules:
 			rules_original.append(rule)
-			# rules.append(rule)####### add all rules?
-
-			## add rules with true parents
 			for parent in rule.parents:
 				# print("\n\n\x1b[33m#### ---- parent: {} ----####\x1b[0m".format(parent))########
 				negative = False
@@ -142,6 +138,55 @@ class graph:
 						negative = False						
 					elif letter == "!":
 						negative = True
+
+		## Infinite loop check
+		# rules_tree = []
+		# for rule in rules_original:
+		# 	# print("\n\n\x1b[36m#### ---- RULES LIST: {} => {} ----####\x1b[0m".format(rule.parents, rule.children))########
+
+		# 	for letter in rule.children:
+		# 		if letter.isalpha():
+		# 			deduced = letter
+		# 			print(deduced)##########
+		# 			# rules_tree.append(rule)
+		# 			# if rules_tree:######
+		# 			# for rule_list in rules_tree:#######
+		# 			# 	print("\n\n\x1b[33m#### ---- RULES LIST: {} => {} ----####\x1b[0m".format(rule_list.parents, rule_list.children))########
+		# 			# rules_tree.remove(rule)
+
+
+		# 			for rule_implied in rules_original:
+		# 				for letter in rule_implied.parents:
+		# 					if letter == deduced:
+		# 						rules_tree.append(rule_implied)
+
+		# 			for rule_list in rules_tree:#######
+		# 				print("\n\n\x1b[31m#### ---- RULES LIST: {} => {} ----####\x1b[0m".format(rule_list.parents, rule_list.children))########
+
+		# 			while rules_tree:
+		# 				for rule_implied in rules_tree:
+		# 					for letter in rule_implied.children:							
+		# 						print("letter: {}".format(letter))#########
+		# 						for rule_orig in rules_original:
+		# 							for parent in rule_orig.parents:
+		# 								if parent == letter:
+		# 									if rule_orig.parents == rule.parents and rule_orig.children == rule.children:
+		# 										error_exit("circular Logic, infinite loop")
+		# 									rules_tree.append(rule_implied)
+
+
+		# 						# if deduced == letter:
+		# 			# 				# print("oh hi there again!")#########
+		# 			# 				# print("\n#### ---- RULE: {} => {} ----####".format(rule.parents, rule.children))########
+		# 							# print("\n#### ---- RULE IMPLIED: {} => {} ----####".format(rule_implied.parents, rule_implied.children))########
+		# 			# 				if rule_implied.parents == rule.parents and rule_implied.children == rule.children:
+		# 			# 					error_exit("circular Logic, infinite loop")
+		# 			# 				rules_tree.append(rule_implied)
+		# 			# 				for rule_list in rules_tree:#######
+		# 			# 					print("\n\n\x1b[34m#### ---- RULES LIST: {} => {} ----####\x1b[0m".format(rule_list.parents, rule_list.children))########
+		# 					rules_tree.remove(rule_implied)
+		# 			# rules_tree = []#######rm!!!
+		# 			# rules_tree.clear()
 
 
 		# for rule in rules:#########
@@ -271,10 +316,6 @@ class graph:
 									# print("Here I am!!")
 									true += 1
 								
-
-
-
-
 				# print("# parents = {}".format(parents))#######
 				# print("# true = {}".format(true))########
 
@@ -318,7 +359,6 @@ class graph:
 											if child == fact.symbol:
 												fact.deduce_undetermined()
 
-
 				## Deduce False
 				else:
 					# print("Make children false")##########
@@ -330,21 +370,6 @@ class graph:
 								if child == fact.symbol:
 									# print("child = {}, fact = {}".format(child, fact.symbol))########
 									fact.deduce_false()
-
-									## add rule to list of rules
-									# for rule_orig in rules_original:
-									# 	# print("\n\x1b[35m#### ---- APPENDING RULE: RULE ORIG = {} => {} ----####\x1b[0m".format(rule_orig.parents, rule_orig.children))########
-									# 	for child_orig in rule_orig.children:
-									# 		# print(parent_orig)#############
-									# 		for letter in child_orig:
-									# 			if letter.isalpha():
-									# 				# print(letter)#############
-									# 				if child == letter:
-									# 					# print("\n\x1b[35m#### ---- APPENDING RULE: {} => {} ----####\x1b[0m".format(rule_orig.parents, rule_orig.children))########
-									# 					# print("\n\x1b[35m#### ---- APPENDING RULE: CHILD: {} ----####\x1b[0m".format(child))########
-									# 					# print("\n\x1b[35m#### ---- APPENDING RULE: PARENT: {} ----####\x1b[0m".format(parent_orig))########
-									# 					rules.append(rule_orig)
-
 
 				rules.remove(rule)
 				# for rule in rules:
