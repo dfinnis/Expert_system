@@ -121,23 +121,33 @@ class graph:
 		# print("\n\n\x1b[33m#### ---- RULES LIST: {} ----####\x1b[0m".format(rules))########
 		for rule in self.rules:
 			rules_original.append(rule)
-			rules.append(rule)####### add all rules?
+			# rules.append(rule)####### add all rules?
 
-			# for parent in rule.parents:
-			# 	# print("\n\n\x1b[33m#### ---- parent: {} ----####\x1b[0m".format(parent))########
-			# 	for letter in parent:
-			# 		# print("\n\n\x1b[33m#### ---- letter: {} ----####\x1b[0m".format(letter))########
-			# 		if letter.isalpha():
-			# 			# print("\n\n\x1b[33m#### ---- letter is alpha ----####\x1b[0m")########
-			# 			for fact in self.facts:
-			# 				# print("\n\n\x1b[33m#### ---- fact: {} ----####\x1b[0m".format(fact.symbol))########
-			# 				if letter == fact.symbol: ############## add not ????!!!!!!!!!!!!
-			# 					# print("\n\n\x1b[33m#### ---- letter = fact ----####\x1b[0m")########		
-			# 					# print("\n\n\x1b[33m#### ---- fact is {} ----####\x1b[0m".format(fact.initially_true))########
-			# 					if fact.initially_true == True:
-			# 						# print("\n\n\x1b[33m#### ---- fact is true!!!! ----####\x1b[0m")########	
-			# 						rules.append(rule)
-			# 					break
+			## add rules with true parents
+			for parent in rule.parents:
+				# print("\n\n\x1b[33m#### ---- parent: {} ----####\x1b[0m".format(parent))########
+				negative = False
+				for letter in parent:
+					# print("\n\n\x1b[33m#### ---- letter: {} ----####\x1b[0m".format(letter))########
+					if letter.isalpha():
+						# print("\n\n\x1b[33m#### ---- letter is alpha ----####\x1b[0m")########
+						for fact in self.facts:
+							# print("\n\n\x1b[33m#### ---- fact: {} ----####\x1b[0m".format(fact.symbol))########
+							if letter == fact.symbol: ############## add not ????!!!!!!!!!!!!
+								# print("\n\n\x1b[33m#### ---- letter = fact ----####\x1b[0m")########		
+								# print("\n\n\x1b[33m#### ---- fact is {} ----####\x1b[0m".format(fact.initially_true))########
+								if negative == False:
+									if fact.initially_true == True:
+										# print("\n\n\x1b[33m#### ---- fact is true!!!! ----####\x1b[0m")########	
+										rules.append(rule)
+								else:
+									if fact.initially_true == False:
+										# print("\n\n\x1b[33m#### ---- fact is true!!!! ----####\x1b[0m")########	
+										rules.append(rule)
+								break
+						negative = False						
+					elif letter == "!":
+						negative = True
 
 
 		# for rule in rules:#########
