@@ -160,16 +160,17 @@ class graph:
 							for child in rule_implied.children:
 								for letter in child:
 									if letter.isalpha():
+										deduced = letter
 										for rule_orig in rules_original:
 											# print("\n\n\x1b[34m#### ---- RULE ORIGINAL: {} => {} ----####\x1b[0m".format(rule_orig.parents, rule_orig.children))########
 											for parent in rule_orig.parents:
 												# print("\x1b[33mparent: {}\x1b[0m".format(parent))##########
-												
-												if parent == letter:
-													if rule_orig.parents == rule.parents and rule_orig.children == rule.children:
-														error_exit("circular Logic, infinite loop")
-													rules_tree.append(rule_orig)
-													break
+												for letter in parent:
+													if letter == deduced:
+														if rule_orig.parents == rule.parents and rule_orig.children == rule.children:
+															error_exit("circular Logic, infinite loop")
+														rules_tree.append(rule_orig)
+														break
 
 
 		# for rule in rules:#########
