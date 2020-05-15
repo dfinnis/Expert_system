@@ -198,7 +198,7 @@ class graph:
 								if len(parent) == 1: ## XOR
 									if not parent.isalpha():
 										error_exit("Bad Syntax, non-alphabet symbol with ^")
-								elif len(parent) == 2: ## XOR not
+								elif len(parent) == 2: ## XOR NOT
 									if parent[0] != "!" or not parent[1].isalpha():
 										error_exit("Bad Syntax, many combined conditions")
 								else:
