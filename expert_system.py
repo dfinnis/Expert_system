@@ -150,23 +150,26 @@ class graph:
 						deduced = letter
 						# print(deduced)###
 						for rule_implied in rules_original:
-							for letter in rule_implied.parents:
-								if letter == deduced:
-									rules_tree.append(rule_implied)
+							for parent in rule_implied.parents:
+								for letter in parent:
+									if letter == deduced:
+										rules_tree.append(rule_implied)
 						# while rules_tree:
 						for rule_implied in rules_tree:
 							# print("\n\n\x1b[32m#### ---- RULE IMPLIED: {} => {} ----####\x1b[0m".format(rule_implied.parents, rule_implied.children))########
-							for letter in rule_implied.children:
-								if letter.isalpha():
-									for rule_orig in rules_original:
-										# print("\n\n\x1b[34m#### ---- RULE ORIGINAL: {} => {} ----####\x1b[0m".format(rule_orig.parents, rule_orig.children))########
-										for parent in rule_orig.parents:
-											# print("\x1b[33mparent: {}\x1b[0m".format(parent))##########
-											if parent == letter:
-												if rule_orig.parents == rule.parents and rule_orig.children == rule.children:
-													error_exit("circular Logic, infinite loop")
-												rules_tree.append(rule_orig)
-												break
+							for child in rule_implied.children:
+								for letter in child:
+									if letter.isalpha():
+										for rule_orig in rules_original:
+											# print("\n\n\x1b[34m#### ---- RULE ORIGINAL: {} => {} ----####\x1b[0m".format(rule_orig.parents, rule_orig.children))########
+											for parent in rule_orig.parents:
+												# print("\x1b[33mparent: {}\x1b[0m".format(parent))##########
+												
+												if parent == letter:
+													if rule_orig.parents == rule.parents and rule_orig.children == rule.children:
+														error_exit("circular Logic, infinite loop")
+													rules_tree.append(rule_orig)
+													break
 
 
 		# for rule in rules:#########
