@@ -189,6 +189,8 @@ class graph:
 		# 			# rules_tree.clear()
 
 
+
+
 		# for rule in rules:#########
 			# print("\n\n\x1b[33m#### ---- RULES LIST: {} => {} ----####\x1b[0m".format(rule.parents, rule.children))########
 		# for rule in rules_original:#########
@@ -400,6 +402,19 @@ class graph:
 			print
 		print
 
+	def print_results(self):
+		for query in self.queries:
+			for fact in self.facts:
+				if query == fact.symbol:
+					if fact.undetermined == True:
+						print("{} is Undetermined".format(query)) ## No color ######### Yellow!!!!!!	
+					else:
+						print("{} is {}".format(query, fact.deduced_true)) ## No color
+						# if fact.true == True:
+						# 	print("\x1b[32m{} is True\x1b[0m".format(query))
+						# else:
+						# 	print("\x1b[31m{} is False\x1b[0m".format(query))		
+
 def error_exit(error_msg):
 	print("Error: {}".format(error_msg))
 	sys.exit()
@@ -445,20 +460,7 @@ def parse(filepath):
 					g.add_rule(line)
 
 	g.link_facts_rules()
-	return g
-
-def print_results(g):
-	for query in g.queries:
-		for fact in g.facts:
-			if query == fact.symbol:
-				if fact.undetermined == True:
-					print("{} is Undetermined".format(query)) ## No color ######### Yellow!!!!!!	
-				else:
-					print("{} is {}".format(query, fact.deduced_true)) ## No color
-					# if fact.true == True:
-					# 	print("\x1b[32m{} is True\x1b[0m".format(query))
-					# else:
-					# 	print("\x1b[31m{} is False\x1b[0m".format(query))					
+	return g			
 
 def main():
 	try:
@@ -467,7 +469,7 @@ def main():
 		g.solve()
 		if graph:
 			g.print_graph()
-		print_results(g)
+		g.print_results()
 	except:
 		pass
 
