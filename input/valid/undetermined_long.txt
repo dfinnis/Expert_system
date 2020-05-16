@@ -25,6 +25,7 @@ Y => Z
 
 =A
 
-?Z
+?CZ
 
+# C is Undetermined
 # Z is Undetermined

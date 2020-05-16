@@ -195,7 +195,8 @@ fi
 
 cmd="python3 expert_system.py input/valid/undetermined_long.txt"
 output=$(eval "$cmd")
-desired="Z is Undetermined"
+desired="C is Undetermined
+Z is Undetermined"
 if [ "$output" == "$desired" ]
 then
 	((passed+=1))
@@ -402,7 +403,8 @@ fi
 
 cmd="python3 expert_system.py input/valid/undetermined_xlong.txt"
 output=$(eval "$cmd")
-desired="Z is Undetermined"
+desired="C is Undetermined
+Z is Undetermined"
 if [ "$output" == "$desired" ]
 then
 	((passed+=1))
