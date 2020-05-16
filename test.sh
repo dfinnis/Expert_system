@@ -1076,7 +1076,7 @@ fi
 
 cmd="python3 expert_system.py input/invalid/empty.txt"
 output=$(eval "$cmd")
-desired="Error: not enough information"
+desired="Error: no queries"
 if [ "$output" == "$desired" ]
 then
 	((passed+=1))
@@ -1091,7 +1091,7 @@ fi
 
 cmd="python3 expert_system.py input/invalid/empty_facts.txt"
 output=$(eval "$cmd")
-desired="Error: Inital fact not in rules"
+desired="Error: no queries"
 if [ "$output" == "$desired" ]
 then
 	((passed+=1))
@@ -1105,7 +1105,7 @@ fi
 
 cmd="python3 expert_system.py input/invalid/empty_query.txt"
 output=$(eval "$cmd")
-desired="Error: Query not in rules"
+desired="Error: no queries"
 if [ "$output" == "$desired" ]
 then
 	((passed+=1))
@@ -1119,7 +1119,7 @@ fi
 
 cmd="python3 expert_system.py input/invalid/empty_rules.txt"
 output=$(eval "$cmd")
-desired="Error: not enough information"
+desired="Error: no queries"
 if [ "$output" == "$desired" ]
 then
 	((passed+=1))
@@ -1133,7 +1133,7 @@ fi
 
 cmd="python3 expert_system.py input/invalid/random_alphabet.txt"
 output=$(eval "$cmd")
-desired="Error: bad syntax"
+desired="Error: bad syntax, missing =>"
 if [ "$output" == "$desired" ]
 then
 	((passed+=1))

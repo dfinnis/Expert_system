@@ -50,6 +50,8 @@ class rule:
 		self.children = []
 
 	def parse_rule(self, rule):
+		if not "=>" in rule:
+			error_exit("bad syntax, missing =>")
 		left = rule.split("=>")[0]
 		self.parents = left.split("+")
 		right = rule.split("=>")[1]
@@ -544,6 +546,9 @@ def parse(filepath):
 							if not found:
 								g.add_fact(letter)
 					g.add_rule(line)
+
+		if not g.queries:
+			error_exit("no queries")
 
 	g.link_facts_rules()
 	return g			
