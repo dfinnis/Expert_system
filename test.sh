@@ -1044,6 +1044,77 @@ else
 fi
 ((count+=1))
 
+cmd="python3 expert_system.py input/invalid/empty.txt"
+output=$(eval "$cmd")
+desired="Error: not enough information"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mempty:\t\t\tOK\x1b[0m"
+else
+	echo "\x1b[31mempty:\t\t\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
+
+cmd="python3 expert_system.py input/invalid/empty_facts.txt"
+output=$(eval "$cmd")
+desired="Error: Inital fact not in rules"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mempty_facts:\t\tOK\x1b[0m"
+else
+	echo "\x1b[31mempty_facts:\t\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
+cmd="python3 expert_system.py input/invalid/empty_query.txt"
+output=$(eval "$cmd")
+desired="Error: Query not in rules"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mempty_query:\t\tOK\x1b[0m"
+else
+	echo "\x1b[31mempty_query:\t\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
+cmd="python3 expert_system.py input/invalid/empty_rules.txt"
+output=$(eval "$cmd")
+desired="Error: not enough information"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mempty_rules:\t\tOK\x1b[0m"
+else
+	echo "\x1b[31mempty_rules:\t\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
+cmd="python3 expert_system.py input/invalid/random_alphabet.txt"
+output=$(eval "$cmd")
+desired="Error: bad syntax"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mrandom_alphabet:\tOK\x1b[0m"
+else
+	echo "\x1b[31mrandom_alphabet:\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
 cmd="python3 expert_system.py input/invalid/infinite_loop.txt"
 output=$(eval "$cmd")
 desired="Error: circular Logic, infinite loop"

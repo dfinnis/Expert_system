@@ -203,6 +203,8 @@ class graph:
 										error_exit("Bad Syntax, many combined conditions")
 								else:
 									error_exit("Bad Syntax, too many combined conditions")
+		
+		## Contradiction check
 
 
 		# for rule in rules:#########
