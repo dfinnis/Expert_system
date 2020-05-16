@@ -379,19 +379,28 @@ class graph:
 
 	def print_graph(self):
 
-		print("\n\n\x1b[1m#### ---- GRAPH ----####\x1b[0m")
+		print("\n\n\x1b[1m#### ---- GRAPH ---- ####\x1b[0m")
 		print("\n\x1b[1mRules:\x1b[0m")
 		for rule in self.rules:
 			print("{} => {}".format(rule.parents, rule.children))
 
-		print("\n\x1b[1mInitial facts:\x1b[0m {}\n".format(self.initial_facts))
-		print("\x1b[1mQueries:\x1b[0m {}\n".format(self.queries))
+		print("\n\x1b[1mInitial facts:\x1b[32m {}\x1b[0m\n".format(self.initial_facts))
+		print("\x1b[1mQueries:\x1b[0m {}\n\n".format(self.queries))
 
 		print("\x1b[1mFacts:\x1b[0m")
 		for fact in self.facts:
-			print(fact.symbol)
-			print("initially true = {}".format(fact.initially_true))
-			print("deduced true =   {}".format(fact.deduced_true))
+			if fact.deduced_true:
+				print("\x1b[32m{}\x1b[0m".format(fact.symbol))
+			else:
+				print("\x1b[31m{}\x1b[0m".format(fact.symbol))
+			if fact.initially_true:
+				print("\x1b[32minitially true = True\x1b[0m")
+			else:
+				print("\x1b[31minitially true = False\x1b[0m")
+			if fact.deduced_true:
+				print("\x1b[32mdeduced true = True\x1b[0m")
+			else:
+				print("\x1b[31mdeduced true = False\x1b[0m")
 			print("child rules:")
 			for rule in fact.child_rules:
 				print("{} => {}".format(rule.parents, rule.children))
