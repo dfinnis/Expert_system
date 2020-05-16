@@ -408,9 +408,9 @@ Z is Undetermined"
 if [ "$output" == "$desired" ]
 then
 	((passed+=1))
-	echo "\x1b[32mor_undetermined_xlong:\tOK\x1b[0m"
+	echo "\x1b[32mxor_undetermined_long:\tOK\x1b[0m"
 else
-	echo "\x1b[31mor_undetermined_xlong:\tERROR\x1b[0m"
+	echo "\x1b[31mxor_undetermined_long:\tERROR\x1b[0m"
 	echo "desired output: $desired"
 	echo "actual output:  $output\n"
 fi
@@ -1193,6 +1193,9 @@ echo "\n\n\x1b[1mAll Expert System tests finished\x1b[0m"
 if [ "$passed" == "$count" ]
 then
 	echo "\n\x1b[32mPassed $passed of $count total tests\x1b[0m\n"
+elif [ "$passed" == "0" ]
+then
+	echo "\n\x1b[31mPassed $passed of $count total tests\x1b[0m\n"	
 else
-	echo "\n\x1b[31mPassed $passed of $count total tests\x1b[0m\n"
+	echo "\n\x1b[33mPassed $passed of $count total tests\x1b[0m\n"
 fi

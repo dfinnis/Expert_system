@@ -216,9 +216,9 @@ class graph:
 		while rules:
 			for rule in rules:
 				# print("\n\n\x1b[35m#### ---- RULE: {} => {} ----####\x1b[0m".format(rule.parents, rule.children))########
-				# print("rule = {} => {}".format(rule.parents, rule.children))##########
 				parents = 0
 				true = 0
+				undetermined = False
 				for parent in rule.parents:
 					# print("parent = {}".format(parent))##########
 					parents += 1
@@ -233,6 +233,10 @@ class graph:
 								if fact.deduced_true == True:
 									# print("fact is true!")#########
 									true += 1
+								# print(fact.symbol)############
+								# print("oh hi")###########
+								if fact.undetermined:
+									undetermined = True
 								break
 
 					elif len(parent) == 2: ## NOT
@@ -246,6 +250,8 @@ class graph:
 								if fact.deduced_true == False:
 									# print("fact is true!")#########
 									true += 1
+								if fact.undetermined:
+									undetermined = True
 								break
 					
 					else: ## OR / XOR / (parenthesis for now)
@@ -257,6 +263,10 @@ class graph:
 							# print("\x1b[32mlen(parent) = {}\x1b[0m".format(len(parent)))##########
 							if len(parent) == 1: ## OR
 								# print("\x1b[31mparent 1 = {}\x1b[0m".format(parent))##########
+								for fact in self.facts:
+									if parent == fact.symbol:		
+										if fact.undetermined:
+											undetermined = True
 								for fact in self.facts:
 									# print("fact.symbol = {}".format(fact.symbol))#########
 									if parent == fact.symbol:
@@ -271,6 +281,10 @@ class graph:
 
 							elif len(parent) == 2: ## OR NOT
 								# print("\x1b[32mparent = {}\x1b[0m".format(parent))##########
+								for fact in self.facts:
+									if parent[1] == fact.symbol:
+										if fact.undetermined:
+											undetermined = True
 								for fact in self.facts:
 								# print("fact.symbol = {}".format(fact.symbol))#########
 									if parent[1] == fact.symbol:
@@ -291,6 +305,10 @@ class graph:
 									if len(parent) == 1: ## XOR
 										# print("\x1b[31mparent 1 = {}\x1b[0m".format(parent))##########!!!!!!
 										for fact in self.facts:
+											if parent == fact.symbol:		
+												if fact.undetermined:
+													undetermined = True
+										for fact in self.facts:
 											# print("fact.symbol = {}".format(fact.symbol))#########
 											if parent == fact.symbol:
 												# print("fact.true = {}".format(fact.deduced_true))#########
@@ -301,6 +319,10 @@ class graph:
 
 									elif len(parent) == 2: ## XOR not
 										# print("\x1b[32mparent = {}\x1b[0m".format(parent))##########
+										for fact in self.facts:
+											if parent[1] == fact.symbol:
+												if fact.undetermined:
+													undetermined = True
 										for fact in self.facts:
 										# print("fact.symbol = {}".format(fact.symbol))#########
 											if parent[1] == fact.symbol:
@@ -345,20 +367,6 @@ class graph:
 														# print("\n\x1b[35m#### ---- APPENDING RULE: CHILD: {} ----####\x1b[0m".format(child))########
 														# print("\n\x1b[35m#### ---- APPENDING RULE: PARENT: {} ----####\x1b[0m".format(parent_orig))########
 														rules.append(rule_orig)
-						else:
-							children_or = child.split("|")
-							for child in children_or:
-								if len(child) == 1: ## SIMPLE CASE ########
-									for fact in self.facts:
-										if child == fact.symbol:
-											fact.deduce_undetermined()
-
-								children_xor = child.split("^")
-								for child in children_xor:
-									if len(child) == 1: ## SIMPLE CASE ########
-										for fact in self.facts:
-											if child == fact.symbol:
-												fact.deduce_undetermined()
 
 				## Deduce False
 				else:
@@ -371,6 +379,72 @@ class graph:
 								if child == fact.symbol:
 									# print("child = {}, fact = {}".format(child, fact.symbol))########
 									fact.deduce_false()
+									### append to rules list??
+
+				## Deduce undetermined
+				for child in rule.children:
+					# print("child = {}".format(child))##########
+					if len(child) > 2: #### + len 2 (not)???????????########
+						children_or = child.split("|")
+						for child in children_or:
+							if len(child) == 1:
+								for fact in self.facts:
+									if child == fact.symbol:
+										fact.deduce_undetermined()
+										### append to rules list?#########
+										for rule_orig in rules_original:
+											# print("\n\x1b[35m#### ---- APPENDING RULE: RULE ORIG = {} => {} ----####\x1b[0m".format(rule_orig.parents, rule_orig.children))########
+											for parent_orig in rule_orig.parents:
+												# print(parent_orig)#############
+												for letter in parent_orig:
+													if letter.isalpha():
+														# print(letter)#############
+														if child == letter:
+															# print("\n\x1b[35m#### ---- APPENDING RULE: {} => {} ----####\x1b[0m".format(rule_orig.parents, rule_orig.children))########
+															# print("\n\x1b[35m#### ---- APPENDING RULE: CHILD: {} ----####\x1b[0m".format(child))########
+															# print("\n\x1b[35m#### ---- APPENDING RULE: PARENT: {} ----####\x1b[0m".format(parent_orig))########
+															rules.append(rule_orig)
+							children_xor = child.split("^")
+							for child in children_xor:
+								if len(child) == 1:
+									for fact in self.facts:
+										if child == fact.symbol:
+											fact.deduce_undetermined()
+											### append to rules list?#######
+											for rule_orig in rules_original:
+												# print("\n\x1b[35m#### ---- APPENDING RULE: RULE ORIG = {} => {} ----####\x1b[0m".format(rule_orig.parents, rule_orig.children))########
+												for parent_orig in rule_orig.parents:
+													# print(parent_orig)#############
+													for letter in parent_orig:
+														if letter.isalpha():
+															# print(letter)#############
+															if child == letter:
+																# print("\n\x1b[35m#### ---- APPENDING RULE: {} => {} ----####\x1b[0m".format(rule_orig.parents, rule_orig.children))########
+																# print("\n\x1b[35m#### ---- APPENDING RULE: CHILD: {} ----####\x1b[0m".format(child))########
+																# print("\n\x1b[35m#### ---- APPENDING RULE: PARENT: {} ----####\x1b[0m".format(parent_orig))########
+																rules.append(rule_orig)
+						
+				if undetermined:
+					for child in rule.children:
+						# print("child = {}".format(child))
+						if len(child) == 1: ## SIMPLE CASE
+							# print("child len 1")
+							for fact in self.facts:
+								if child == fact.symbol:
+									# print("child = {}, fact = {}".format(child, fact.symbol))########
+									fact.deduce_undetermined()
+									for rule_orig in rules_original:
+										# print("\n\x1b[35m#### ---- APPENDING RULE: RULE ORIG = {} => {} ----####\x1b[0m".format(rule_orig.parents, rule_orig.children))########
+										for parent_orig in rule_orig.parents:
+											# print(parent_orig)#############
+											for letter in parent_orig:
+												if letter.isalpha():
+													# print(letter)#############
+													if child == letter:
+														# print("\n\x1b[35m#### ---- APPENDING RULE: {} => {} ----####\x1b[0m".format(rule_orig.parents, rule_orig.children))########
+														# print("\n\x1b[35m#### ---- APPENDING RULE: CHILD: {} ----####\x1b[0m".format(child))########
+														# print("\n\x1b[35m#### ---- APPENDING RULE: PARENT: {} ----####\x1b[0m".format(parent_orig))########
+														rules.append(rule_orig)
 
 				rules.remove(rule)
 				# for rule in rules:
@@ -401,6 +475,10 @@ class graph:
 				print("\x1b[32mdeduced true = True\x1b[0m")
 			else:
 				print("\x1b[31mdeduced true = False\x1b[0m")
+			if fact.undetermined:
+				print("\x1b[33mundetermined = True\x1b[0m")
+			else:
+				print("undetermined = False")
 			print("child rules:")
 			for rule in fact.child_rules:
 				print("{} => {}".format(rule.parents, rule.children))
@@ -414,7 +492,7 @@ class graph:
 		for query in self.queries:
 			for fact in self.facts:
 				if query == fact.symbol:
-					if fact.undetermined == True:
+					if fact.undetermined:
 						print("{} is Undetermined".format(query)) ## No color ######### Yellow!!!!!!	
 					else:
 						print("{} is {}".format(query, fact.deduced_true)) ## No color
