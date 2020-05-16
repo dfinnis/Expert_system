@@ -193,6 +193,20 @@ else
 fi
 ((count+=1))
 
+cmd="python3 expert_system.py input/valid/undetermined_long.txt"
+output=$(eval "$cmd")
+desired="Z is Undetermined"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mor_undetermined_long:\tOK\x1b[0m"
+else
+	echo "\x1b[31mor_undetermined_long:\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
 #### -- OR NOT -- ####
 
 cmd="python3 expert_system.py input/valid/or_not_1.txt"
@@ -381,6 +395,20 @@ then
 	echo "\x1b[32mxor_undetermined_2:\tOK\x1b[0m"
 else
 	echo "\x1b[31mxor_undetermined_2:\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
+cmd="python3 expert_system.py input/valid/undetermined_xlong.txt"
+output=$(eval "$cmd")
+desired="Z is Undetermined"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mor_undetermined_xlong:\tOK\x1b[0m"
+else
+	echo "\x1b[31mor_undetermined_xlong:\tERROR\x1b[0m"
 	echo "desired output: $desired"
 	echo "actual output:  $output\n"
 fi
