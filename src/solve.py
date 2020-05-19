@@ -6,7 +6,8 @@ def error_exit(error_msg):###### move somewhere!!!!!!!!!
 
 def check_syntax(g):
 	for rule in g.rules:
-		for parent in rule.parents:
+		parents = rule.parents.split("+")
+		for parent in parents:
 			if not parent:
 				error_exit("Bad Syntax, + missing symbol")
 			if len(parent) == 1: ## ADD
@@ -124,12 +125,12 @@ def check_error(g):
 		# 											break
 
 def solve(g):
+	check_error(g)
 
 	for rule in g.rules:#########
 		rule.children = rule.children.split("+")#####
 		rule.parents = rule.parents.split("+")########
 	
-	check_error(g)
 
 	rules = []
 	rules_original = []
@@ -159,9 +160,6 @@ def solve(g):
 					negative = False						
 				elif letter == "!":
 					negative = True
-
-	
-
 
 	# for rule in rules:#########
 		# print("\n\n\x1b[33m#### ---- RULES LIST: {} => {} ----####\x1b[0m".format(rule.parents, rule.children))########
