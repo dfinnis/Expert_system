@@ -54,10 +54,13 @@ class rule:
 			error_exit("bad syntax, missing =>")
 		if rule.count('=') != 1 or rule.count('>') != 1:
 			error_exit("Bad Syntax, two implies in one rule")
-		left = rule.split("=>")[0]
-		self.parents = left.split("+")
-		right = rule.split("=>")[1]
-		self.children = right.split("+")
+		# left = rule.split("=>")[0]
+		# # self.parents = left.split("+")########
+		# right = rule.split("=>")[1]
+		# # self.children = right.split("+")#######
+
+		self.parents = rule.split("=>")[0]
+		self.children = rule.split("=>")[1]
 
 class graph:
 	def __init__(self):
@@ -114,6 +117,10 @@ class graph:
 
 	def solve(self):
 
+		for rule in self.rules:#########
+			rule.children = rule.children.split("+")#####
+			rule.parents = rule.parents.split("+")########
+		
 		rules = []
 		rules_original = []
 		for rule in self.rules:
