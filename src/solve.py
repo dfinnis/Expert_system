@@ -4,43 +4,10 @@ def error_exit(error_msg):###### move somewhere!!!!!!!!!
 	print("Error: {}".format(error_msg))
 	sys.exit()
 
-def solve(g):
-
-	for rule in g.rules:#########
-		rule.children = rule.children.split("+")#####
-		rule.parents = rule.parents.split("+")########
-	
-	rules = []
-	rules_original = []
-	for rule in g.rules:
-		rules_original.append(rule)
-		for parent in rule.parents:
-			# print("\n\n\x1b[33m#### ---- parent: {} ----####\x1b[0m".format(parent))########
-			negative = False
-			for letter in parent:
-				# print("\n\n\x1b[33m#### ---- letter: {} ----####\x1b[0m".format(letter))########
-				if letter.isalpha():
-					# print("\n\n\x1b[33m#### ---- letter is alpha ----####\x1b[0m")########
-					for fact in g.facts:
-						# print("\n\n\x1b[33m#### ---- fact: {} ----####\x1b[0m".format(fact.symbol))########
-						if letter == fact.symbol: ############## add not ????!!!!!!!!!!!!
-							# print("\n\n\x1b[33m#### ---- letter = fact ----####\x1b[0m")########		
-							# print("\n\n\x1b[33m#### ---- fact is {} ----####\x1b[0m".format(fact.initially_true))########
-							if negative == False:
-								if fact.initially_true == True:
-									# print("\n\n\x1b[33m#### ---- fact is true!!!! ----####\x1b[0m")########	
-									rules.append(rule)
-							else:
-								if fact.initially_true == False:
-									# print("\n\n\x1b[33m#### ---- fact is true!!!! ----####\x1b[0m")########	
-									rules.append(rule)
-							break
-					negative = False						
-				elif letter == "!":
-					negative = True
+def error_check(g):
 
 	## Bad syntax check
-	for rule in rules_original:
+	for rule in g.rules:
 		for parent in rule.parents:
 			if not parent:
 				error_exit("Bad Syntax, + missing symbol")
@@ -72,7 +39,7 @@ def solve(g):
 								error_exit("Bad Syntax, too many combined conditions")
 
 	## Infinite loop check
-	for rule in rules_original:
+	for rule in g.rules:
 		# print("\n\n\x1b[36m#### ---- RULES LIST: {} => {} ----####\x1b[0m".format(rule.parents, rule.children))########
 		rules_tree = []
 		for child in rule.children:
@@ -81,7 +48,7 @@ def solve(g):
 				if letter.isalpha():
 					deduced = letter
 					# print(deduced)###
-					for rule_implied in rules_original:
+					for rule_implied in g.rules:
 						for parent in rule_implied.parents:
 							for letter in parent:
 								if letter == deduced:
@@ -93,7 +60,7 @@ def solve(g):
 							for letter in child:
 								if letter.isalpha():
 									deduced = letter
-									for rule_orig in rules_original:
+									for rule_orig in g.rules:
 										# print("\n\n\x1b[34m#### ---- RULE ORIGINAL: {} => {} ----####\x1b[0m".format(rule_orig.parents, rule_orig.children))########
 										for parent in rule_orig.parents:
 											# print("\x1b[33mparent: {}\x1b[0m".format(parent))##########
@@ -155,7 +122,44 @@ def solve(g):
 		# 											rules_tree.append(rule_orig)
 		# 											break
 
+def solve(g):
 
+	for rule in g.rules:#########
+		rule.children = rule.children.split("+")#####
+		rule.parents = rule.parents.split("+")########
+	
+	error_check(g)
+
+	rules = []
+	rules_original = []
+	for rule in g.rules:
+		rules_original.append(rule)
+		for parent in rule.parents:
+			# print("\n\n\x1b[33m#### ---- parent: {} ----####\x1b[0m".format(parent))########
+			negative = False
+			for letter in parent:
+				# print("\n\n\x1b[33m#### ---- letter: {} ----####\x1b[0m".format(letter))########
+				if letter.isalpha():
+					# print("\n\n\x1b[33m#### ---- letter is alpha ----####\x1b[0m")########
+					for fact in g.facts:
+						# print("\n\n\x1b[33m#### ---- fact: {} ----####\x1b[0m".format(fact.symbol))########
+						if letter == fact.symbol: ############## add not ????!!!!!!!!!!!!
+							# print("\n\n\x1b[33m#### ---- letter = fact ----####\x1b[0m")########		
+							# print("\n\n\x1b[33m#### ---- fact is {} ----####\x1b[0m".format(fact.initially_true))########
+							if negative == False:
+								if fact.initially_true == True:
+									# print("\n\n\x1b[33m#### ---- fact is true!!!! ----####\x1b[0m")########	
+									rules.append(rule)
+							else:
+								if fact.initially_true == False:
+									# print("\n\n\x1b[33m#### ---- fact is true!!!! ----####\x1b[0m")########	
+									rules.append(rule)
+							break
+					negative = False						
+				elif letter == "!":
+					negative = True
+
+	
 
 
 	# for rule in rules:#########
