@@ -52,6 +52,9 @@ class rule:
 	def parse_rule(self, rule):
 		if not "=>" in rule:
 			error_exit("bad syntax, missing =>")
+		if rule.count('=') != 1 or rule.count('>') != 1:
+			error_exit("Bad Syntax, two implies in one rule")
+
 		left = rule.split("=>")[0]
 		self.parents = left.split("+")
 		right = rule.split("=>")[1]

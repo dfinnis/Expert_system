@@ -1046,6 +1046,20 @@ else
 fi
 ((count+=1))
 
+cmd="python3 expert_system.py input/invalid/2_implies.txt"
+output=$(eval "$cmd")
+desired="Error: Bad Syntax, two implies in one rule"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32m2_implies:\t\tOK\x1b[0m"
+else
+	echo "\x1b[31m2_implies:\t\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
 cmd="python3 expert_system.py input/invalid/empty.txt"
 output=$(eval "$cmd")
 desired="Error: no queries"
