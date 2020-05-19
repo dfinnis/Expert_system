@@ -4,9 +4,7 @@ def error_exit(error_msg):###### move somewhere!!!!!!!!!
 	print("Error: {}".format(error_msg))
 	sys.exit()
 
-def error_check(g):
-
-	## Bad syntax check
+def check_syntax(g):
 	for rule in g.rules:
 		for parent in rule.parents:
 			if not parent:
@@ -38,7 +36,7 @@ def error_check(g):
 							else:
 								error_exit("Bad Syntax, too many combined conditions")
 
-	## Infinite loop check
+def check_loop(g):
 	for rule in g.rules:
 		# print("\n\n\x1b[36m#### ---- RULES LIST: {} => {} ----####\x1b[0m".format(rule.parents, rule.children))########
 		rules_tree = []
@@ -71,6 +69,9 @@ def error_check(g):
 													rules_tree.append(rule_orig)
 													break
 
+def check_error(g):
+	check_syntax(g)
+	check_loop(g)
 	## Contradiction check
 	# for rule in rules_original:
 	# 	# print("\n\n\x1b[36m#### ---- RULES LIST: {} => {} ----####\x1b[0m".format(rule.parents, rule.children))########
@@ -128,7 +129,7 @@ def solve(g):
 		rule.children = rule.children.split("+")#####
 		rule.parents = rule.parents.split("+")########
 	
-	error_check(g)
+	check_error(g)
 
 	rules = []
 	rules_original = []
