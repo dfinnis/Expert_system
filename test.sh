@@ -280,6 +280,92 @@ else
 fi
 ((count+=1))
 
+#### -- OR PRECEDENCE-- ####
+
+cmd="python3 expert_system.py input/valid/or_precedence_1.txt"
+output=$(eval "$cmd")
+desired="E is False"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mor_precedence_1:\tOK\x1b[0m"
+else
+	echo "\x1b[31mor_precedence_1:\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
+cmd="python3 expert_system.py input/valid/or_precedence_2.txt"
+output=$(eval "$cmd")
+desired="E is True"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mor_precedence_2:\tOK\x1b[0m"
+else
+	echo "\x1b[31mor_precedence_2:\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
+cmd="python3 expert_system.py input/valid/or_precedence_3.txt"
+output=$(eval "$cmd")
+desired="E is False"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mor_precedence_3:\tOK\x1b[0m"
+else
+	echo "\x1b[31mor_precedence_3:\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
+cmd="python3 expert_system.py input/valid/or_precedence_4.txt"
+output=$(eval "$cmd")
+desired="E is False"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mor_precedence_4:\tOK\x1b[0m"
+else
+	echo "\x1b[31mor_precedence_4:\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
+cmd="python3 expert_system.py input/valid/or_precedence_5.txt"
+output=$(eval "$cmd")
+desired="E is False"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mor_precedence_5:\tOK\x1b[0m"
+else
+	echo "\x1b[31mor_precedence_5:\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
+cmd="python3 expert_system.py input/valid/or_precedence_6.txt"
+output=$(eval "$cmd")
+desired="E is True"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mor_precedence_6:\tOK\x1b[0m"
+else
+	echo "\x1b[31mor_precedence_6:\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
 #### -- XOR -- ####
 echo "\n\x1b[1mxor tests:\x1b[0m"
 
