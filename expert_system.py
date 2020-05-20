@@ -161,20 +161,14 @@ class graph:
 		for query in self.queries:
 			for fact in self.facts:
 				if query == fact.symbol:
-					# print("oh hi!")#########
-					# print(color)###########
 					if color:
-						# print("oh hi again!")#########
 						if fact.undetermined:
-							print("{} is Undetermined".format(query)) ## No color ######### Yellow!!!!!!	
+							print("{} is Undetermined".format(query))
 						else:
-							print("{} is {}".format(query, fact.deduced_true)) ## No color
+							print("{} is {}".format(query, fact.deduced_true))
 					else:
-						# print("oh hi again 2!")#########
-						# print(fact.undetermined)######
 						if fact.undetermined:
-							# print("oh hi again 3!")#########
-							print("\x1b[33m{} is Undetermined\x1b[0m".format(query)) ## No color ######### Yellow!!!!!!	
+							print("\x1b[33m{} is Undetermined\x1b[0m".format(query))
 						else:
 							if fact.deduced_true == True:
 								print("\x1b[32m{} is True\x1b[0m".format(query))
