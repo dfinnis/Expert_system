@@ -7,7 +7,7 @@ count=0
 #### -- AND -- ####
 echo "\x1b[1mand tests:\x1b[0m"
 
-cmd="python3 expert_system.py input/correction/and_1.txt"
+cmd="python3 expert_system.py input/correction/and_1.txt -c"
 output=$(eval "$cmd")
 desired="A is True
 F is True
@@ -24,7 +24,7 @@ else
 fi
 ((count+=1))
 
-cmd="python3 expert_system.py input/correction/and_2.txt"
+cmd="python3 expert_system.py input/correction/and_2.txt -c"
 output=$(eval "$cmd")
 desired="A is True
 F is True
@@ -44,7 +44,7 @@ fi
 #### -- MORE AND -- ####
 echo
 
-cmd="python3 expert_system.py input/valid/and_long.txt"
+cmd="python3 expert_system.py input/valid/and_long.txt -c"
 output=$(eval "$cmd")
 desired="Z is True"
 if [ "$output" == "$desired" ]
@@ -58,7 +58,7 @@ else
 fi
 ((count+=1))
 
-cmd="python3 expert_system.py input/valid/and_long_2.txt"
+cmd="python3 expert_system.py input/valid/and_long_2.txt -c"
 output=$(eval "$cmd")
 desired="A is False"
 if [ "$output" == "$desired" ]
@@ -75,7 +75,7 @@ fi
 #### -- OR -- ####
 echo "\n\x1b[1mor tests:\x1b[0m"
 
-cmd="python3 expert_system.py input/correction/or_1.txt"
+cmd="python3 expert_system.py input/correction/or_1.txt -c"
 output=$(eval "$cmd")
 desired="A is False"
 if [ "$output" == "$desired" ]
@@ -89,7 +89,7 @@ else
 fi
 ((count+=1))
 
-cmd="python3 expert_system.py input/correction/or_2.txt"
+cmd="python3 expert_system.py input/correction/or_2.txt -c"
 output=$(eval "$cmd")
 desired="A is True"
 if [ "$output" == "$desired" ]
@@ -103,7 +103,7 @@ else
 fi
 ((count+=1))
 
-cmd="python3 expert_system.py input/correction/or_3.txt"
+cmd="python3 expert_system.py input/correction/or_3.txt -c"
 output=$(eval "$cmd")
 desired="A is True"
 if [ "$output" == "$desired" ]
@@ -117,7 +117,7 @@ else
 fi
 ((count+=1))
 
-cmd="python3 expert_system.py input/correction/or_4.txt"
+cmd="python3 expert_system.py input/correction/or_4.txt -c"
 output=$(eval "$cmd")
 desired="A is True"
 if [ "$output" == "$desired" ]
@@ -134,7 +134,7 @@ fi
 #### -- MORE OR -- ####
 echo
 
-cmd="python3 expert_system.py input/valid/or_long.txt"
+cmd="python3 expert_system.py input/valid/or_long.txt -c"
 output=$(eval "$cmd")
 desired="Z is True"
 if [ "$output" == "$desired" ]
@@ -148,7 +148,7 @@ else
 fi
 ((count+=1))
 
-cmd="python3 expert_system.py input/valid/or_long_2.txt"
+cmd="python3 expert_system.py input/valid/or_long_2.txt -c"
 output=$(eval "$cmd")
 desired="A is False"
 if [ "$output" == "$desired" ]
@@ -162,7 +162,7 @@ else
 fi
 ((count+=1))
 
-cmd="python3 expert_system.py input/valid/undetermined_or.txt"
+cmd="python3 expert_system.py input/valid/undetermined_or.txt -c"
 output=$(eval "$cmd")
 desired="B is Undetermined
 C is Undetermined"
@@ -177,7 +177,7 @@ else
 fi
 ((count+=1))
 
-cmd="python3 expert_system.py input/valid/undetermined_or_2.txt"
+cmd="python3 expert_system.py input/valid/undetermined_or_2.txt -c"
 output=$(eval "$cmd")
 desired="B is Undetermined
 C is Undetermined
@@ -193,7 +193,7 @@ else
 fi
 ((count+=1))
 
-cmd="python3 expert_system.py input/valid/undetermined_long.txt"
+cmd="python3 expert_system.py input/valid/undetermined_long.txt -c"
 output=$(eval "$cmd")
 desired="C is Undetermined
 Z is Undetermined"
@@ -210,7 +210,7 @@ fi
 
 #### -- OR NOT -- ####
 
-cmd="python3 expert_system.py input/valid/or_not_1.txt"
+cmd="python3 expert_system.py input/valid/or_not_1.txt -c"
 output=$(eval "$cmd")
 desired="A is True"
 if [ "$output" == "$desired" ]
@@ -224,7 +224,7 @@ else
 fi
 ((count+=1))
 
-cmd="python3 expert_system.py input/valid/or_not_2.txt"
+cmd="python3 expert_system.py input/valid/or_not_2.txt -c"
 output=$(eval "$cmd")
 desired="A is False"
 if [ "$output" == "$desired" ]
@@ -238,7 +238,7 @@ else
 fi
 ((count+=1))
 
-cmd="python3 expert_system.py input/valid/or_not_3.txt"
+cmd="python3 expert_system.py input/valid/or_not_3.txt -c"
 output=$(eval "$cmd")
 desired="A is True"
 if [ "$output" == "$desired" ]
@@ -252,7 +252,7 @@ else
 fi
 ((count+=1))
 
-cmd="python3 expert_system.py input/valid/or_not_4.txt"
+cmd="python3 expert_system.py input/valid/or_not_4.txt -c"
 output=$(eval "$cmd")
 desired="A is True"
 if [ "$output" == "$desired" ]
@@ -266,7 +266,7 @@ else
 fi
 ((count+=1))
 
-cmd="python3 expert_system.py input/valid/or_not_5.txt"
+cmd="python3 expert_system.py input/valid/or_not_5.txt -c"
 output=$(eval "$cmd")
 desired="A is True"
 if [ "$output" == "$desired" ]
@@ -282,7 +282,7 @@ fi
 
 #### -- OR PRECEDENCE-- ####
 
-cmd="python3 expert_system.py input/valid/or_precedence_1.txt"
+cmd="python3 expert_system.py input/valid/or_precedence_1.txt -c"
 output=$(eval "$cmd")
 desired="E is False"
 if [ "$output" == "$desired" ]
@@ -296,7 +296,7 @@ else
 fi
 ((count+=1))
 
-cmd="python3 expert_system.py input/valid/or_precedence_2.txt"
+cmd="python3 expert_system.py input/valid/or_precedence_2.txt -c"
 output=$(eval "$cmd")
 desired="E is True"
 if [ "$output" == "$desired" ]
@@ -310,7 +310,7 @@ else
 fi
 ((count+=1))
 
-cmd="python3 expert_system.py input/valid/or_precedence_3.txt"
+cmd="python3 expert_system.py input/valid/or_precedence_3.txt -c"
 output=$(eval "$cmd")
 desired="E is False"
 if [ "$output" == "$desired" ]
@@ -324,7 +324,7 @@ else
 fi
 ((count+=1))
 
-cmd="python3 expert_system.py input/valid/or_precedence_4.txt"
+cmd="python3 expert_system.py input/valid/or_precedence_4.txt -c"
 output=$(eval "$cmd")
 desired="E is False"
 if [ "$output" == "$desired" ]
@@ -338,7 +338,7 @@ else
 fi
 ((count+=1))
 
-cmd="python3 expert_system.py input/valid/or_precedence_5.txt"
+cmd="python3 expert_system.py input/valid/or_precedence_5.txt -c"
 output=$(eval "$cmd")
 desired="E is False"
 if [ "$output" == "$desired" ]
@@ -352,7 +352,7 @@ else
 fi
 ((count+=1))
 
-cmd="python3 expert_system.py input/valid/or_precedence_6.txt"
+cmd="python3 expert_system.py input/valid/or_precedence_6.txt -c"
 output=$(eval "$cmd")
 desired="E is True"
 if [ "$output" == "$desired" ]
@@ -369,7 +369,7 @@ fi
 #### -- XOR -- ####
 echo "\n\x1b[1mxor tests:\x1b[0m"
 
-cmd="python3 expert_system.py input/correction/xor_1.txt"
+cmd="python3 expert_system.py input/correction/xor_1.txt -c"
 output=$(eval "$cmd")
 desired="A is False"
 if [ "$output" == "$desired" ]
@@ -383,7 +383,7 @@ else
 fi
 ((count+=1))
 
-cmd="python3 expert_system.py input/correction/xor_2.txt"
+cmd="python3 expert_system.py input/correction/xor_2.txt -c"
 output=$(eval "$cmd")
 desired="A is True"
 if [ "$output" == "$desired" ]
@@ -397,7 +397,7 @@ else
 fi
 ((count+=1))
 
-cmd="python3 expert_system.py input/correction/xor_3.txt"
+cmd="python3 expert_system.py input/correction/xor_3.txt -c"
 output=$(eval "$cmd")
 desired="A is True"
 if [ "$output" == "$desired" ]
@@ -411,7 +411,7 @@ else
 fi
 ((count+=1))
 
-cmd="python3 expert_system.py input/correction/xor_4.txt"
+cmd="python3 expert_system.py input/correction/xor_4.txt -c"
 output=$(eval "$cmd")
 desired="A is False"
 if [ "$output" == "$desired" ]
@@ -428,7 +428,7 @@ fi
 #### -- MORE OR -- ####
 echo
 
-cmd="python3 expert_system.py input/valid/xor_long.txt"
+cmd="python3 expert_system.py input/valid/xor_long.txt -c"
 output=$(eval "$cmd")
 desired="Z is True"
 if [ "$output" == "$desired" ]
@@ -442,7 +442,7 @@ else
 fi
 ((count+=1))
 
-cmd="python3 expert_system.py input/valid/xor_long_2.txt"
+cmd="python3 expert_system.py input/valid/xor_long_2.txt -c"
 output=$(eval "$cmd")
 desired="Z is False"
 if [ "$output" == "$desired" ]
@@ -456,7 +456,7 @@ else
 fi
 ((count+=1))
 
-cmd="python3 expert_system.py input/valid/undetermined_xor.txt"
+cmd="python3 expert_system.py input/valid/undetermined_xor.txt -c"
 output=$(eval "$cmd")
 desired="B is Undetermined
 C is Undetermined"
@@ -471,7 +471,7 @@ else
 fi
 ((count+=1))
 
-cmd="python3 expert_system.py input/valid/undetermined_xor_2.txt"
+cmd="python3 expert_system.py input/valid/undetermined_xor_2.txt -c"
 output=$(eval "$cmd")
 desired="B is Undetermined
 C is Undetermined
@@ -487,7 +487,7 @@ else
 fi
 ((count+=1))
 
-cmd="python3 expert_system.py input/valid/undetermined_xlong.txt"
+cmd="python3 expert_system.py input/valid/undetermined_xlong.txt -c"
 output=$(eval "$cmd")
 desired="C is Undetermined
 Z is Undetermined"
@@ -504,7 +504,7 @@ fi
 
 #### -- XOR NOT -- ####
 
-cmd="python3 expert_system.py input/valid/xor_not_1.txt"
+cmd="python3 expert_system.py input/valid/xor_not_1.txt -c"
 output=$(eval "$cmd")
 desired="A is True"
 if [ "$output" == "$desired" ]
@@ -518,7 +518,7 @@ else
 fi
 ((count+=1))
 
-cmd="python3 expert_system.py input/valid/xor_not_2.txt"
+cmd="python3 expert_system.py input/valid/xor_not_2.txt -c"
 output=$(eval "$cmd")
 desired="A is False"
 if [ "$output" == "$desired" ]
@@ -532,7 +532,7 @@ else
 fi
 ((count+=1))
 
-cmd="python3 expert_system.py input/valid/xor_not_3.txt"
+cmd="python3 expert_system.py input/valid/xor_not_3.txt -c"
 output=$(eval "$cmd")
 desired="A is False"
 if [ "$output" == "$desired" ]
@@ -546,7 +546,7 @@ else
 fi
 ((count+=1))
 
-cmd="python3 expert_system.py input/valid/xor_not_4.txt"
+cmd="python3 expert_system.py input/valid/xor_not_4.txt -c"
 output=$(eval "$cmd")
 desired="A is True"
 if [ "$output" == "$desired" ]
@@ -560,7 +560,7 @@ else
 fi
 ((count+=1))
 
-cmd="python3 expert_system.py input/valid/xor_not_5.txt"
+cmd="python3 expert_system.py input/valid/xor_not_5.txt -c"
 output=$(eval "$cmd")
 desired="A is False"
 if [ "$output" == "$desired" ]
@@ -574,7 +574,7 @@ else
 fi
 ((count+=1))
 
-cmd="python3 expert_system.py input/valid/xor_not_6.txt"
+cmd="python3 expert_system.py input/valid/xor_not_6.txt -c"
 output=$(eval "$cmd")
 desired="A is False"
 if [ "$output" == "$desired" ]
@@ -588,7 +588,7 @@ else
 fi
 ((count+=1))
 
-cmd="python3 expert_system.py input/valid/xor_not_7.txt"
+cmd="python3 expert_system.py input/valid/xor_not_7.txt -c"
 output=$(eval "$cmd")
 desired="A is True"
 if [ "$output" == "$desired" ]
@@ -604,7 +604,7 @@ fi
 
 #### -- XOR PRECEDENCE-- ####
 
-cmd="python3 expert_system.py input/valid/xor_precedence_1.txt"
+cmd="python3 expert_system.py input/valid/xor_precedence_1.txt -c"
 output=$(eval "$cmd")
 desired="E is False"
 if [ "$output" == "$desired" ]
@@ -618,7 +618,7 @@ else
 fi
 ((count+=1))
 
-cmd="python3 expert_system.py input/valid/xor_precedence_2.txt"
+cmd="python3 expert_system.py input/valid/xor_precedence_2.txt -c"
 output=$(eval "$cmd")
 desired="E is True"
 if [ "$output" == "$desired" ]
@@ -632,7 +632,7 @@ else
 fi
 ((count+=1))
 
-cmd="python3 expert_system.py input/valid/xor_precedence_3.txt"
+cmd="python3 expert_system.py input/valid/xor_precedence_3.txt -c"
 output=$(eval "$cmd")
 desired="E is False"
 if [ "$output" == "$desired" ]
@@ -646,7 +646,7 @@ else
 fi
 ((count+=1))
 
-cmd="python3 expert_system.py input/valid/xor_precedence_4.txt"
+cmd="python3 expert_system.py input/valid/xor_precedence_4.txt -c"
 output=$(eval "$cmd")
 desired="E is False"
 if [ "$output" == "$desired" ]
@@ -660,7 +660,7 @@ else
 fi
 ((count+=1))
 
-cmd="python3 expert_system.py input/valid/xor_precedence_5.txt"
+cmd="python3 expert_system.py input/valid/xor_precedence_5.txt -c"
 output=$(eval "$cmd")
 desired="E is True"
 if [ "$output" == "$desired" ]
@@ -674,7 +674,7 @@ else
 fi
 ((count+=1))
 
-cmd="python3 expert_system.py input/valid/xor_precedence_6.txt"
+cmd="python3 expert_system.py input/valid/xor_precedence_6.txt -c"
 output=$(eval "$cmd")
 desired="E is True"
 if [ "$output" == "$desired" ]
@@ -691,7 +691,7 @@ fi
 #### -- NOT -- ####
 echo "\n\x1b[1mnot tests:\x1b[0m"
 
-cmd="python3 expert_system.py input/correction/not_1.txt"
+cmd="python3 expert_system.py input/correction/not_1.txt -c"
 output=$(eval "$cmd")
 desired="A is False"
 if [ "$output" == "$desired" ]
@@ -705,7 +705,7 @@ else
 fi
 ((count+=1))
 
-cmd="python3 expert_system.py input/correction/not_2.txt"
+cmd="python3 expert_system.py input/correction/not_2.txt -c"
 output=$(eval "$cmd")
 desired="A is True"
 if [ "$output" == "$desired" ]
@@ -719,7 +719,7 @@ else
 fi
 ((count+=1))
 
-cmd="python3 expert_system.py input/correction/not_3.txt"
+cmd="python3 expert_system.py input/correction/not_3.txt -c"
 output=$(eval "$cmd")
 desired="A is False"
 if [ "$output" == "$desired" ]
@@ -733,7 +733,7 @@ else
 fi
 ((count+=1))
 
-cmd="python3 expert_system.py input/correction/not_4.txt"
+cmd="python3 expert_system.py input/correction/not_4.txt -c"
 output=$(eval "$cmd")
 desired="A is False"
 if [ "$output" == "$desired" ]
@@ -750,7 +750,7 @@ fi
 #### -- SAME CONCLUSION -- ####
 echo "\n\x1b[1msame conclusion tests:\x1b[0m"
 
-cmd="python3 expert_system.py input/correction/same_conclusion_1.txt"
+cmd="python3 expert_system.py input/correction/same_conclusion_1.txt -c"
 output=$(eval "$cmd")
 desired="A is False"
 if [ "$output" == "$desired" ]
@@ -764,7 +764,7 @@ else
 fi
 ((count+=1))
 
-cmd="python3 expert_system.py input/correction/same_conclusion_2.txt"
+cmd="python3 expert_system.py input/correction/same_conclusion_2.txt -c"
 output=$(eval "$cmd")
 desired="A is True"
 if [ "$output" == "$desired" ]
@@ -778,7 +778,7 @@ else
 fi
 ((count+=1))
 
-cmd="python3 expert_system.py input/correction/same_conclusion_3.txt"
+cmd="python3 expert_system.py input/correction/same_conclusion_3.txt -c"
 output=$(eval "$cmd")
 desired="A is True"
 if [ "$output" == "$desired" ]
@@ -792,7 +792,7 @@ else
 fi
 ((count+=1))
 
-cmd="python3 expert_system.py input/correction/same_conclusion_4.txt"
+cmd="python3 expert_system.py input/correction/same_conclusion_4.txt -c"
 output=$(eval "$cmd")
 desired="A is True"
 if [ "$output" == "$desired" ]
@@ -809,7 +809,7 @@ fi
 #### -- PARENTHESIS -- ####
 echo "\n\x1b[1mparenthesis tests:\x1b[0m"
 
-cmd="python3 expert_system.py input/correction/parenthesis_1.txt"
+cmd="python3 expert_system.py input/correction/parenthesis_1.txt -c"
 output=$(eval "$cmd")
 desired="E is False"
 if [ "$output" == "$desired" ]
@@ -823,7 +823,7 @@ else
 fi
 ((count+=1))
 
-cmd="python3 expert_system.py input/correction/parenthesis_2.txt"
+cmd="python3 expert_system.py input/correction/parenthesis_2.txt -c"
 output=$(eval "$cmd")
 desired="E is True"
 if [ "$output" == "$desired" ]
@@ -837,7 +837,7 @@ else
 fi
 ((count+=1))
 
-cmd="python3 expert_system.py input/correction/parenthesis_3.txt"
+cmd="python3 expert_system.py input/correction/parenthesis_3.txt -c"
 output=$(eval "$cmd")
 desired="E is False"
 if [ "$output" == "$desired" ]
@@ -851,7 +851,7 @@ else
 fi
 ((count+=1))
 
-cmd="python3 expert_system.py input/correction/parenthesis_4.txt"
+cmd="python3 expert_system.py input/correction/parenthesis_4.txt -c"
 output=$(eval "$cmd")
 desired="E is False"
 if [ "$output" == "$desired" ]
@@ -865,7 +865,7 @@ else
 fi
 ((count+=1))
 
-cmd="python3 expert_system.py input/correction/parenthesis_5.txt"
+cmd="python3 expert_system.py input/correction/parenthesis_5.txt -c"
 output=$(eval "$cmd")
 desired="E is False"
 if [ "$output" == "$desired" ]
@@ -879,7 +879,7 @@ else
 fi
 ((count+=1))
 
-cmd="python3 expert_system.py input/correction/parenthesis_6.txt"
+cmd="python3 expert_system.py input/correction/parenthesis_6.txt -c"
 output=$(eval "$cmd")
 desired="E is True"
 if [ "$output" == "$desired" ]
@@ -893,7 +893,7 @@ else
 fi
 ((count+=1))
 
-cmd="python3 expert_system.py input/correction/parenthesis_7.txt"
+cmd="python3 expert_system.py input/correction/parenthesis_7.txt -c"
 output=$(eval "$cmd")
 desired="E is False"
 if [ "$output" == "$desired" ]
@@ -907,7 +907,7 @@ else
 fi
 ((count+=1))
 
-cmd="python3 expert_system.py input/correction/parenthesis_8.txt"
+cmd="python3 expert_system.py input/correction/parenthesis_8.txt -c"
 output=$(eval "$cmd")
 desired="E is False"
 if [ "$output" == "$desired" ]
@@ -921,7 +921,7 @@ else
 fi
 ((count+=1))
 
-cmd="python3 expert_system.py input/correction/parenthesis_9.txt"
+cmd="python3 expert_system.py input/correction/parenthesis_9.txt -c"
 output=$(eval "$cmd")
 desired="E is False"
 if [ "$output" == "$desired" ]
@@ -935,7 +935,7 @@ else
 fi
 ((count+=1))
 
-cmd="python3 expert_system.py input/correction/parenthesis_10.txt"
+cmd="python3 expert_system.py input/correction/parenthesis_10.txt -c"
 output=$(eval "$cmd")
 desired="E is True"
 if [ "$output" == "$desired" ]
@@ -949,7 +949,7 @@ else
 fi
 ((count+=1))
 
-cmd="python3 expert_system.py input/correction/parenthesis_11.txt"
+cmd="python3 expert_system.py input/correction/parenthesis_11.txt -c"
 output=$(eval "$cmd")
 desired="E is True"
 if [ "$output" == "$desired" ]
@@ -980,7 +980,7 @@ else
 fi
 ((count+=1))
 
-cmd="python3 expert_system.py input/invalid/invalid_symbol.txt"
+cmd="python3 expert_system.py input/invalid/invalid_symbol.txt -c"
 output=$(eval "$cmd")
 desired="Error: Invalid symbol in file"
 if [ "$output" == "$desired" ]
@@ -994,7 +994,7 @@ else
 fi
 ((count+=1))
 
-cmd="python3 expert_system.py input/invalid/2_initial_fact_lines.txt"
+cmd="python3 expert_system.py input/invalid/2_initial_fact_lines.txt -c"
 output=$(eval "$cmd")
 desired="Error: Multiple lines of initial facts"
 if [ "$output" == "$desired" ]
@@ -1008,7 +1008,7 @@ else
 fi
 ((count+=1))
 
-cmd="python3 expert_system.py input/invalid/2_query_lines.txt"
+cmd="python3 expert_system.py input/invalid/2_query_lines.txt -c"
 output=$(eval "$cmd")
 desired="Error: Multiple lines of queries"
 if [ "$output" == "$desired" ]
@@ -1022,7 +1022,7 @@ else
 fi
 ((count+=1))
 
-cmd="python3 expert_system.py input/invalid/inital_fact_not_in_rules.txt"
+cmd="python3 expert_system.py input/invalid/inital_fact_not_in_rules.txt -c"
 output=$(eval "$cmd")
 desired="Error: Inital fact not in rules"
 if [ "$output" == "$desired" ]
@@ -1036,7 +1036,7 @@ else
 fi
 ((count+=1))
 
-cmd="python3 expert_system.py input/invalid/query_not_in_rules.txt"
+cmd="python3 expert_system.py input/invalid/query_not_in_rules.txt -c"
 output=$(eval "$cmd")
 desired="Error: Query not in rules"
 if [ "$output" == "$desired" ]
@@ -1050,7 +1050,7 @@ else
 fi
 ((count+=1))
 
-cmd="python3 expert_system.py input/invalid/missing_symbol.txt"
+cmd="python3 expert_system.py input/invalid/missing_symbol.txt -c"
 output=$(eval "$cmd")
 desired="Error: Bad Syntax, + missing symbol"
 if [ "$output" == "$desired" ]
@@ -1064,7 +1064,7 @@ else
 fi
 ((count+=1))
 
-cmd="python3 expert_system.py input/invalid/combined_conditions_1.txt"
+cmd="python3 expert_system.py input/invalid/combined_conditions_1.txt -c"
 output=$(eval "$cmd")
 desired="Error: Bad Syntax, combined conditions"
 if [ "$output" == "$desired" ]
@@ -1078,7 +1078,7 @@ else
 fi
 ((count+=1))
 
-cmd="python3 expert_system.py input/invalid/combined_conditions_2.txt"
+cmd="python3 expert_system.py input/invalid/combined_conditions_2.txt -c"
 output=$(eval "$cmd")
 desired="Error: Bad Syntax, combined conditions"
 if [ "$output" == "$desired" ]
@@ -1092,7 +1092,7 @@ else
 fi
 ((count+=1))
 
-cmd="python3 expert_system.py input/invalid/combined_conditions_3.txt"
+cmd="python3 expert_system.py input/invalid/combined_conditions_3.txt -c"
 output=$(eval "$cmd")
 desired="Error: Bad Syntax, combined conditions"
 if [ "$output" == "$desired" ]
@@ -1106,7 +1106,7 @@ else
 fi
 ((count+=1))
 
-cmd="python3 expert_system.py input/invalid/combined_conditions_4.txt"
+cmd="python3 expert_system.py input/invalid/combined_conditions_4.txt -c"
 output=$(eval "$cmd")
 desired="Error: Bad Syntax, combined conditions"
 if [ "$output" == "$desired" ]
@@ -1120,7 +1120,7 @@ else
 fi
 ((count+=1))
 
-cmd="python3 expert_system.py input/invalid/combined_conditions_5.txt"
+cmd="python3 expert_system.py input/invalid/combined_conditions_5.txt -c"
 output=$(eval "$cmd")
 desired="Error: Bad Syntax, combined conditions"
 if [ "$output" == "$desired" ]
@@ -1134,7 +1134,7 @@ else
 fi
 ((count+=1))
 
-cmd="python3 expert_system.py input/invalid/combined_conditions_6.txt"
+cmd="python3 expert_system.py input/invalid/combined_conditions_6.txt -c"
 output=$(eval "$cmd")
 desired="Error: Bad Syntax, combined conditions"
 if [ "$output" == "$desired" ]
@@ -1148,7 +1148,7 @@ else
 fi
 ((count+=1))
 
-cmd="python3 expert_system.py input/invalid/combined_conditions_7.txt"
+cmd="python3 expert_system.py input/invalid/combined_conditions_7.txt -c"
 output=$(eval "$cmd")
 desired="Error: Bad Syntax, too many combined conditions"
 if [ "$output" == "$desired" ]
@@ -1162,7 +1162,7 @@ else
 fi
 ((count+=1))
 
-cmd="python3 expert_system.py input/invalid/combined_conditions_8.txt"
+cmd="python3 expert_system.py input/invalid/combined_conditions_8.txt -c"
 output=$(eval "$cmd")
 desired="Error: Bad Syntax, many combined conditions"
 if [ "$output" == "$desired" ]
@@ -1176,7 +1176,7 @@ else
 fi
 ((count+=1))
 
-cmd="python3 expert_system.py input/invalid/combined_conditions_or.txt"
+cmd="python3 expert_system.py input/invalid/combined_conditions_or.txt -c"
 output=$(eval "$cmd")
 desired="Error: Bad Syntax, 2 combined conditions"
 if [ "$output" == "$desired" ]
@@ -1190,7 +1190,7 @@ else
 fi
 ((count+=1))
 
-cmd="python3 expert_system.py input/invalid/non-alphabet.txt"
+cmd="python3 expert_system.py input/invalid/non-alphabet.txt -c"
 output=$(eval "$cmd")
 desired="Error: Bad Syntax, non-alphabet symbol"
 if [ "$output" == "$desired" ]
@@ -1204,7 +1204,7 @@ else
 fi
 ((count+=1))
 
-cmd="python3 expert_system.py input/invalid/non-alphabet_or.txt"
+cmd="python3 expert_system.py input/invalid/non-alphabet_or.txt -c"
 output=$(eval "$cmd")
 desired="Error: Bad Syntax, non-alphabet symbol with |"
 if [ "$output" == "$desired" ]
@@ -1218,7 +1218,7 @@ else
 fi
 ((count+=1))
 
-cmd="python3 expert_system.py input/invalid/2_implies.txt"
+cmd="python3 expert_system.py input/invalid/2_implies.txt -c"
 output=$(eval "$cmd")
 desired="Error: Bad Syntax, two implies in one rule"
 if [ "$output" == "$desired" ]
@@ -1232,7 +1232,7 @@ else
 fi
 ((count+=1))
 
-cmd="python3 expert_system.py input/invalid/2_implies_2.txt"
+cmd="python3 expert_system.py input/invalid/2_implies_2.txt -c"
 output=$(eval "$cmd")
 desired="Error: Bad Syntax, two implies in one rule"
 if [ "$output" == "$desired" ]
@@ -1246,7 +1246,7 @@ else
 fi
 ((count+=1))
 
-cmd="python3 expert_system.py input/invalid/2_implies_3.txt"
+cmd="python3 expert_system.py input/invalid/2_implies_3.txt -c"
 output=$(eval "$cmd")
 desired="Error: Bad Syntax, two implies in one rule"
 if [ "$output" == "$desired" ]
@@ -1260,7 +1260,7 @@ else
 fi
 ((count+=1))
 
-cmd="python3 expert_system.py input/invalid/empty.txt"
+cmd="python3 expert_system.py input/invalid/empty.txt -c"
 output=$(eval "$cmd")
 desired="Error: no queries"
 if [ "$output" == "$desired" ]
@@ -1275,7 +1275,7 @@ fi
 ((count+=1))
 
 
-cmd="python3 expert_system.py input/invalid/empty_facts.txt"
+cmd="python3 expert_system.py input/invalid/empty_facts.txt -c"
 output=$(eval "$cmd")
 desired="Error: no queries"
 if [ "$output" == "$desired" ]
@@ -1289,7 +1289,7 @@ else
 fi
 ((count+=1))
 
-cmd="python3 expert_system.py input/invalid/empty_query.txt"
+cmd="python3 expert_system.py input/invalid/empty_query.txt -c"
 output=$(eval "$cmd")
 desired="Error: no queries"
 if [ "$output" == "$desired" ]
@@ -1303,7 +1303,7 @@ else
 fi
 ((count+=1))
 
-cmd="python3 expert_system.py input/invalid/empty_rules.txt"
+cmd="python3 expert_system.py input/invalid/empty_rules.txt -c"
 output=$(eval "$cmd")
 desired="Error: no queries"
 if [ "$output" == "$desired" ]
@@ -1317,7 +1317,7 @@ else
 fi
 ((count+=1))
 
-cmd="python3 expert_system.py input/invalid/random_alphabet.txt"
+cmd="python3 expert_system.py input/invalid/random_alphabet.txt -c"
 output=$(eval "$cmd")
 desired="Error: bad syntax, missing =>"
 if [ "$output" == "$desired" ]
@@ -1331,7 +1331,7 @@ else
 fi
 ((count+=1))
 
-cmd="python3 expert_system.py input/invalid/contradiction.txt"
+cmd="python3 expert_system.py input/invalid/contradiction.txt -c"
 output=$(eval "$cmd")
 desired="Error: Bad Logic, contradiction"
 if [ "$output" == "$desired" ]
@@ -1345,7 +1345,7 @@ else
 fi
 ((count+=1))
 
-cmd="python3 expert_system.py input/invalid/contradiction_2.txt"
+cmd="python3 expert_system.py input/invalid/contradiction_2.txt -c"
 output=$(eval "$cmd")
 desired="Error: Bad Logic, contradiction"
 if [ "$output" == "$desired" ]
@@ -1359,7 +1359,7 @@ else
 fi
 ((count+=1))
 
-cmd="python3 expert_system.py input/invalid/contradiction_3.txt"
+cmd="python3 expert_system.py input/invalid/contradiction_3.txt -c"
 output=$(eval "$cmd")
 desired="Error: circular Logic, infinite loop"
 if [ "$output" == "$desired" ]
@@ -1373,7 +1373,7 @@ else
 fi
 ((count+=1))
 
-cmd="python3 expert_system.py input/invalid/contradiction_long.txt"
+cmd="python3 expert_system.py input/invalid/contradiction_long.txt -c"
 output=$(eval "$cmd")
 desired="Error: circular Logic, infinite loop"
 if [ "$output" == "$desired" ]
@@ -1387,7 +1387,7 @@ else
 fi
 ((count+=1))
 
-cmd="python3 expert_system.py input/invalid/infinite_loop.txt"
+cmd="python3 expert_system.py input/invalid/infinite_loop.txt -c"
 output=$(eval "$cmd")
 desired="Error: circular Logic, infinite loop"
 if [ "$output" == "$desired" ]
@@ -1401,7 +1401,7 @@ else
 fi
 ((count+=1))
 
-cmd="python3 expert_system.py input/invalid/infinite_loop_2.txt"
+cmd="python3 expert_system.py input/invalid/infinite_loop_2.txt -c"
 output=$(eval "$cmd")
 desired="Error: circular Logic, infinite loop"
 if [ "$output" == "$desired" ]
@@ -1415,7 +1415,7 @@ else
 fi
 ((count+=1))
 
-cmd="python3 expert_system.py input/invalid/infinite_loop_3.txt"
+cmd="python3 expert_system.py input/invalid/infinite_loop_3.txt -c"
 output=$(eval "$cmd")
 desired="Error: circular Logic, infinite loop"
 if [ "$output" == "$desired" ]

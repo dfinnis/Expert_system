@@ -14,10 +14,15 @@ def parse_args():
                         '--graph',
                         action='store_true',
                         help='Display graph of facts and rules nodes')
+	my_parser.add_argument('-c',
+                        '--color',
+                        action='store_true',
+                        help='Display output without color, default colored')
 	args = my_parser.parse_args()
 	filepath = args.Filepath
 	graph = args.graph
-	return filepath, graph
+	color = args.color
+	return filepath, graph, color
 
 class fact:
 	def __init__(self, symbol):
@@ -117,7 +122,6 @@ class graph:
 								fact.add_parent_rule(rule)
 
 	def print_graph(self):
-
 		print("\n\n\x1b[1m#### ---- GRAPH ---- ####\x1b[0m")
 		print("\n\x1b[1mRules:\x1b[0m")
 		for rule in self.rules:
@@ -153,18 +157,29 @@ class graph:
 			print
 		print
 
-	def print_results(self):
+	def print_results(self, color):
 		for query in self.queries:
 			for fact in self.facts:
 				if query == fact.symbol:
-					if fact.undetermined:
-						print("{} is Undetermined".format(query)) ## No color ######### Yellow!!!!!!	
+					# print("oh hi!")#########
+					# print(color)###########
+					if color:
+						# print("oh hi again!")#########
+						if fact.undetermined:
+							print("{} is Undetermined".format(query)) ## No color ######### Yellow!!!!!!	
+						else:
+							print("{} is {}".format(query, fact.deduced_true)) ## No color
 					else:
-						print("{} is {}".format(query, fact.deduced_true)) ## No color
-						# if fact.true == True:
-						# 	print("\x1b[32m{} is True\x1b[0m".format(query))
-						# else:
-						# 	print("\x1b[31m{} is False\x1b[0m".format(query))		
+						# print("oh hi again 2!")#########
+						# print(fact.undetermined)######
+						if fact.undetermined:
+							# print("oh hi again 3!")#########
+							print("\x1b[33m{} is Undetermined\x1b[0m".format(query)) ## No color ######### Yellow!!!!!!	
+						else:
+							if fact.deduced_true == True:
+								print("\x1b[32m{} is True\x1b[0m".format(query))
+							else:
+								print("\x1b[31m{} is False\x1b[0m".format(query))
 
 def error_exit(error_msg):##### currently duplicated in solve.py!!!!!
 	print("Error: {}".format(error_msg))
@@ -218,13 +233,13 @@ def parse(filepath):
 
 def main():
 	try:
-		filepath, graph = parse_args()
+		filepath, graph, color = parse_args()
 		g = parse(filepath)
 		# g.solve()#######
 		solve(g)
 		if graph:
 			g.print_graph()
-		g.print_results()
+		g.print_results(color)
 	except:
 		pass
 
