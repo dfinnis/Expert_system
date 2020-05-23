@@ -187,29 +187,34 @@ def solve(g):
 				# print("\x1b[32mparent = {}\x1b[0m".format(parent_xor))##########
 				if len(parent) == 1: ## XOR
 					# print("\x1b[31mparent 1 = {}\x1b[0m".format(parent))##########!!!!!!
-					for fact in g.facts:
-						if parent_xor == fact.symbol:		
-							if fact.undetermined:
-								undetermined = True
+					# for fact in g.facts:
+					# 	if parent_xor == fact.symbol:		
+					# 		if fact.undetermined:
+					# 			undetermined = True
 					for fact in g.facts:
 						# print("fact.symbol = {}".format(fact.symbol))#########
 						if parent_xor == fact.symbol:
+							if fact.undetermined:
+								undetermined = True
 							# print("fact.true = {}".format(fact.deduced_true))#########
 							if fact.deduced_true == True:
 								# print("xor +1 is true!")#########
 								xor_true += 1
 								# print("xor_true: {}".format(xor_true))
+							break
 
 				elif len(parent_xor) == 2: ## XOR not
 					# print("\x1b[32mparent = {}\x1b[0m".format(parent))##########
-					for fact in g.facts:
-						if parent_xor[1] == fact.symbol:
-							if fact.undetermined:
-								undetermined = True
+					# for fact in g.facts:
+					# 	if parent_xor[1] == fact.symbol:
+					# 		if fact.undetermined:
+					# 			undetermined = True
 					for fact in g.facts:
 					# print("fact.symbol = {}".format(fact.symbol))#########
 						if parent_xor[1] == fact.symbol:
 						# print("fact.true = {}".format(fact.deduced_true))#########
+							if fact.undetermined:
+								undetermined = True
 							if fact.deduced_true == False:
 							# print("fact is true!")#########
 								xor_true += 1
