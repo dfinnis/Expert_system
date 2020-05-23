@@ -6,7 +6,7 @@ def error_exit(error_msg):###### move somewhere!!!!!!!!!
 
 def check_syntax(g):
 	for rule in g.rules:
-		parents = rule.parents.split("+")
+		parents = rule.parents.replace('(', '').replace(')', '').split("+")
 		for parent in parents:
 			if not parent:
 				error_exit("Bad Syntax, + missing symbol")
@@ -71,8 +71,12 @@ def check_loop(g):
 													break
 
 def check_error(g):
-	check_syntax(g)
 	check_loop(g)
+	# for rule in g.rules:
+		# parents = rule.parents
+		# parents = parents.replace('(', '').replace(')', '')
+	check_syntax(g)
+
 	## Contradiction check
 	# for rule in rules_original:
 	# 	# print("\n\n\x1b[36m#### ---- RULES LIST: {} => {} ----####\x1b[0m".format(rule.parents, rule.children))########
@@ -347,7 +351,7 @@ def solve_parenthesis(parents, g): ## replace parenthesis with 0 = false, 1 = tr
 
 def solve(g):
 	# parse_parenthesis(g)#####rm!!!!!!
-	# check_error(g)## PUT ME BACK!!!!!!!!!!!!
+	check_error(g)## PUT ME BACK!!!!!!!!!!!!
 
 	rules = []
 	rules_original = []
