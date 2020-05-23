@@ -126,6 +126,7 @@ def check_error(g):
 
 def parse_parenthesis(g):
 	for rule in g.rules:
+		# while "(" in rule.parents or ")" in rule.parents:### deal with parenthesis inside parenthesis (())
 		if "(" in rule.parents or ")" in rule.parents:
 			if rule.parents.count("(") != rule.parents.count(")"):
 				error_exit("Bad syntax, parenthesis unbalanced")
@@ -144,12 +145,12 @@ def parse_parenthesis(g):
 			parents_parsed.append(parenthesis)
 			if right:
 				parents_parsed.append(right)
-			print("rule_parsed:	{}".format(parents_parsed))######
-			print("rule.parents:	{}".format(rule.parents))######
+			# print("rule_parsed:	{}".format(parents_parsed))######
+			# print("rule.parents:	{}".format(rule.parents))######
 			rule.parents = [rule.parents]##########  do this earlier, deal with lists!!!!!!!
-			print("rule.parents:	{}".format(rule.parents))######
+			# print("rule.parents:	{}".format(rule.parents))######
 			rule.parents = parents_parsed
-			print("rule.parents:	{}".format(rule.parents))######
+			# print("rule.parents:	{}".format(rule.parents))######
 			## if isinstance(parent, list): #### to identify list in list
 
 def solve(g):
