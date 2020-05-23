@@ -124,34 +124,50 @@ def check_error(g):
 		# 											rules_tree.append(rule_orig)
 		# 											break
 
-def parse_parenthesis(g):
-	for rule in g.rules:
-		# while "(" in rule.parents or ")" in rule.parents:### deal with parenthesis inside parenthesis (())
-		if "(" in rule.parents or ")" in rule.parents:
-			if rule.parents.count("(") != rule.parents.count(")"):
-				error_exit("Bad syntax, parenthesis unbalanced")
+def find_bracket(parents):
+	i = 0
+	pair = 0
+	for letter in parents:
+		if letter == "(":
+			pair += 1
+		elif letter == ")":
+			if pair == 0:
+				return i
+			else:
+				pair -= 1
+		i += 1
+	error_exit("Bad syntax, parenthesis")
 
-			parenthesis = rule.parents.split("(")[1]
-			parenthesis = [parenthesis[:parenthesis.rfind(")")]]
-			if parenthesis == [""]:
-				error_exit("Bad syntax, parenthesis empty ()")
-			left = rule.parents.split("(")[0]
-			right = rule.parents[rule.parents.rfind(")")+1:]
+def parse_parenthesis(parents):
+	# for rule in g.rules:
+		# while "(" in parents or ")" in parents:### deal with parenthesis inside parenthesis (())
+	if "(" in parents or ")" in parents:
+		if parents.count("(") != parents.count(")"):
+			error_exit("Bad syntax, parenthesis unbalanced")
 
-			parents_parsed = []
-			if left:
-				parents_parsed.append(left)		
-			# parents_parsed = left		
-			parents_parsed.append(parenthesis)
-			if right:
-				parents_parsed.append(right)
-			# print("rule_parsed:	{}".format(parents_parsed))######
-			# print("rule.parents:	{}".format(rule.parents))######
-			rule.parents = [rule.parents]##########  do this earlier, deal with lists!!!!!!!
-			# print("rule.parents:	{}".format(rule.parents))######
-			rule.parents = parents_parsed
-			# print("rule.parents:	{}".format(rule.parents))######
-			## if isinstance(parent, list): #### to identify list in list
+		parenthesis = parents.split("(")[1]
+		right_i = find_bracket(parenthesis)
+		parenthesis = [parenthesis[:right_i]]
+		if parenthesis == [""]:
+			error_exit("Bad syntax, parenthesis empty ()")
+		left = parents.split("(")[0]
+		right = parents[right_i+2:]####???? +2 ok?!!!
+
+		parents_parsed = []
+		if left:
+			parents_parsed.append(left)		
+		# parents_parsed = left		
+		parents_parsed.append(parenthesis)
+		if right:
+			parents_parsed.append(right)
+		# print("rule_parsed:	{}".format(parents_parsed))######
+		print("parents:	{}".format(parents))######
+		parents = [parents]##########  do this earlier, deal with lists!!!!!!!
+		print("parents:	{}".format(parents))######
+		parents = parents_parsed
+		print("parents:	{}".format(parents))######
+		## if isinstance(parent, list): #### to identify list in list
+	return parents
 
 def solve_rule(rule, g):
 	undetermined = False
@@ -268,15 +284,13 @@ def solve_rule(rule, g):
 				xor_true += 1
 	return xor_true, undetermined
 
+def solve_parenthesis(rule, g):
+	print("oh hi!")#####
+	print(rule.parents)
+
 def solve(g):
-	parse_parenthesis(g)
-	check_error(g)
-	
-	# for rule in g.rules:
-	# 	if isinstance(rule.parents, list):
-	# 		### solve parenthesis
-	# 	else:
-	# 		### don't bother
+	# parse_parenthesis(g)#####rm!!!!!!
+	check_error(g)## PUT ME BACK!!!!!!!!!!!!
 
 	rules = []
 	rules_original = []
@@ -308,15 +322,14 @@ def solve(g):
 				elif letter == "!":
 					negative = True
 
-	# for rule in rules:#########
-		# print("\n\n\x1b[33m#### ---- RULES LIST: {} => {} ----####\x1b[0m".format(rule.parents, rule.children))########
-	# for rule in rules_original:#########
-	# 	print("\n\n\x1b[34m#### ---- RULES LIST: {} => {} ----####\x1b[0m".format(rule.parents, rule.children))########
-
 	## Apply rules
 	while rules:
 		for rule in rules:
 			# print("\n\n\x1b[35m#### ---- RULE: {} => {} ----####\x1b[0m".format(rule.parents, rule.children))########
+			rule.parents = parse_parenthesis(rule.parents)
+			if not isinstance(rule.parents, str):
+				solve_parenthesis(rule, g)
+
 			xor_true, undetermined = solve_rule(rule, g)
 			
 			## Deduce True
