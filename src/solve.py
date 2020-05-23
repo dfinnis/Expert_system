@@ -181,9 +181,9 @@ def solve(g):
 			# print(rule.parents)#####
 			parents_xor = rule.parents.split("^")
 			# print(parents_xor)#######
+			xor_true = 0
 			for parent_xor in parents_xor:
 				# xor_count = 0#######???????
-				xor_true = 0
 				# print("\x1b[32mparent = {}\x1b[0m".format(parent_xor))##########
 				if len(parent) == 1: ## XOR
 					# print("\x1b[31mparent 1 = {}\x1b[0m".format(parent))##########!!!!!!
@@ -223,6 +223,59 @@ def solve(g):
 
 
 				## OR loop
+
+
+				# else:	## OR loop
+				# 	# print("\x1b[31mparent = {}\x1b[0m".format(parent))##########
+				# 	parents_or = parent_xor.split("|")
+				# 	# print("\x1b[32mparent = {}\x1b[0m".format(parent))##########
+				# 	or_true = False
+				# 	for parent_or in parents_or:
+				# 		# print("\x1b[32mlen(parent) = {}\x1b[0m".format(len(parent)))##########
+				# 		if len(parent_or) == 1: ## OR
+				# 			# print("\x1b[31mparent 1 = {}\x1b[0m".format(parent))##########
+				# 			# for fact in g.facts:
+				# 			# 	if parent_or == fact.symbol:		
+				# 					# if fact.undetermined:
+				# 					# 	undetermined = True
+				# 			for fact in g.facts:
+				# 				# print("fact.symbol = {}".format(fact.symbol))#########
+				# 				if parent_or == fact.symbol:
+				# 					# print("fact.true = {}".format(fact.deduced_true))#########
+				# 					if fact.undetermined:
+				# 						undetermined = True
+				# 					if fact.deduced_true == True:
+				# 						# print("fact is true!")#########
+				# 						# true += 1####
+				# 						# found_true = True
+				# 						or_true = True
+				# 					break
+				# 			# if found_true == True:
+				# 			# 	break
+
+				# 		elif len(parent_or) == 2: ## OR NOT
+				# 			# print("\x1b[32mparent = {}\x1b[0m".format(parent))##########
+				# 			# for fact in g.facts:
+				# 			# 	if parent_or[1] == fact.symbol:
+				# 					# if fact.undetermined:
+				# 					# 	undetermined = True
+				# 			for fact in g.facts:
+				# 			# print("fact.symbol = {}".format(fact.symbol))#########
+				# 				if parent_or[1] == fact.symbol:
+				# 				# print("fact.true = {}".format(fact.deduced_true))#########
+				# 					if fact.undetermined:
+				# 						undetermined = True
+				# 					if fact.deduced_true == False:
+				# 					# print("fact is true!")#########
+				# 						# true += 1######
+				# 						or_true = True
+				# 					break
+			
+				# 		# else:		## AND loop
+				# 	if or_true:
+				# 		xor_true += 1
+
+
 					## AND loop
 
 
@@ -354,9 +407,10 @@ def solve(g):
 
 			## Deduce True
 			# if parents == true:### not this??!!!!!
+			children = rule.children.split("+")
 			if xor_true == 1:####This??!!!
 				# print("Make children true")##########
-				children = rule.children.split("+")
+				# children = rule.children.split("+")
 				for child in children:
 					# print("child = {}".format(child))
 					if len(child) == 1: ## SIMPLE CASE
@@ -383,7 +437,7 @@ def solve(g):
 			## Deduce False
 			else:
 				# print("Make children false")##########
-				for child in rule.children:
+				for child in children:
 					# print("child = {}".format(child))
 					if len(child) == 1: ## SIMPLE CASE
 						# print("child len 1")
@@ -394,7 +448,7 @@ def solve(g):
 								### append to rules list??
 
 			## Deduce undetermined
-			for child in rule.children:
+			for child in children:
 				# print("child = {}".format(child))##########
 				if len(child) > 2: #### + len 2 (not)???????????########
 					children_or = child.split("|")
@@ -437,7 +491,7 @@ def solve(g):
 															rules.append(rule_orig)
 					
 			if undetermined:
-				for child in rule.children:
+				for child in children:
 					# print("child = {}".format(child))
 					if len(child) == 1: ## SIMPLE CASE
 						# print("child len 1")
