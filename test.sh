@@ -1467,7 +1467,7 @@ fi
 
 cmd="python3 expert_system.py input/invalid/parenthesis_empty.txt -c"
 output=$(eval "$cmd")
-desired="Error: Bad syntax, parenthesis empty ()"
+desired="Error: Bad Syntax, + missing symbol"
 if [ "$output" == "$desired" ]
 then
 	((passed+=1))

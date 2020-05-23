@@ -153,7 +153,7 @@ def parse_parenthesis(parents):
 		right_i = find_bracket(parenthesis)
 		parenthesis = [parenthesis[:right_i]]
 		if parenthesis == [""]:
-			error_exit("Bad syntax, parenthesis empty ()")
+			error_exit("Bad syntax, parenthesis empty ()")##### can we get here?!!!!
 		left = parents.split("(")[0]
 		right = parents[right_i+2:]####???? +2 ok?!!!
 
@@ -356,6 +356,7 @@ def solve(g):
 	rules = []
 	rules_original = []
 	for rule in g.rules:
+		_ = parse_parenthesis(rule.parents)
 		rules_original.append(rule)
 		parents = rule.parents.split("+")
 		for parent in parents:
