@@ -129,10 +129,28 @@ def parse_parenthesis(g):
 		if "(" in rule.parents or ")" in rule.parents:
 			if rule.parents.count("(") != rule.parents.count(")"):
 				error_exit("Bad syntax, parenthesis unbalanced")
-			# print("oh hi!")
 
+			parenthesis = rule.parents.split("(")[1]
+			parenthesis = [parenthesis[:parenthesis.rfind(")")]]
+			if parenthesis == [""]:
+				error_exit("Bad syntax, parenthesis empty ()")
+			left = rule.parents.split("(")[0]
+			right = rule.parents[rule.parents.rfind(")")+1:]
 
-
+			parents_parsed = []
+			if left:
+				parents_parsed.append(left)		
+			# parents_parsed = left		
+			parents_parsed.append(parenthesis)
+			if right:
+				parents_parsed.append(right)
+			print("rule_parsed:	{}".format(parents_parsed))######
+			print("rule.parents:	{}".format(rule.parents))######
+			rule.parents = [rule.parents]##########  do this earlier, deal with lists!!!!!!!
+			print("rule.parents:	{}".format(rule.parents))######
+			rule.parents = parents_parsed
+			print("rule.parents:	{}".format(rule.parents))######
+			## if isinstance(parent, list): #### to identify list in list
 
 def solve(g):
 	parse_parenthesis(g)
