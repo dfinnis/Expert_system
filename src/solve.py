@@ -140,7 +140,7 @@ def find_bracket(parents):
 
 def parse_parenthesis(parents):
 	# for rule in g.rules:
-		# while "(" in parents or ")" in parents:### deal with parenthesis inside parenthesis (())
+	# while "(" in parents or ")" in parents:### deal with parenthesis inside parenthesis (())
 	if "(" in parents or ")" in parents:
 		if parents.count("(") != parents.count(")"):
 			error_exit("Bad syntax, parenthesis unbalanced")
@@ -161,18 +161,18 @@ def parse_parenthesis(parents):
 		if right:
 			parents_parsed.append(right)
 		# print("rule_parsed:	{}".format(parents_parsed))######
-		print("parents:	{}".format(parents))######
-		parents = [parents]##########  do this earlier, deal with lists!!!!!!!
-		print("parents:	{}".format(parents))######
+		# print("parents:	{}".format(parents))######
+		parents = [parents]##########  do this earlier, deal with lists!!!!!!!??
+		# print("parents:	{}".format(parents))######
 		parents = parents_parsed
-		print("parents:	{}".format(parents))######
+		# print("parents:	{}".format(parents))######
 		## if isinstance(parent, list): #### to identify list in list
 	return parents
 
-def solve_rule(rule, g):
+def solve_rule(parents, g):
 	undetermined = False
 	## XOR loop
-	parents_xor = rule.parents.split("^")
+	parents_xor = parents.split("^")
 	# print(parents_xor)#######
 	xor_true = 0
 	for parent_xor in parents_xor:
@@ -284,13 +284,33 @@ def solve_rule(rule, g):
 				xor_true += 1
 	return xor_true, undetermined
 
-def solve_parenthesis(rule, g):
-	print("oh hi!")#####
-	print(rule.parents)
+def solve_parenthesis(parents, g): ## replace parenthesis with 0 = false, 1 = true, 2 = undetermined
+	print("parents before:	{}".format(parents))
+	solved_str = ""
+	for parent in parents:
+		print("parent:	{}".format(parent))####
+		# print(type(parent))#########
+		if isinstance(parent, list):
+			print("list!")######
+			for content in parent:
+				print(content)#######
+				xor_true, undetermined = solve_rule(content, g)
+				# print("xor_true: {}".format(xor_true))#####
+				# print("undetermined: {}".format(undetermined))#####
+				if undetermined:
+					solved_str += "2"
+				elif xor_true == 1:
+					solved_str += "1"
+				else:
+					solved_str += "0"			
+		else:
+			solved_str += parent
+	print("solved_str: {}".format(solved_str))
+	return solved_str
 
 def solve(g):
 	# parse_parenthesis(g)#####rm!!!!!!
-	check_error(g)## PUT ME BACK!!!!!!!!!!!!
+	# check_error(g)## PUT ME BACK!!!!!!!!!!!!
 
 	rules = []
 	rules_original = []
@@ -327,10 +347,10 @@ def solve(g):
 		for rule in rules:
 			# print("\n\n\x1b[35m#### ---- RULE: {} => {} ----####\x1b[0m".format(rule.parents, rule.children))########
 			rule.parents = parse_parenthesis(rule.parents)
-			if not isinstance(rule.parents, str):
-				solve_parenthesis(rule, g)
+			if isinstance(rule.parents, list):
+				rule.parents = solve_parenthesis(rule.parents, g)
 
-			xor_true, undetermined = solve_rule(rule, g)
+			xor_true, undetermined = solve_rule(rule.parents, g)
 			
 			## Deduce True
 			children = rule.children.split("+")
