@@ -138,7 +138,8 @@ def solve(g):
 		# rule.children = rule.children.split("+")#####
 		# rule.parents = rule.parents.split("+")########
 		rules_original.append(rule)
-		for parent in rule.parents:
+		parents = rule.parents.split("+")
+		for parent in parents:
 			# print("\n\n\x1b[33m#### ---- parent: {} ----####\x1b[0m".format(parent))########
 			negative = False
 			for letter in parent:
