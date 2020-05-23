@@ -124,7 +124,18 @@ def check_error(g):
 		# 											rules_tree.append(rule_orig)
 		# 											break
 
+def parse_parenthesis(g):
+	for rule in g.rules:
+		if "(" in rule.parents or ")" in rule.parents:
+			if rule.parents.count("(") != rule.parents.count(")"):
+				error_exit("Bad syntax, parenthesis unbalanced")
+			# print("oh hi!")
+
+
+
+
 def solve(g):
+	parse_parenthesis(g)
 	check_error(g)
 	
 	rules = []
@@ -166,27 +177,15 @@ def solve(g):
 	while rules:
 		for rule in rules:
 			# print("\n\n\x1b[35m#### ---- RULE: {} => {} ----####\x1b[0m".format(rule.parents, rule.children))########
-			# parents = 0#######
-			# true = 0#########
-
 			undetermined = False
 
 			## XOR loop
-			# print(rule.parents)#####
 			parents_xor = rule.parents.split("^")
 			# print(parents_xor)#######
 			xor_true = 0
 			for parent_xor in parents_xor:
-				# print(parent_xor)#######
-				# print(len(parent_xor))######
-				# xor_count = 0#######???????
-				# print("\x1b[32mparent = {}\x1b[0m".format(parent_xor))##########
 				if len(parent_xor) == 1: ## XOR
-					# print("\x1b[31mparent 1 = {}\x1b[0m".format(parent))##########!!!!!!
-					# for fact in g.facts:
-					# 	if parent_xor == fact.symbol:		
-					# 		if fact.undetermined:
-					# 			undetermined = True
+					# print("\x1b[31mparent 1 = {}\x1b[0m".format(parent))#######
 					for fact in g.facts:
 						# print("fact.symbol = {}".format(fact.symbol))#########
 						if parent_xor == fact.symbol:
@@ -201,10 +200,6 @@ def solve(g):
 
 				elif len(parent_xor) == 2: ## XOR not
 					# print("\x1b[32mparent = {}\x1b[0m".format(parent))##########
-					# for fact in g.facts:
-					# 	if parent_xor[1] == fact.symbol:
-					# 		if fact.undetermined:
-					# 			undetermined = True
 					for fact in g.facts:
 					# print("fact.symbol = {}".format(fact.symbol))#########
 						if parent_xor[1] == fact.symbol:
@@ -216,10 +211,7 @@ def solve(g):
 								xor_true += 1
 							break
 
-				# print("xor true = {}".format(xor_true))#######
-
 				else:	## OR loop
-					# print("oh hi!")####
 					# print("\x1b[31mparent_xor = {}\x1b[0m".format(parent_xor))##########
 					parents_or = parent_xor.split("|")
 					# print("\x1b[32mparents_or = {}\x1b[0m".format(parents_or))##########
@@ -239,20 +231,11 @@ def solve(g):
 									if fact.undetermined:
 										undetermined = True
 									if fact.deduced_true == True:
-										# print("fact is true!")#########
-										# true += 1####
-										# found_true = True
 										or_true = True
 									break
-							# if found_true == True:
-							# 	break
 
 						elif len(parent_or) == 2: ## OR NOT
 							# print("\x1b[32mparent = {}\x1b[0m".format(parent))##########
-							# for fact in g.facts:
-							# 	if parent_or[1] == fact.symbol:
-									# if fact.undetermined:
-									# 	undetermined = True
 							for fact in g.facts:
 							# print("fact.symbol = {}".format(fact.symbol))#########
 								if parent_or[1] == fact.symbol:
@@ -287,7 +270,6 @@ def solve(g):
 								elif len(parent_and) == 2: ## NOT
 									# print("\x1b[31mparent_and = {}\x1b[0m".format(parent_and))##########
 										# if not parent_and.isalpha():
-									
 									for fact in g.facts:
 										# print("fact.symbol = {}".format(fact.symbol))#########
 										if parent_and[1] == fact.symbol:
@@ -303,7 +285,6 @@ def solve(g):
 									error_exit("Bad Syntax, 2 many combined condtions") ### catch all other errors??!!!!!
 							
 							if and_true == and_count:
-								# print("oh hi!")########
 								or_true = True
 								# print("or true = {}".format(or_true))########
 

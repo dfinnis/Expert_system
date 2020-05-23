@@ -1319,13 +1319,113 @@ fi
 
 cmd="python3 expert_system.py input/invalid/random_alphabet.txt -c"
 output=$(eval "$cmd")
-desired="Error: bad syntax, missing =>"
+desired="Error: Bad syntax, missing =>"
 if [ "$output" == "$desired" ]
 then
 	((passed+=1))
 	echo "\x1b[32mrandom_alphabet:\tOK\x1b[0m"
 else
 	echo "\x1b[31mrandom_alphabet:\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
+#### -- Parenthesis -- ####
+
+cmd="python3 expert_system.py input/invalid/parenthesis_balance.txt -c"
+output=$(eval "$cmd")
+desired="Error: Bad syntax, parenthesis unbalanced"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mparenthesis balance:\tOK\x1b[0m"
+else
+	echo "\x1b[31mparenthesis balance:\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
+cmd="python3 expert_system.py input/invalid/parenthesis_balance_2.txt -c"
+output=$(eval "$cmd")
+desired="Error: Bad syntax, parenthesis unbalanced"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mparenthesis balance_2:\tOK\x1b[0m"
+else
+	echo "\x1b[31mparenthesis balance_2:\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
+cmd="python3 expert_system.py input/invalid/parenthesis_balance_3.txt -c"
+output=$(eval "$cmd")
+desired="Error: Bad syntax, parenthesis unbalanced"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mparenthesis balance_3:\tOK\x1b[0m"
+else
+	echo "\x1b[31mparenthesis balance_3:\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
+cmd="python3 expert_system.py input/invalid/parenthesis_balance_4.txt -c"
+output=$(eval "$cmd")
+desired="Error: Bad syntax, parenthesis unbalanced"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mparenthesis balance_4:\tOK\x1b[0m"
+else
+	echo "\x1b[31mparenthesis balance_4:\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
+cmd="python3 expert_system.py input/invalid/parenthesis_balance_5.txt -c"
+output=$(eval "$cmd")
+desired="Error: Bad syntax, parenthesis unbalanced"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mparenthesis balance_5:\tOK\x1b[0m"
+else
+	echo "\x1b[31mparenthesis balance_5:\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
+cmd="python3 expert_system.py input/invalid/parenthesis_balance_6.txt -c"
+output=$(eval "$cmd")
+desired="Error: Bad syntax, parenthesis unbalanced"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mparenthesis balance_6:\tOK\x1b[0m"
+else
+	echo "\x1b[31mparenthesis balance_6:\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
+cmd="python3 expert_system.py input/invalid/parenthesis_empty.txt -c"
+output=$(eval "$cmd")
+desired="Error: Bad syntax, parenthesis empty ()"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mparenthesis empty:\tOK\x1b[0m"
+else
+	echo "\x1b[31mparenthesis empty:\tERROR\x1b[0m"
 	echo "desired output: $desired"
 	echo "actual output:  $output\n"
 fi
