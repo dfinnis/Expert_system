@@ -867,7 +867,7 @@ fi
 
 cmd="python3 expert_system.py input/correction/parenthesis_5.txt -c"
 output=$(eval "$cmd")
-desired="E is False"
+desired="E is True"
 if [ "$output" == "$desired" ]
 then
 	((passed+=1))

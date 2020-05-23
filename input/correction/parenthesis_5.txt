@@ -5,4 +5,4 @@ A | B + C => E
 
 ?E 
 
-# E is false
+# E is true
