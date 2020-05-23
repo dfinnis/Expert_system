@@ -127,14 +127,16 @@ def check_error(g):
 def solve(g):
 	check_error(g)
 
-	for rule in g.rules:#########
-		rule.children = rule.children.split("+")#####
-		rule.parents = rule.parents.split("+")########
+	# for rule in g.rules:#########
+	# 	rule.children = rule.children.split("+")#####
+	# 	rule.parents = rule.parents.split("+")########
 	
 
 	rules = []
 	rules_original = []
 	for rule in g.rules:
+		# rule.children = rule.children.split("+")#####
+		# rule.parents = rule.parents.split("+")########
 		rules_original.append(rule)
 		for parent in rule.parents:
 			# print("\n\n\x1b[33m#### ---- parent: {} ----####\x1b[0m".format(parent))########
@@ -170,136 +172,192 @@ def solve(g):
 	while rules:
 		for rule in rules:
 			# print("\n\n\x1b[35m#### ---- RULE: {} => {} ----####\x1b[0m".format(rule.parents, rule.children))########
-			parents = 0
-			true = 0
-			undetermined = False
-			for parent in rule.parents:
-				# print("parent = {}".format(parent))##########
-				parents += 1
+			# parents = 0#######
+			# true = 0#########
 
-				# print("len(parent) = {}".format(len(parent)))######
-				if len(parent) == 1: ## ADD
-					# print(parent)####
+			undetermined = False
+
+			## XOR loop
+			# print(rule.parents)#####
+			parents_xor = rule.parents.split("^")
+			# print(parents_xor)#######
+			for parent_xor in parents_xor:
+				# xor_count = 0#######???????
+				xor_true = 0
+				# print("\x1b[32mparent = {}\x1b[0m".format(parent_xor))##########
+				if len(parent) == 1: ## XOR
+					# print("\x1b[31mparent 1 = {}\x1b[0m".format(parent))##########!!!!!!
+					for fact in g.facts:
+						if parent_xor == fact.symbol:		
+							if fact.undetermined:
+								undetermined = True
 					for fact in g.facts:
 						# print("fact.symbol = {}".format(fact.symbol))#########
-						if parent == fact.symbol:
+						if parent_xor == fact.symbol:
 							# print("fact.true = {}".format(fact.deduced_true))#########
 							if fact.deduced_true == True:
-								# print("fact is true!")#########
-								true += 1
-							# print(fact.symbol)############
-							# print("oh hi")###########
-							if fact.undetermined:
-								undetermined = True
-							break
+								# print("xor +1 is true!")#########
+								xor_true += 1
+								# print("xor_true: {}".format(xor_true))
 
-				elif len(parent) == 2: ## NOT
-					# print("\x1b[31mparent = {}\x1b[0m".format(parent))##########
-						# if not parent.isalpha():
-					
-					for fact in g.facts:
-						# print("fact.symbol = {}".format(fact.symbol))#########
-						if parent[1] == fact.symbol:
-							# print("fact.true = {}".format(fact.deduced_true))#########
-							if fact.deduced_true == False:
-								# print("fact is true!")#########
-								true += 1
-							if fact.undetermined:
-								undetermined = True
-							break
-				
-				else: ## OR / XOR / (parenthesis for now)
-					# print("\x1b[31mparent = {}\x1b[0m".format(parent))##########
-					parents_or = parent.split("|")
+				elif len(parent_xor) == 2: ## XOR not
 					# print("\x1b[32mparent = {}\x1b[0m".format(parent))##########
-					found_true = False
-					for parent in parents_or:
-						# print("\x1b[32mlen(parent) = {}\x1b[0m".format(len(parent)))##########
-						if len(parent) == 1: ## OR
-							# print("\x1b[31mparent 1 = {}\x1b[0m".format(parent))##########
-							for fact in g.facts:
-								if parent == fact.symbol:		
-									if fact.undetermined:
-										undetermined = True
-							for fact in g.facts:
-								# print("fact.symbol = {}".format(fact.symbol))#########
-								if parent == fact.symbol:
-									# print("fact.true = {}".format(fact.deduced_true))#########
-									if fact.deduced_true == True:
-										# print("fact is true!")#########
-										true += 1
-										found_true = True
-									break
-							if found_true == True:
-								break
+					for fact in g.facts:
+						if parent_xor[1] == fact.symbol:
+							if fact.undetermined:
+								undetermined = True
+					for fact in g.facts:
+					# print("fact.symbol = {}".format(fact.symbol))#########
+						if parent_xor[1] == fact.symbol:
+						# print("fact.true = {}".format(fact.deduced_true))#########
+							if fact.deduced_true == False:
+							# print("fact is true!")#########
+								xor_true += 1
+							break
 
-						elif len(parent) == 2: ## OR NOT
-							# print("\x1b[32mparent = {}\x1b[0m".format(parent))##########
-							for fact in g.facts:
-								if parent[1] == fact.symbol:
-									if fact.undetermined:
-										undetermined = True
-							for fact in g.facts:
-							# print("fact.symbol = {}".format(fact.symbol))#########
-								if parent[1] == fact.symbol:
-								# print("fact.true = {}".format(fact.deduced_true))#########
-									if fact.deduced_true == False:
-									# print("fact is true!")#########
-										true += 1
-									break
+			# print("xor true = {}".format(xor_true))#######
+			# if xor_true == 1:
+				# print("Here I am!!")#####
+				# print("Here I am!!")#####
+			# 	true += 1########### IS TRUE SO MAKE CHILDREN TRUE
 
-						else: ## XOR
-							# print("\x1b[32mparent = {}\x1b[0m".format(parent))##########
-							parents_xor = parent.split("^")
-							# print("\x1b[32mparent = {}\x1b[0m".format(parent))##########
 
-							xor_true = 0
-							for parent in parents_xor:
-								# print("\x1b[32mparent = {}\x1b[0m".format(parent))##########
-								if len(parent) == 1: ## XOR
-									# print("\x1b[31mparent 1 = {}\x1b[0m".format(parent))##########!!!!!!
-									for fact in g.facts:
-										if parent == fact.symbol:		
-											if fact.undetermined:
-												undetermined = True
-									for fact in g.facts:
-										# print("fact.symbol = {}".format(fact.symbol))#########
-										if parent == fact.symbol:
-											# print("fact.true = {}".format(fact.deduced_true))#########
-											if fact.deduced_true == True:
-												# print("xor +1 is true!")#########
-												xor_true += 1
-												# print("xor_true: {}".format(xor_true))
+				## OR loop
+					## AND loop
 
-								elif len(parent) == 2: ## XOR not
-									# print("\x1b[32mparent = {}\x1b[0m".format(parent))##########
-									for fact in g.facts:
-										if parent[1] == fact.symbol:
-											if fact.undetermined:
-												undetermined = True
-									for fact in g.facts:
-									# print("fact.symbol = {}".format(fact.symbol))#########
-										if parent[1] == fact.symbol:
-										# print("fact.true = {}".format(fact.deduced_true))#########
-											if fact.deduced_true == False:
-											# print("fact is true!")#########
-												xor_true += 1
-											break
 
-								# else:###########
-									# error_exit("Bad Syntax, 2 many combined condtions") ### catch all other errors??!!!!!
+
+
+			# undetermined = False
+			# for parent in rule.parents:
+			# 	# print("parent = {}".format(parent))##########
+			# 	parents += 1
+
+			# 	# print("len(parent) = {}".format(len(parent)))######
+			# 	if len(parent) == 1: ## ADD
+			# 		# print(parent)####
+			# 		for fact in g.facts:
+			# 			# print("fact.symbol = {}".format(fact.symbol))#########
+			# 			if parent == fact.symbol:
+			# 				# print("fact.true = {}".format(fact.deduced_true))#########
+			# 				if fact.deduced_true == True:
+			# 					# print("fact is true!")#########
+			# 					true += 1
+			# 				# print(fact.symbol)############
+			# 				# print("oh hi")###########
+			# 				if fact.undetermined:
+			# 					undetermined = True
+			# 				break
+
+			# 	elif len(parent) == 2: ## NOT
+			# 		# print("\x1b[31mparent = {}\x1b[0m".format(parent))##########
+			# 			# if not parent.isalpha():
+					
+			# 		for fact in g.facts:
+			# 			# print("fact.symbol = {}".format(fact.symbol))#########
+			# 			if parent[1] == fact.symbol:
+			# 				# print("fact.true = {}".format(fact.deduced_true))#########
+			# 				if fact.deduced_true == False:
+			# 					# print("fact is true!")#########
+			# 					true += 1
+			# 				if fact.undetermined:
+			# 					undetermined = True
+			# 				break
+				
+			# 	else: ## OR / XOR / (parenthesis for now)
+			# 		# print("\x1b[31mparent = {}\x1b[0m".format(parent))##########
+			# 		parents_or = parent.split("|")
+			# 		# print("\x1b[32mparent = {}\x1b[0m".format(parent))##########
+			# 		found_true = False
+			# 		for parent in parents_or:
+			# 			# print("\x1b[32mlen(parent) = {}\x1b[0m".format(len(parent)))##########
+			# 			if len(parent) == 1: ## OR
+			# 				# print("\x1b[31mparent 1 = {}\x1b[0m".format(parent))##########
+			# 				for fact in g.facts:
+			# 					if parent == fact.symbol:		
+			# 						if fact.undetermined:
+			# 							undetermined = True
+			# 				for fact in g.facts:
+			# 					# print("fact.symbol = {}".format(fact.symbol))#########
+			# 					if parent == fact.symbol:
+			# 						# print("fact.true = {}".format(fact.deduced_true))#########
+			# 						if fact.deduced_true == True:
+			# 							# print("fact is true!")#########
+			# 							true += 1
+			# 							found_true = True
+			# 						break
+			# 				if found_true == True:
+			# 					break
+
+			# 			elif len(parent) == 2: ## OR NOT
+			# 				# print("\x1b[32mparent = {}\x1b[0m".format(parent))##########
+			# 				for fact in g.facts:
+			# 					if parent[1] == fact.symbol:
+			# 						if fact.undetermined:
+			# 							undetermined = True
+			# 				for fact in g.facts:
+			# 				# print("fact.symbol = {}".format(fact.symbol))#########
+			# 					if parent[1] == fact.symbol:
+			# 					# print("fact.true = {}".format(fact.deduced_true))#########
+			# 						if fact.deduced_true == False:
+			# 						# print("fact is true!")#########
+			# 							true += 1
+			# 						break
+
+			# 			else: ## XOR
+			# 				# print("\x1b[32mparent = {}\x1b[0m".format(parent))##########
+			# 				parents_xor = parent.split("^")
+			# 				# print("\x1b[32mparent = {}\x1b[0m".format(parent))##########
+
+			# 				xor_true = 0
+			# 				for parent in parents_xor:
+			# 					# print("\x1b[32mparent = {}\x1b[0m".format(parent))##########
+			# 					if len(parent) == 1: ## XOR
+			# 						# print("\x1b[31mparent 1 = {}\x1b[0m".format(parent))##########!!!!!!
+			# 						for fact in g.facts:
+			# 							if parent == fact.symbol:		
+			# 								if fact.undetermined:
+			# 									undetermined = True
+			# 						for fact in g.facts:
+			# 							# print("fact.symbol = {}".format(fact.symbol))#########
+			# 							if parent == fact.symbol:
+			# 								# print("fact.true = {}".format(fact.deduced_true))#########
+			# 								if fact.deduced_true == True:
+			# 									# print("xor +1 is true!")#########
+			# 									xor_true += 1
+			# 									# print("xor_true: {}".format(xor_true))
+
+			# 					elif len(parent) == 2: ## XOR not
+			# 						# print("\x1b[32mparent = {}\x1b[0m".format(parent))##########
+			# 						for fact in g.facts:
+			# 							if parent[1] == fact.symbol:
+			# 								if fact.undetermined:
+			# 									undetermined = True
+			# 						for fact in g.facts:
+			# 						# print("fact.symbol = {}".format(fact.symbol))#########
+			# 							if parent[1] == fact.symbol:
+			# 							# print("fact.true = {}".format(fact.deduced_true))#########
+			# 								if fact.deduced_true == False:
+			# 								# print("fact is true!")#########
+			# 									xor_true += 1
+			# 								break
+
+			# 					# else:###########
+			# 						# error_exit("Bad Syntax, 2 many combined condtions") ### catch all other errors??!!!!!
 								
-							if xor_true == 1:
-								# print("Here I am!!")
-								true += 1
+			# 				if xor_true == 1:
+			# 					# print("Here I am!!")
+			# 					true += 1
 							
 			# print("# parents = {}".format(parents))#######
 			# print("# true = {}".format(true))########
 
 			## Deduce True
-			if parents == true:
+			# if parents == true:### not this??!!!!!
+			if xor_true == 1:####This??!!!
 				# print("Make children true")##########
-				for child in rule.children:
+				children = rule.children.split("+")
+				for child in children:
 					# print("child = {}".format(child))
 					if len(child) == 1: ## SIMPLE CASE
 						# print("child len 1")

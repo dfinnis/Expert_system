@@ -243,5 +243,4 @@ if __name__ == '__main__':
 ### if all parents true, all children made true
 ### parenthesis: cut out new rule, put between parent and current rule (append list to list)
 ### make list of parents/children to process, add add new symbols(facts) to list as children are deduced
-### protect against circular logic
 ### contradiction in the facts, or a syntax error
