@@ -394,17 +394,12 @@ def solve(g):
 	while rules:
 		for rule in rules:
 			# print("\n\n\x1b[35m#### ---- RULE: {} => {} ----####\x1b[0m".format(rule.parents, rule.children))########
-			rule.parents = parse_parenthesis(rule.parents)##### rm rule. ??
-			if isinstance(rule.parents, list):
-				rule.parents = solve_parenthesis(rule.parents, g)##### rm rule. ??
+	
+			parents = parse_parenthesis(rule.parents)
+			if isinstance(parents, list):
+				parents = solve_parenthesis(parents, g)
 
-			xor_true, undetermined = solve_rule(rule.parents, g)##### rm rule. ??
-			
-			# parents = parse_parenthesis(parents)##### rm rule. ??
-			# if isinstance(parents, list):
-			# 	parents = solve_parenthesis(parents, g)##### rm rule. ??
-
-			# xor_true, undetermined = solve_rule(parents, g)##### rm rule. ??
+			xor_true, undetermined = solve_rule(parents, g)
 
 			## Deduce True
 			children = rule.children.split("+")
