@@ -149,7 +149,13 @@ def parse_parenthesis(parents):
 		if parents.count("(") != parents.count(")"):
 			error_exit("Bad syntax, parenthesis unbalanced")
 
-		parenthesis = parents.split("(")[1]
+		# print("parents:	{}".format(parents))######
+		# print(parents.find("("))####
+		parenthesis = parents[parents.find("(")+1:]		
+		# parenthesis = parents.split("(")[1]
+		# print(parenthesis.find("("))####
+		# parenthesis = parents[parents.find("("):]
+		# print("parenthesis:	{}".format(parenthesis))######
 		right_i = find_bracket(parenthesis)
 		parenthesis = [parenthesis[:right_i]]
 		if parenthesis == [""]:
@@ -388,12 +394,18 @@ def solve(g):
 	while rules:
 		for rule in rules:
 			# print("\n\n\x1b[35m#### ---- RULE: {} => {} ----####\x1b[0m".format(rule.parents, rule.children))########
-			rule.parents = parse_parenthesis(rule.parents)
+			rule.parents = parse_parenthesis(rule.parents)##### rm rule. ??
 			if isinstance(rule.parents, list):
-				rule.parents = solve_parenthesis(rule.parents, g)
+				rule.parents = solve_parenthesis(rule.parents, g)##### rm rule. ??
 
-			xor_true, undetermined = solve_rule(rule.parents, g)
+			xor_true, undetermined = solve_rule(rule.parents, g)##### rm rule. ??
 			
+			# parents = parse_parenthesis(parents)##### rm rule. ??
+			# if isinstance(parents, list):
+			# 	parents = solve_parenthesis(parents, g)##### rm rule. ??
+
+			# xor_true, undetermined = solve_rule(parents, g)##### rm rule. ??
+
 			## Deduce True
 			children = rule.children.split("+")
 			if xor_true == 1:
