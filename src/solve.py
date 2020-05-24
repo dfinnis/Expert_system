@@ -1,4 +1,5 @@
 from error import check_error
+from error import error_exit
 
 def find_bracket(parents):
 	i = 0

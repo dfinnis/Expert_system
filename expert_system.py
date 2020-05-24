@@ -3,6 +3,7 @@ import os
 import sys
 sys.path.extend(["./src/"])
 from solve import solve
+from error import error_exit
 
 def parse_args():
 	my_parser = argparse.ArgumentParser(description="Expert system solves propositional calculus.")
@@ -174,10 +175,6 @@ class graph:
 								print("\x1b[32m{} is True\x1b[0m".format(query))
 							else:
 								print("\x1b[31m{} is False\x1b[0m".format(query))
-
-def error_exit(error_msg):##### currently duplicated in solve.py!!!!!
-	print("Error: {}".format(error_msg))
-	sys.exit()
 
 def parse(filepath):
 	if not os.path.isfile(filepath):
