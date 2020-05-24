@@ -1056,6 +1056,36 @@ else
 fi
 ((count+=1))
 
+cmd="python3 expert_system.py input/valid/parenthesis_double_7.txt -c"
+output=$(eval "$cmd")
+desired="D is True
+E is False"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mparenthesis_double_7:\tOK\x1b[0m"
+else
+	echo "\x1b[31mparenthesis_double_7:\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
+cmd="python3 expert_system.py input/valid/parenthesis_double_8.txt -c"
+output=$(eval "$cmd")
+desired="D is True
+E is False"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mparenthesis_double_8:\tOK\x1b[0m"
+else
+	echo "\x1b[31mparenthesis_double_8:\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
 cmd="python3 expert_system.py input/valid/parenthesis_triple.txt -c"
 output=$(eval "$cmd")
 desired="D is True

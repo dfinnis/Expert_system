@@ -166,16 +166,16 @@ def parenthesis_to_list(contents):
 		else:
 			for item in right:
 				contents_parsed.append(item)
-	# print("contents_parsed {}".format(contents_parsed))########
+	print("contents_parsed {}".format(contents_parsed))########
 	# list_parsed.append(contents_parsed)
 	return contents_parsed
 
 def parse_parenthesis(parents):
+	if parents.count("(") != parents.count(")"):
+		error_exit("Bad syntax, parenthesis unbalanced")
 
 	if isinstance(parents, str):
 		if "(" in parents or ")" in parents:
-			if parents.count("(") != parents.count(")"):
-				error_exit("Bad syntax, parenthesis unbalanced")
 
 			parenthesis = parents[parents.find("(")+1:]
 			right_i = find_bracket(parenthesis)
@@ -185,12 +185,19 @@ def parse_parenthesis(parents):
 				error_exit("Bad syntax, parenthesis empty ()")##### can we get here?!!!!
 			left = parents.split("(")[0]
 			right = parents[right_i+2:]
+			if "(" in right:
+				right = parenthesis_to_list(right)
 			parents_parsed = []
 			if left:
 				parents_parsed.append(left)
 			parents_parsed.append(parenthesis)
 			if right:
-				parents_parsed.append(right)
+				# parents_parsed.append(right)
+				if isinstance(right, str):
+					parents_parsed.append(right)
+				else:
+					for item in right:
+						parents_parsed.append(item)
 			# print("rule_parsed:	{}".format(parents_parsed))######
 			# print("parents:	{}".format(parents))######
 			parents = [parents]##########  do this earlier, deal with lists!!!!!!!??
@@ -241,7 +248,7 @@ def parse_parenthesis(parents):
 			# else
 	# if "(" in parents or ")" in parents:
 		### call me again!!
-	# print("parents: {}".format(parents))######
+	print("parents: {}".format(parents))######
 
 	return parents
 
