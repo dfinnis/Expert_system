@@ -145,38 +145,120 @@ def find_bracket(parents):
 def parse_parenthesis(parents):
 	# for rule in g.rules:
 	# while "(" in parents or ")" in parents:### deal with parenthesis inside parenthesis (())
-	if "(" in parents or ")" in parents:
-		if parents.count("(") != parents.count(")"):
-			error_exit("Bad syntax, parenthesis unbalanced")
+	# if "(" in parents or ")" in parents:
+	# while "(" in parents or ")" in parents:
+	# 	# if isinstance(parents, list):
+	# 	# 	### multiple parenthesis
+	# 	if parents.count("(") != parents.count(")"):
+	# 		error_exit("Bad syntax, parenthesis unbalanced")
 
-		# print("parents:	{}".format(parents))######
-		# print(parents.find("("))####
-		parenthesis = parents[parents.find("(")+1:]		
-		# parenthesis = parents.split("(")[1]
-		# print(parenthesis.find("("))####
-		# parenthesis = parents[parents.find("("):]
-		# print("parenthesis:	{}".format(parenthesis))######
-		right_i = find_bracket(parenthesis)
-		parenthesis = [parenthesis[:right_i]]
-		if parenthesis == [""]:
-			error_exit("Bad syntax, parenthesis empty ()")##### can we get here?!!!!
-		left = parents.split("(")[0]
-		right = parents[right_i+2:]####???? +2 ok?!!!
+	# 	# print("parents:	{}".format(parents))######
+	# 	# print(parents.find("("))####
+	# 	parenthesis = parents[parents.find("(")+1:]		
+	# 	# parenthesis = parents.split("(")[1]
+	# 	# print(parenthesis.find("("))####
+	# 	# parenthesis = parents[parents.find("("):]
+	# 	# print("parenthesis:	{}".format(parenthesis))######
+	# 	right_i = find_bracket(parenthesis)
+	# 	parenthesis = [parenthesis[:right_i]]
+	# 	if parenthesis == [""]:
+	# 		error_exit("Bad syntax, parenthesis empty ()")##### can we get here?!!!!
+	# 	left = parents.split("(")[0]
+	# 	right = parents[right_i+2:]####???? +2 ok?!!!
 
-		parents_parsed = []
-		if left:
-			parents_parsed.append(left)		
-		# parents_parsed = left		
-		parents_parsed.append(parenthesis)
-		if right:
-			parents_parsed.append(right)
-		# print("rule_parsed:	{}".format(parents_parsed))######
-		# print("parents:	{}".format(parents))######
-		parents = [parents]##########  do this earlier, deal with lists!!!!!!!??
-		# print("parents:	{}".format(parents))######
-		parents = parents_parsed
-		# print("parents:	{}".format(parents))######
-		## if isinstance(parent, list): #### to identify list in list
+	# 	parents_parsed = []
+	# 	if left:
+	# 		parents_parsed.append(left)		
+	# 	# parents_parsed = left		
+	# 	parents_parsed.append(parenthesis)
+	# 	if right:
+	# 		parents_parsed.append(right)
+	# 	# print("rule_parsed:	{}".format(parents_parsed))######
+	# 	# print("parents:	{}".format(parents))######
+	# 	parents = [parents]##########  do this earlier, deal with lists!!!!!!!??
+	# 	# print("parents:	{}".format(parents))######
+	# 	parents = parents_parsed
+	# 	# print("parents:	{}".format(parents))######
+	# 	## if isinstance(parent, list): #### to identify list in list
+
+	if isinstance(parents, str):
+		if "(" in parents or ")" in parents:
+			if parents.count("(") != parents.count(")"):
+				error_exit("Bad syntax, parenthesis unbalanced")
+
+			parenthesis = parents[parents.find("(")+1:]
+			right_i = find_bracket(parenthesis)
+			parenthesis = [parenthesis[:right_i]]
+
+			if parenthesis == [""]:
+				error_exit("Bad syntax, parenthesis empty ()")##### can we get here?!!!!
+			left = parents.split("(")[0]
+			right = parents[right_i+2:]
+			parents_parsed = []
+			if left:
+				parents_parsed.append(left)
+			parents_parsed.append(parenthesis)
+			if right:
+				parents_parsed.append(right)
+			# print("rule_parsed:	{}".format(parents_parsed))######
+			# print("parents:	{}".format(parents))######
+			parents = [parents]##########  do this earlier, deal with lists!!!!!!!??
+			# print("parents:	{}".format(parents))######
+			parents = parents_parsed
+		# if isinstance(parents, list):
+			# print("parents list: {}".format(parents))
+
+	if isinstance(parents, list):
+		print("parents again: {}".format(parents))
+		# 	for sublist in parents:
+		# 		# print(sublist)######
+		# 		if isinstance(sublist, list):
+		# 			for contents in sublist:
+		# 				# print(contents)#####
+		# 				if "(" in contents:
+		# 					parse_parenthesis(parents)
+		# 					print("oh hi!!")
+
+
+
+		list_parsed = []
+		for sublist in parents:
+			print(sublist)######
+
+			if isinstance(sublist, list):
+				for contents in sublist:
+					if "(" in contents:
+						print(contents)#####
+						parenthesis = contents[contents.find("(")+1:]
+						print("parenthesis 1 {}".format(parenthesis))##
+						right_i = find_bracket(parenthesis)
+						print("right_i {}".format(right_i))####
+						parenthesis = [parenthesis[:right_i]]
+						print("parenthesis 2 {}".format(parenthesis))##
+						if parenthesis == [""]:
+							error_exit("Bad syntax, parenthesis empty (())")##### can we get here?!!!!
+
+						left = contents.split("(")[0]
+						right = contents[right_i+2+len(left):]
+						contents_parsed = []
+						if left:
+							contents_parsed.append(left)
+						contents_parsed.append(parenthesis)
+						if right:
+							contents_parsed.append(right)
+						print("contents_parsed {}".format(contents_parsed))########
+						list_parsed.append(contents_parsed)
+						# if "(" in contents:
+							# parse_parenthesis(parents)
+						# print("oh hi again!!")
+			else:
+				print("sublist str {}".format(sublist))#######
+				list_parsed.append(sublist)	
+		print("list_parsed {}".format(list_parsed))	########
+			# else
+	# if "(" in parents or ")" in parents:
+		### call me again!!
+	# print("parents: {}".format(parents))######
 	return parents
 
 def solve_rule(parents, g):
@@ -359,10 +441,11 @@ def solve(g):
 	# parse_parenthesis(g)#####rm!!!!!!
 	check_error(g)## PUT ME BACK!!!!!!!!!!!!
 
+	## Create list of rules to evaluate
 	rules = []
 	rules_original = []
 	for rule in g.rules:
-		_ = parse_parenthesis(rule.parents)
+		# _ = parse_parenthesis(rule.parents)############ change to just error check, DRY!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 		rules_original.append(rule)
 		parents = rule.parents.split("+")
 		for parent in parents:
@@ -396,6 +479,7 @@ def solve(g):
 			# print("\n\n\x1b[35m#### ---- RULE: {} => {} ----####\x1b[0m".format(rule.parents, rule.children))########
 	
 			parents = parse_parenthesis(rule.parents)
+			# print("parents: {}".format(parents))##########
 			if isinstance(parents, list):
 				parents = solve_parenthesis(parents, g)
 
