@@ -15,145 +15,269 @@ def find_bracket(parents):
 		i += 1
 	error_exit("Bad syntax, parenthesis")
 
-def parenthesis_to_list(contents):
-	parenthesis = contents[contents.find("(")+1:]
-	# print("parenthesis 1 {}".format(parenthesis))##
-	right_i = find_bracket(parenthesis)
-	# print("right_i {}".format(right_i))####
-	parenthesis = [parenthesis[:right_i]]
-	# print("parenthesis 2 {}".format(parenthesis))##
-	# # contents_tmp = []
-	# # parenthesis_found = False
-	# for content in parenthesis:
-	# 	print("content before {}".format(content))##
-	# 	if "(" in content:
-	# 		# parenthesis_found = True
-	# 		content = parenthesis_to_list(content)
-	# 		print("TRIPLE!!")
-	# 		print("content after {}".format(content))##
-	# 		print
-	# 		# contents_tmp.append(content)
-	# 		# parenthesis = content###????
-	# 		# parenthesis.append(content)
-	# # if contents_tmp:
-	# # 	print("PARENTHESIS: {}".format(parenthesis))		
-	# # 	print("CONTENT TMP: {}".format(contents_tmp))
-	# 	# parenthesis.append(contents_tmp)
-	# 	# parenthesis = contents_tmp
-		
-	if parenthesis == [""]:
-		error_exit("Bad syntax, parenthesis empty (())")##### can we get here?!!!!
 
-	contents_parsed = []
-	left = contents.split("(")[0]
-	if left:
-		contents_parsed.append(left)
+
+# def parenthesis_to_list(contents):
+# 	parenthesis = contents[contents.find("(")+1:]
+# 	right_i = find_bracket(parenthesis)
+# 	parenthesis = [parenthesis[:right_i]]
+
+# 	if parenthesis == [""]:
+# 		error_exit("Bad syntax, parenthesis empty (())")##### can we get here?!!!!
+
+# 	contents_parsed = []
+# 	left = contents.split("(")[0]
+# 	if left:
+# 		contents_parsed.append(left)
 	
-	contents_parsed.append(parenthesis)
+# 	print("PARENTHESIS: {}".format(parenthesis))	#########################HERE!!!!!!!!!!!&&&
 
-
-	# if isinstance(parenthesis, str):
-	# 	contents_parsed.append(parenthesis)
-	# else:
-	# 	for item in parenthesis:
-	# 		contents_parsed.append(item)
+# 	contents_parsed.append(parenthesis)
 
 	
-	right = contents[right_i+2+len(left):]
-	if "(" in right:
-		right = parenthesis_to_list(right)
-	if right:
-		if isinstance(right, str):
-			contents_parsed.append(right)
-		else:
-			for item in right:
-				contents_parsed.append(item)
-	# print("contents_parsed {}".format(contents_parsed))########
-	# list_parsed.append(contents_parsed)
-	return contents_parsed
+# 	right = contents[right_i+2+len(left):]
+# 	if "(" in right:
+# 		right = parenthesis_to_list(right)
+# 	if right:
+# 		if isinstance(right, str):
+# 			contents_parsed.append(right)
+# 		else:
+# 			for item in right:
+# 				contents_parsed.append(item)
+# 	print("contents_parsed {}".format(contents_parsed))########
+# 	# list_parsed.append(contents_parsed)
+# 	return contents_parsed
 
 def parse_parenthesis(parents):
-	# if parents.count("(") != parents.count(")"):
-	# 	error_exit("Bad syntax, parenthesis unbalanced")
 
 	if isinstance(parents, str):
 		if "(" in parents or ")" in parents:
-
-			parenthesis = parents[parents.find("(")+1:]
-			right_i = find_bracket(parenthesis)
-			parenthesis = [parenthesis[:right_i]]
-
-			if parenthesis == [""]:
-				error_exit("Bad syntax, parenthesis empty ()")##### can we get here?!!!!
-			left = parents.split("(")[0]
-			right = parents[right_i+2:]
-			if "(" in right:
-				right = parenthesis_to_list(right)
-			parents_parsed = []
-			if left:
-				parents_parsed.append(left)
-			parents_parsed.append(parenthesis)
-			if right:
-				# parents_parsed.append(right)
-				if isinstance(right, str):
-					parents_parsed.append(right)
-				else:
-					for item in right:
-						parents_parsed.append(item)
-			# print("rule_parsed:	{}".format(parents_parsed))######
-			# print("parents:	{}".format(parents))######
-			parents = [parents]##########  do this earlier, deal with lists!!!!!!!??
-			# print("parents:	{}".format(parents))######
-			parents = parents_parsed
-			# print("parents string:	{}".format(parents))######
-		# if isinstance(parents, list):
-			# print("parents list: {}".format(parents))
+			parents = [parents]
 
 	if isinstance(parents, list):
-		# print("parents again: {}".format(parents))
-		# 	for sublist in parents:
-		# 		# print(sublist)######
-		# 		if isinstance(sublist, list):
-		# 			for contents in sublist:
-		# 				# print(contents)#####
-		# 				if "(" in contents:
-		# 					parse_parenthesis(parents)
-		# 					print("oh hi!!")
-
 		list_parsed = []
 		parenthesis_found = False
-		for sublist in parents:
-			# print("sublist pre {}".format(sublist))#######
+		for part in parents:
+			if "(" in part:
+				parenthesis_found = True
+				# print("part: {}".format(part))#######
+				left = part.split("(")[0]
+				if left:
+					list_parsed.append(left)
+				# print("left: {}".format(left))#######
+			
+				parenthesis = part[part.find("(")+1:]
+				right_i = find_bracket(parenthesis)
+				parenthesis = parenthesis[:right_i]
+				# print("parenthesis before: {}".format(parenthesis))#######
+				parenthesis = [parenthesis]
+				# print("parenthesis after: {}".format(parenthesis))#######
+				if parenthesis == [""]:
+					error_exit("Bad syntax, parenthesis empty ()")##### can we get here?!!!!
+				for content in parenthesis:
+					if "(" in content:
+						# print("oh hi")
+						parenthesis = parse_parenthesis(parenthesis) ##### recursive solve in ()
+				list_parsed.append(parenthesis)#######[parenthesis]??
 
-			if isinstance(sublist, list):
-				for contents in sublist:
-					# print("contents 1 {}".format(contents))##					
-					if "(" in contents:
-						parenthesis_found = True
-						contents_parsed = parenthesis_to_list(contents)
-						list_parsed.append(contents_parsed)
-					# else:
-
-			else:
-				# print("sublist str {}".format(sublist))#######
-				list_parsed.append(sublist)
-		# print("list_parsed {}".format(list_parsed))	########
+				right = part[right_i+2+len(left):]
+				# print("right: {}".format(right))#######
+				if "(" in right:
+					# print("right ()")#####
+					right = parse_parenthesis(right) ##### recursive solve right of ()
+					for part in right:
+						list_parsed.append(part)				
+				elif right:
+					list_parsed.append(right)
 		if parenthesis_found:
-			# print("oh hi!")#####
-			# for sublist in parents:
-			# 	if isinstance(sublist, list):
-			# 		for contents in sublist:			
-			# 			if "(" in contents:
-			# 				# print(sublist)######
-			# 				parse_parenthesis(parents)
-			# 				print("oh hi!!")
 			parents = list_parsed
-			# else
-	# if "(" in parents or ")" in parents:
-		### call me again!!
 
-	# print("parents final: {}".format(parents))######
+	# print("\n#### -- parents final: {} -- ####\n".format(parents))######
 	return parents
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# def parenthesis_to_list(contents):
+# 	parenthesis = contents[contents.find("(")+1:]
+# 	# print("parenthesis 1 {}".format(parenthesis))##
+# 	right_i = find_bracket(parenthesis)
+# 	# print("right_i {}".format(right_i))####
+# 	parenthesis = [parenthesis[:right_i]]
+# 	# # print("parenthesis 2 {}".format(parenthesis))##
+# 	# # contents_tmp = []
+# 	# # parenthesis_found = False
+# 	# print("PARENTHESIS: {}".format(parenthesis))	
+# 	# for content in parenthesis:
+# 	# 	print("content before {}".format(content))##
+# 	# 	if "(" in content:
+# 	# 		# parenthesis_found = True
+# 	# 		content = parenthesis_to_list(content)
+# 	# 		print("TRIPLE!!")
+# 	# 		print("content after {}".format(content))##
+# 	# 		print
+# 	# 		# contents_tmp.append(content)
+# 	# 		# parenthesis = content###????
+# 	# 		# parenthesis.append(content)
+# 	# # if contents_tmp:
+# 	# # 	print("PARENTHESIS: {}".format(parenthesis))		
+# 	# # 	print("CONTENT TMP: {}".format(contents_tmp))
+# 	# 	# parenthesis.append(contents_tmp)
+# 	# 	# parenthesis = contents_tmp
+		
+# 	if parenthesis == [""]:
+# 		error_exit("Bad syntax, parenthesis empty (())")##### can we get here?!!!!
+
+# 	contents_parsed = []
+# 	left = contents.split("(")[0]
+# 	if left:
+# 		contents_parsed.append(left)
+	
+# 	print("PARENTHESIS: {}".format(parenthesis))	#########################HERE!!!!!!!!!!!&&&
+# 	# parenthesis_found = False
+# 		# # contents_tmp = []
+# 	# for content in parenthesis:
+# 	# 	print("content before {}".format(content))##
+# 	# 	if "(" in content:
+# 	# 		parenthesis_found = True
+# 	# 		content_parsed = parenthesis_to_list(content)
+# 	# 		print("TRIPLE!!")
+# 	# 		print("content after {}".format(content_parsed))##
+# 	# 		print										#########################HERE!!!!!!!!!^^^^^^
+	
+# 	# if parenthesis_found:
+# 	# 	print("YES content parsed {}".format(content_parsed))##
+# 	# 	parenthesis = content_parsed
+# 	# 	print("NEW PARENTHESIS: {}".format(parenthesis))	
+# 	# 	# parenthesis.append(content_parsed)
+
+
+# 	contents_parsed.append(parenthesis)
+
+
+# 	# if isinstance(parenthesis, str):
+# 	# 	contents_parsed.append(parenthesis)
+# 	# else:
+# 	# 	for item in parenthesis:
+# 	# 		contents_parsed.append(item)
+
+	
+# 	right = contents[right_i+2+len(left):]
+# 	if "(" in right:
+# 		right = parenthesis_to_list(right)
+# 	if right:
+# 		if isinstance(right, str):
+# 			contents_parsed.append(right)
+# 		else:
+# 			for item in right:
+# 				contents_parsed.append(item)
+# 	print("contents_parsed {}".format(contents_parsed))########
+# 	# list_parsed.append(contents_parsed)
+# 	return contents_parsed
+
+# def parse_parenthesis(parents):
+# 	# if parents.count("(") != parents.count(")"):
+# 	# 	error_exit("Bad syntax, parenthesis unbalanced")
+
+# 	if isinstance(parents, str):
+# 		if "(" in parents or ")" in parents:
+
+# 		# 	parenthesis = parents[parents.find("(")+1:]
+# 		# 	right_i = find_bracket(parenthesis)
+# 		# 	parenthesis = [parenthesis[:right_i]]
+
+# 		# 	if parenthesis == [""]:
+# 		# 		error_exit("Bad syntax, parenthesis empty ()")##### can we get here?!!!!
+# 		# 	left = parents.split("(")[0]
+# 		# 	right = parents[right_i+2:]
+# 		# 	# if "(" in right:
+# 		# 	# 	right = parenthesis_to_list(right)
+# 		# 	parents_parsed = []
+# 		# 	if left:
+# 		# 		parents_parsed.append(left)
+# 		# 	parents_parsed.append(parenthesis)
+# 		# 	if right:
+# 		# 		parents_parsed.append(right)
+# 		# 		# if isinstance(right, str):
+# 		# 		# 	parents_parsed.append(right)
+# 		# 		# else:
+# 		# 		# 	for item in right:
+# 		# 		# 		parents_parsed.append(item)
+# 		# 	# print("rule_parsed:	{}".format(parents_parsed))######
+# 		# 	# print("parents:	{}".format(parents))######
+# 			parents = [parents]##########  do this earlier, deal with lists!!!!!!!??
+# 		# 	# print("parents:	{}".format(parents))######
+# 		# 	parents = parents_parsed
+# 		# 	# print("parents string:	{}".format(parents))######
+# 		# # if isinstance(parents, list):
+# 		# 	# print("parents list: {}".format(parents))
+
+# 	if isinstance(parents, list):
+# 		# print("parents again: {}".format(parents))
+# 		# 	for sublist in parents:
+# 		# 		# print(sublist)######
+# 		# 		if isinstance(sublist, list):
+# 		# 			for contents in sublist:
+# 		# 				# print(contents)#####
+# 		# 				if "(" in contents:
+# 		# 					parse_parenthesis(parents)
+# 		# 					print("oh hi!!")
+
+# 		list_parsed = []
+# 		parenthesis_found = False
+# 		for sublist in parents:
+# 			# print("sublist pre {}".format(sublist))#######
+
+# 			if isinstance(sublist, list):
+# 				for contents in sublist:
+# 					# print("contents 1 {}".format(contents))##					
+# 					if "(" in contents:
+# 						parenthesis_found = True
+# 						contents_parsed = parenthesis_to_list(contents)
+# 						list_parsed.append(contents_parsed)
+# 					# else:
+
+# 			else:
+# 				# print("sublist str {}".format(sublist))#######
+# 				list_parsed.append(sublist)
+# 		# print("list_parsed {}".format(list_parsed))	########
+# 		if parenthesis_found:
+# 			# print("oh hi!")#####
+# 			# for sublist in parents:
+# 			# 	if isinstance(sublist, list):
+# 			# 		for contents in sublist:			
+# 			# 			if "(" in contents:
+# 			# 				# print(sublist)######
+# 			# 				parse_parenthesis(parents)
+# 			# 				print("oh hi!!")
+# 			parents = list_parsed
+# 			# else
+# 	# if "(" in parents or ")" in parents:
+# 		### call me again!!
+
+# 	print("\n#### -- parents final: {} -- ####\n".format(parents))######
+# 	return parents
 
 def solve_rule(parents, g):
 	undetermined = False
