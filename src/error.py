@@ -72,11 +72,6 @@ def check_loop(g):
 							for letter in child:
 								if letter.isalpha():
 									deduced = letter
-
-									# for rule_tree_orig in rules_tree_orig:
-									# 	if rule_tree_orig.parents == rule.parents and rule_tree_orig.children == rule.children:
-									# 		error_exit("circular Logic, infinite loop")
-
 									for rule_orig in g.rules:
 										# print("\n\n\x1b[34m#### ---- RULE ORIGINAL: {} => {} ----####\x1b[0m".format(rule_orig.parents, rule_orig.children))########										
 										for parent in rule_orig.parents:
@@ -94,83 +89,27 @@ def check_contradiction(g):
 		positive = []
 		negative = []
 		for child_rule in fact.child_rules:
-		# 	rules_tree.append(child_rule)
-		# for child_rule in rules_tree:
-			# print("child_rule.children {}".format(child_rule.children))
+			rules_tree.append(child_rule)
+		for child_rule in rules_tree:
 			negative_found = False
 			for letter in child_rule.children:
 				if letter == "!":
-					# print("negative!!!!")#######
 					negative_found = True
 				if letter.isalpha():
 					if negative_found == False:
 						positive.append(letter)
 					else:
 						negative.append(letter)
-					negative_found = False
-				# print("letter {}".format(letter))######
-				# print#########
-				# for children in child_rule.children:
-				# 	print(children)
+					negative_found = False		
+			for rule_implied in g.rules:
+				for parent in rule_implied.parents:
+					for letter_implied in parent:
+						if letter_implied == letter:
+							rules_tree.append(rule_implied)
 		for pos in positive:
-			# print("positive: {}".format(pos))######
 			for neg in negative:
-				# print("negative: {}".format(neg))####
 				if pos == neg:
 					error_exit("Bad Logic, contradiction")
-
-
-# def check_contradiction(g):
-	# for rule in rules_original:
-	# 	# print("\n\n\x1b[36m#### ---- RULES LIST: {} => {} ----####\x1b[0m".format(rule.parents, rule.children))########
-	# 	rules_tree = []
-	# 	positive = []
-	# 	negative = []
-	# 	inverse = False
-	# 	for parent in rule.parents:
-	# 		for letter in parent:
-	# 			if letter == "!":
-	# 				inverse = True
-	# 			if letter.isalpha():
-	# 				if inverse:
-	# 					negative.append(parent[1])
-	# 					inverse = False
-	# 				else:
-	# 					positive.append(parent)
-	# 	for alpha in positive:##########
-	# 		print("+ve: {}".format(alpha))#########
-	# 	for alpha in negative:#########
-	# 		print("-ve: {}".format(alpha))######
-
-		# for child in rule.children:
-		# 	for letter in child:
-		# # 		# print(letter)#######
-		# 		if letter.isalpha():
-		# 			deduced = letter
-		# # 			# print(deduced)###
-		# 			for rule_implied in rules_original:
-		# 				for parent in rule_implied.parents:
-		# 					for letter in parent:
-		# 						if letter == deduced:
-		# 							rules_tree.append(rule_implied)
-		# 			# while rules_tree:
-		# 			for rule_implied in rules_tree:
-		# 				# print("\n\n\x1b[32m#### ---- RULE IMPLIED: {} => {} ----####\x1b[0m".format(rule_implied.parents, rule_implied.children))########
-		# 				for child in rule_implied.children:
-		# 					for letter in child:
-		# 						if letter.isalpha():
-		# 							deduced = letter
-		# 							for rule_orig in rules_original:
-		# 								# print("\n\n\x1b[34m#### ---- RULE ORIGINAL: {} => {} ----####\x1b[0m".format(rule_orig.parents, rule_orig.children))########
-		# 								for parent in rule_orig.parents:
-		# 									# print("\x1b[33mparent: {}\x1b[0m".format(parent))##########
-		# 									for letter in parent:
-		# 										if letter == deduced:
-		# 											if rule_orig.parents == rule.parents and rule_orig.children == rule.children:
-		# 												error_exit("circular Logic, infinite loop")
-		# 											rules_tree.append(rule_orig)
-		# 											break
-
 
 def check_error(g):
 	check_syntax(g)
