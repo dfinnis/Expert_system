@@ -15,13 +15,13 @@ def check_syntax(g):
 		for parent in parents:
 			if not parent:
 				error_exit("Bad Syntax, + missing symbol")
-			if len(parent) == 1: ## ADD
+			if len(parent) == 1: ## AND
 				if not parent.isalpha():
 					error_exit("Bad Syntax, non-alphabet symbol")
 			elif len(parent) == 2: ## NOT
 				if parent[0] != "!" or not parent[1].isalpha():
 					error_exit("Bad Syntax, combined conditions")
-			else: ## OR / XOR / (parenthesis for now)
+			else: ## OR / XOR
 				parents_or = parent.split("|")
 				for parent in parents_or:
 					if len(parent) == 1: ## OR

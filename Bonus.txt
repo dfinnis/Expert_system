@@ -1,10 +1,9 @@
 #### -- BONUS -- ####
-1. test.sh
-2. unit tests
-3. -g print graph
-4. "OR" and "XOR" in conclusions. For example, "If A then B or C"
-5.
+1. "OR" and "XOR" in conclusions. For example, "If A then B or C"
+2. -l Reasoning visualisation
+3. test.sh
+4. unit tests
+5. -g print graph
 
 -t timer
 -c no color output
--l print logic??

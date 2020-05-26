@@ -15,19 +15,19 @@ def parse_args():
 	my_parser.add_argument('-g',
                         '--graph',
                         action='store_true',
-                        help='Display graph of facts and rules nodes')
+                        help='display graph of facts and rules nodes')
 	my_parser.add_argument('-c',
                         '--color',
                         action='store_true',
-                        help='Display output without color, default colored')
+                        help='display output without color, default colored')
 	my_parser.add_argument('-t',
                         '--timer',
                         action='store_true',
-                        help='Display time taken to solve')
+                        help='display time taken to solve')
 	my_parser.add_argument('-l',
                         '--logic',
                         action='store_true',
-                        help='Display reasoning, visualize logical steps taken')
+                        help='display reasoning, visualize logical steps taken')
 	args = my_parser.parse_args()
 	filepath = args.Filepath
 	graph = args.graph
