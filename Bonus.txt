@@ -2,7 +2,7 @@
 1. test.sh
 2. unit tests
 3. -g print graph
-4.
+4. "OR" and "XOR" in conclusions. For example, "If A then B or C"
 5.
 
 -t timer

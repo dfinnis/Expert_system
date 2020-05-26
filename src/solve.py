@@ -305,15 +305,55 @@ def solve_rule(parents, g):
 				xor_true += 1
 	return xor_true, undetermined
 
-def solve(g):
-	# parse_parenthesis(g)#####rm!!!!!!
-	check_error(g)## PUT ME BACK!!!!!!!!!!!!
+def print_logic(logic, rule, xor_true, undetermined, g):
+	if logic:
+		if undetermined:
+			print("\x1b[33m#### ---- Apply rule: {} => {} ----####\x1b[0m".format(rule.parents, rule.children))
+		elif xor_true == 1:
+			print("\x1b[32m#### ---- Apply rule: {} => {} ----####\x1b[0m".format(rule.parents, rule.children))
+		else:
+			print("\x1b[31m#### ---- Apply rule: {} => {} ----####\x1b[0m".format(rule.parents, rule.children))
+
+		for parent in rule.parents:
+			if parent.isalpha():
+				for fact in g.facts:
+					if fact.symbol == parent:
+						if fact.undetermined:
+							print("\x1b[33m{} is Undetermined\x1b[0m".format(parent))
+						elif fact.deduced_true:
+							print("\x1b[32m{} is True\x1b[0m".format(parent))
+						else:
+							print("\x1b[31m{} is False\x1b[0m".format(parent))
+		if undetermined:
+			print("\x1b[33m---- Antecedent Undetermined ----\x1b[0m")
+			for child in rule.children:
+				print("\x1b[33mConsequent deduced Undetermined: {}\x1b[0m".format(child))
+		elif xor_true == 1:
+			print("\x1b[32m---- Antecedent determined True ----\x1b[0m")
+			children = rule.children.split("+")
+			for child in children:
+				if len(child) == 1: ## +
+					if child.isalpha():
+						print("\x1b[32mConsequent deduced True: {}\x1b[0m".format(child))
+				elif len(child) == 2: ## !
+					if child[1].isalpha():
+						print("\x1b[31mConsequent deduced False: {}\x1b[0m".format(child[1]))
+				else: ## | ^
+					for letter in child:
+						if letter.isalpha():
+							print("\x1b[33mConsequent deduced Undetermined: {}\x1b[0m".format(letter))
+
+		else:
+			print("\x1b[31m---- Antecedent False ----\x1b[0m")
+		print
+
+def solve(g, logic):
+	check_error(g)
 
 	## Create list of rules to evaluate
 	rules = []
 	rules_original = []
 	for rule in g.rules:
-		# _ = parse_parenthesis(rule.parents)############ change to just error check, DRY!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 		rules_original.append(rule)
 		parents = rule.parents.split("+")
 		for parent in parents:
@@ -341,11 +381,13 @@ def solve(g):
 				elif letter == "!":
 					negative = True
 
+	if logic:
+		print("\n\x1b[1m#### ---- VISUALIZE REASONING ---- ####\x1b[0m\n")
+
 	## Apply rules
 	while rules:
 		for rule in rules:
-			# print("\n\n\x1b[35m#### ---- RULE: {} => {} ----####\x1b[0m".format(rule.parents, rule.children))########
-	
+
 			parents = parse_parenthesis(rule.parents)
 			# print("parents: {}".format(parents))##########
 			if isinstance(parents, list):
@@ -354,6 +396,8 @@ def solve(g):
 				# print("\nParents after: {}".format(parents))#######
 
 			xor_true, undetermined = solve_rule(parents, g)
+
+			print_logic(logic, rule, xor_true, undetermined, g)
 
 			## Deduce True
 			children = rule.children.split("+")
@@ -380,6 +424,11 @@ def solve(g):
 													# print("\n\x1b[35m#### ---- APPENDING RULE: CHILD: {} ----####\x1b[0m".format(child))########
 													# print("\n\x1b[35m#### ---- APPENDING RULE: PARENT: {} ----####\x1b[0m".format(parent_orig))########
 													rules.append(rule_orig)
+					if len(child) == 2: ## NOT!
+						for fact in g.facts:
+							if child[1] == fact.symbol:
+								if fact.initially_true:
+									error_exit("Bad Logic, contradiction")
 
 			## Deduce False
 			else:

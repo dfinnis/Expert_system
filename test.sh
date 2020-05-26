@@ -1668,6 +1668,34 @@ else
 fi
 ((count+=1))
 
+cmd="python3 expert_system.py input/invalid/contradiction_7.txt -c"
+output=$(eval "$cmd")
+desired="Error: Bad Logic, contradiction"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mcontradiction_7:\tOK\x1b[0m"
+else
+	echo "\x1b[31mcontradiction_7:\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
+cmd="python3 expert_system.py input/invalid/contradiction_8.txt -c"
+output=$(eval "$cmd")
+desired="Error: Bad Logic, contradiction"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mcontradiction_8:\tOK\x1b[0m"
+else
+	echo "\x1b[31mcontradiction_8:\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
 cmd="python3 expert_system.py input/invalid/contradiction_long.txt -c"
 output=$(eval "$cmd")
 desired="Error: circular Logic, infinite loop"
