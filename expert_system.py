@@ -2,6 +2,7 @@ import argparse
 import os
 import sys
 sys.path.extend(["./src/"])
+import time
 from solve import solve
 from error import error_exit
 
@@ -19,11 +20,16 @@ def parse_args():
                         '--color',
                         action='store_true',
                         help='Display output without color, default colored')
+	my_parser.add_argument('-t',
+                        '--timer',
+                        action='store_true',
+                        help='Display time taken to solve')
 	args = my_parser.parse_args()
 	filepath = args.Filepath
 	graph = args.graph
 	color = args.color
-	return filepath, graph, color
+	timer = args.timer
+	return filepath, graph, color, timer
 
 class fact:
 	def __init__(self, symbol):
@@ -224,13 +230,19 @@ def parse(filepath):
 
 def main():
 	try:
-		filepath, graph, color = parse_args()
+		filepath, graph, color, timer = parse_args()
+		if timer:
+			start = time.time()
 		g = parse(filepath)
 		# g.solve()#######
 		solve(g)
 		if graph:
 			g.print_graph()
 		g.print_results(color)
+		if timer:
+			end = time.time()
+			time_taken = '%s' % float('%.3g' % (end - start))
+			print("time taken: {} seconds".format(time_taken))
 	except:
 		pass
 
