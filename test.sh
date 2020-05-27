@@ -1086,6 +1086,21 @@ else
 fi
 ((count+=1))
 
+cmd="python3 expert_system.py input/valid/parenthesis_double_9.txt -c"
+output=$(eval "$cmd")
+desired="D is True
+E is True"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mparenthesis_double_9:\tOK\x1b[0m"
+else
+	echo "\x1b[31mparenthesis_double_9:\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
 cmd="python3 expert_system.py input/valid/parenthesis_triple.txt -c"
 output=$(eval "$cmd")
 desired="D is True
@@ -1101,6 +1116,51 @@ else
 fi
 ((count+=1))
 
+cmd="python3 expert_system.py input/valid/parenthesis_triple_2.txt -c"
+output=$(eval "$cmd")
+desired="D is True
+E is True"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mparenthesis_triple_2:\tOK\x1b[0m"
+else
+	echo "\x1b[31mparenthesis_triple_2:\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
+cmd="python3 expert_system.py input/valid/parenthesis_triple_3.txt -c"
+output=$(eval "$cmd")
+desired="D is True
+E is True"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mparenthesis_triple_3:\tOK\x1b[0m"
+else
+	echo "\x1b[31mparenthesis_triple_3:\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
+cmd="python3 expert_system.py input/valid/parenthesis_triple_4.txt -c"
+output=$(eval "$cmd")
+desired="D is True
+E is True"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mparenthesis_triple_4:\tOK\x1b[0m"
+else
+	echo "\x1b[31mparenthesis_triple_4:\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
 cmd="python3 expert_system.py input/valid/parenthesis_quad.txt -c"
 output=$(eval "$cmd")
 desired="D is True
@@ -1111,6 +1171,21 @@ then
 	echo "\x1b[32mparenthesis_quad:\tOK\x1b[0m"
 else
 	echo "\x1b[31mparenthesis_quad:\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
+cmd="python3 expert_system.py input/valid/parenthesis_quad_2.txt -c"
+output=$(eval "$cmd")
+desired="D is True
+E is True"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mparenthesis_quad_2:\tOK\x1b[0m"
+else
+	echo "\x1b[31mparenthesis_quad_2:\tERROR\x1b[0m"
 	echo "desired output: $desired"
 	echo "actual output:  $output\n"
 fi
