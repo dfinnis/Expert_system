@@ -1491,6 +1491,8 @@ else
 fi
 ((count+=1))
 
+#### -- ERROR: Combined conditions -- ####
+
 cmd="python3 expert_system.py input/invalid/combined_conditions_1.txt -c"
 output=$(eval "$cmd")
 desired="Error: Bad Syntax, combined conditions"
@@ -1616,6 +1618,110 @@ else
 	echo "actual output:  $output\n"
 fi
 ((count+=1))
+
+#### -- ERROR: And -- ####
+
+cmd="python3 expert_system.py input/invalid/bad_and_1.txt -c"
+output=$(eval "$cmd")
+desired="Error: Bad Syntax, + missing symbol"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mbad_and_1:\t\tOK\x1b[0m"
+else
+	echo "\x1b[31mbad_and_1:\t\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
+cmd="python3 expert_system.py input/invalid/bad_and_2.txt -c"
+output=$(eval "$cmd")
+desired="Error: Bad Syntax, + missing symbol"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mbad_and_2:\t\tOK\x1b[0m"
+else
+	echo "\x1b[31mbad_and_2:\t\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
+cmd="python3 expert_system.py input/invalid/bad_and_3.txt -c"
+output=$(eval "$cmd")
+desired="Error: Bad Syntax, + missing symbol"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mbad_and_3:\t\tOK\x1b[0m"
+else
+	echo "\x1b[31mbad_and_3:\t\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
+#### -- ERROR: Or -- ####
+
+cmd="python3 expert_system.py input/invalid/bad_or_1.txt -c"
+output=$(eval "$cmd")
+desired="Error: Bad Syntax, | missing symbol"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mbad_or_1:\t\tOK\x1b[0m"
+else
+	echo "\x1b[31mbad_or_1:\t\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
+cmd="python3 expert_system.py input/invalid/bad_or_2.txt -c"
+output=$(eval "$cmd")
+desired="Error: Bad Syntax, | missing symbol"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mbad_or_2:\t\tOK\x1b[0m"
+else
+	echo "\x1b[31mbad_or_2:\t\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
+cmd="python3 expert_system.py input/invalid/bad_or_3.txt -c"
+output=$(eval "$cmd")
+desired="Error: Bad Syntax, | missing symbol"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mbad_or_3:\t\tOK\x1b[0m"
+else
+	echo "\x1b[31mbad_or_3:\t\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
+cmd="python3 expert_system.py input/invalid/bad_or_4.txt -c"
+output=$(eval "$cmd")
+desired="Error: Bad Syntax, combined conditions"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mbad_or_4:\t\tOK\x1b[0m"
+else
+	echo "\x1b[31mbad_or_4:\t\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
+#### -- ERROR: Non-alphabet -- ####
 
 cmd="python3 expert_system.py input/invalid/non-alphabet.txt -c"
 output=$(eval "$cmd")
@@ -1977,7 +2083,7 @@ fi
 
 cmd="python3 expert_system.py input/invalid/bad_conclusion10.txt -c"
 output=$(eval "$cmd")
-desired="Error: Bad Syntax, too many combined conditions"
+desired="Error: Bad Syntax, | missing symbol"
 if [ "$output" == "$desired" ]
 then
 	((passed+=1))
@@ -1991,7 +2097,7 @@ fi
 
 cmd="python3 expert_system.py input/invalid/bad_conclusion11.txt -c"
 output=$(eval "$cmd")
-desired="Error: Bad Syntax, too many combined conditions"
+desired="Error: Bad Syntax, ^ missing symbol"
 if [ "$output" == "$desired" ]
 then
 	((passed+=1))

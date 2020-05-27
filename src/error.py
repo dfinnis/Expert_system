@@ -20,6 +20,8 @@ def check_parents(parents):
 		else: ## OR / XOR
 			parents_or = parent.split("|")
 			for parent in parents_or:
+				if not parent:
+					error_exit("Bad Syntax, | missing symbol")
 				if len(parent) == 1: ## OR
 					if not parent.isalpha():
 						error_exit("Bad Syntax, non-alphabet symbol with |")
@@ -29,6 +31,8 @@ def check_parents(parents):
 				else: ## XOR
 					parents_xor = parent.split("^")
 					for parent in parents_xor:
+						if not parent:
+							error_exit("Bad Syntax, ^ missing symbol")
 						if len(parent) == 1: ## XOR
 							if not parent.isalpha():
 								error_exit("Bad Syntax, non-alphabet symbol with ^")
@@ -60,6 +64,8 @@ def check_children(children):
 		else: ## OR / XOR
 			children_or = child.split("|")
 			for child_or in children_or:
+				if not child_or:
+					error_exit("Bad Syntax, | missing symbol")
 				if len(child_or) == 1: ## OR
 					if not child_or.isalpha():
 						error_exit("Bad Syntax, non-alphabet symbol with |")
@@ -69,6 +75,8 @@ def check_children(children):
 				else: ## XOR
 					children_xor = child_or.split("^")
 					for child_xor in children_xor:
+						if not child_xor:
+							error_exit("Bad Syntax, ^ missing symbol")
 						if len(child_xor) == 1: ## XOR
 							if not child_xor.isalpha():
 								error_exit("Bad Syntax, non-alphabet symbol with ^")
