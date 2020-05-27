@@ -1,8 +1,4 @@
-import sys
-
-def error_exit(error_msg):###### move somewhere!!!!!!!!!
-	print("Error: {}".format(error_msg))
-	sys.exit()
+from error_exit import error_exit
 
 def check_parenthesis(parents):
 	if parents.count("(") != parents.count(")"):

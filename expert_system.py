@@ -4,7 +4,7 @@ import os
 import sys
 sys.path.extend(["./src/"])
 from solve import solve
-from error import error_exit
+from error_exit import error_exit
 
 def parse_args():
 	my_parser = argparse.ArgumentParser(description="Expert system solves propositional calculus.")
