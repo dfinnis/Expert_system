@@ -231,50 +231,38 @@ def rule_in_list(rule, rules):
 			return True
 	return False
 
-# def init_rules_list(g):
-# 	return rules
-
-def solve(g, logic):
-	check_error(g)
-
-	## Create list of rules to evaluate
+def init_rules_list(g):
 	rules = []
 	for rule in g.rules:
 		parents = rule.parents.split("+")
 		for parent in parents:
-			# print("\n\n\x1b[33m#### ---- parent: {} ----####\x1b[0m".format(parent))########
 			negative = False
 			for letter in parent:
-				# print("\n\n\x1b[33m#### ---- letter: {} ----####\x1b[0m".format(letter))########
 				if letter.isalpha():
-					# print("\n\n\x1b[33m#### ---- letter is alpha ----####\x1b[0m")########
 					for fact in g.facts:
-						# print("\n\n\x1b[33m#### ---- fact: {} ----####\x1b[0m".format(fact.symbol))########
-						if letter == fact.symbol: ############## add not ????!!!!!!!!!!!!
-							# print("\n\n\x1b[33m#### ---- letter = fact ----####\x1b[0m")########		
-							# print("\n\n\x1b[33m#### ---- fact is {} ----####\x1b[0m".format(fact.initially_true))########
+						if letter == fact.symbol:
 							if negative == False:
 								if fact.initially_true == True:
-									# print("\n\n\x1b[33m#### ---- fact is true!!!! ----####\x1b[0m")########
 									if not rule_in_list(rule, rules):
 										rules.append(rule)
 							else:
 								if fact.initially_true == False:
-									# print("\n\n\x1b[33m#### ---- fact is true!!!! ----####\x1b[0m")########	
 									if not rule_in_list(rule, rules):
 										rules.append(rule)
 							break
 					negative = False						
 				elif letter == "!":
 					negative = True
+	return rules
 
+def solve(g, logic):
+	check_error(g)
 	if logic:
 		print("\n\x1b[1m#### ---- VISUALIZE REASONING ---- ####\x1b[0m\n")
 
-	## Apply rules
+	rules = init_rules_list(g)
 	while rules:
 		for rule in rules:
-
 			parents = parse_parenthesis(rule.parents)
 			# print("parents: {}".format(parents))##########
 			if isinstance(parents, list):
