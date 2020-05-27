@@ -3,6 +3,7 @@ echo "\n\x1b[1mLaunching Expert System tests...\x1B[0m\n"
 
 passed=0
 count=0
+SECONDS=0
 
 #### -- AND -- ####
 echo "\x1b[1mand tests:\x1b[0m"
@@ -1829,7 +1830,7 @@ fi
 
 
 #### -- TOTAL -- ####
-echo "\n\n\x1b[1mAll Expert System tests finished\x1b[0m"
+echo "\n\n\x1b[1mAll Expert System tests finished\nTotal runtime $SECONDS seconds\x1b[0m"
 
 if [ "$passed" == "$count" ]
 then
