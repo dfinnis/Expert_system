@@ -183,6 +183,21 @@ fi
 #### -- MORE OR -- ####
 echo
 
+cmd="python3 expert_system.py input/valid/or_5.txt -c"
+output=$(eval "$cmd")
+desired="C is True
+F is True"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mor_5:\t\t\tOK\x1b[0m"
+else
+	echo "\x1b[31mor_5:\t\t\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
 cmd="python3 expert_system.py input/valid/or_long.txt -c"
 output=$(eval "$cmd")
 desired="Z is True"
@@ -493,6 +508,23 @@ fi
 
 #### -- MORE XOR -- ####
 echo
+
+cmd="python3 expert_system.py input/valid/xor_5.txt -c"
+output=$(eval "$cmd")
+desired="C is False
+F is True
+I is True
+L is False"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mxor_5:\t\t\tOK\x1b[0m"
+else
+	echo "\x1b[31mxor_5:\t\t\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
 
 cmd="python3 expert_system.py input/valid/xor_long.txt -c"
 output=$(eval "$cmd")
@@ -858,6 +890,24 @@ then
 	echo "\x1b[32mnot_4:\t\t\tOK\x1b[0m"
 else
 	echo "\x1b[31mnot_4:\t\t\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
+#### --	MORE NOT -- ####
+echo
+
+cmd="python3 expert_system.py input/valid/not_5.txt -c"
+output=$(eval "$cmd")
+desired="B is False
+D is True"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mnot_5:\t\t\tOK\x1b[0m"
+else
+	echo "\x1b[31mnot_5:\t\t\tERROR\x1b[0m"
 	echo "desired output: $desired"
 	echo "actual output:  $output\n"
 fi
@@ -1307,6 +1357,25 @@ else
 fi
 ((count+=1))
 
+cmd="python3 expert_system.py input/valid/parenthesis_mix.txt -c"
+output=$(eval "$cmd")
+desired="C is True
+D is False
+W is False
+G is True
+F is True
+Z is True"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mparenthesis_mix:\tOK\x1b[0m"
+else
+	echo "\x1b[31mparenthesis_mix:\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
 #### -- ERROR -- ####
 echo "\n\x1b[1merror tests:\x1b[0m"
 
@@ -1347,6 +1416,20 @@ then
 	echo "\x1b[32m2 initial fact lines:\tOK\x1b[0m"
 else
 	echo "\x1b[31m2 initial fact lines:\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
+cmd="python3 expert_system.py input/invalid/2_initial_fact_lines_2.txt -c"
+output=$(eval "$cmd")
+desired="Error: Multiple lines of initial facts"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32m2 initial fact lines_2:\tOK\x1b[0m"
+else
+	echo "\x1b[31m2 initial fact lines_2:\tERROR\x1b[0m"
 	echo "desired output: $desired"
 	echo "actual output:  $output\n"
 fi
@@ -1606,7 +1689,7 @@ fi
 
 cmd="python3 expert_system.py input/invalid/empty.txt -c"
 output=$(eval "$cmd")
-desired="Error: no queries"
+desired="Error: No initial facts"
 if [ "$output" == "$desired" ]
 then
 	((passed+=1))
@@ -1618,10 +1701,9 @@ else
 fi
 ((count+=1))
 
-
 cmd="python3 expert_system.py input/invalid/empty_facts.txt -c"
 output=$(eval "$cmd")
-desired="Error: no queries"
+desired="Error: No initial facts"
 if [ "$output" == "$desired" ]
 then
 	((passed+=1))
@@ -1633,9 +1715,23 @@ else
 fi
 ((count+=1))
 
+cmd="python3 expert_system.py input/invalid/empty_facts_2.txt -c"
+output=$(eval "$cmd")
+desired="Error: No initial facts"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mempty_facts_2:\t\tOK\x1b[0m"
+else
+	echo "\x1b[31mempty_facts_2:\t\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
 cmd="python3 expert_system.py input/invalid/empty_query.txt -c"
 output=$(eval "$cmd")
-desired="Error: no queries"
+desired="Error: No queries"
 if [ "$output" == "$desired" ]
 then
 	((passed+=1))
@@ -1649,7 +1745,7 @@ fi
 
 cmd="python3 expert_system.py input/invalid/empty_rules.txt -c"
 output=$(eval "$cmd")
-desired="Error: no queries"
+desired="Error: No queries"
 if [ "$output" == "$desired" ]
 then
 	((passed+=1))

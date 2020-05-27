@@ -197,6 +197,7 @@ def parse(filepath):
 
 	with open(filepath, 'r') as file:
 		i = 0
+		initial_facts_found = False
 		for line in file:
 			i += 1
 			if i > 10000:
@@ -207,6 +208,7 @@ def parse(filepath):
 					error_exit("Invalid symbol in file")
 
 				if line[0] == '=':
+					initial_facts_found = True
 					if g.initial_facts:
 						error_exit("Multiple lines of initial facts")
 					initial_facts = line.split("=")[1]
@@ -231,8 +233,10 @@ def parse(filepath):
 								g.add_fact(letter)
 					g.add_rule(line)
 
+		if initial_facts_found == False:
+			error_exit("No initial facts")
 		if not g.queries:
-			error_exit("no queries")
+			error_exit("No queries")
 
 	g.link_facts_rules()
 	return g

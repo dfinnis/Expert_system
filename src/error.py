@@ -38,7 +38,13 @@ def check_syntax(g):
 								if parent[0] != "!" or not parent[1].isalpha():
 									error_exit("Bad Syntax, many combined conditions")
 							else:
-								error_exit("Bad Syntax, too many combined conditions")
+								for content in parents_xor:
+									for letter in content:
+										last = letter
+										if not (letter == "!" or letter.isalpha()):
+											error_exit("Bad Syntax, too many combined conditions")
+									if not last.isalpha():
+										error_exit("Bad Syntax, too many combined conditions")
 
 def check_loop(g):
 	for rule in g.rules:
