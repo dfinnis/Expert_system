@@ -1,8 +1,10 @@
 from error_exit import error_exit
+from parenthesis import parse_parenthesis
 
 def check_parenthesis(parents):
 	if parents.count("(") != parents.count(")"):
 		error_exit("Bad syntax, parenthesis unbalanced")
+	_ = parse_parenthesis(parents)
 
 def check_syntax(g):
 	for rule in g.rules:

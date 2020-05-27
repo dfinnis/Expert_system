@@ -50,34 +50,3 @@ def parse_parenthesis(parents):
 		if parenthesis_found:
 			parents = list_parsed
 	return parents
-
-### replace parenthesis with 0 = false, 1 = true, 2 = undetermined
-def solve_parenthesis(parents, g):
-	solved_str = ""
-	contains_list = False
-	for parent in parents:
-		if isinstance(parent, list):
-			contains_list = True
-	if contains_list:
-		for parent in parents:
-			if isinstance(parent, list):
-				solved_str += solve_parenthesis(parent, g)
-			else:
-				solved_str += parent
-	else:
-		for content in parents:
-			xor_true, undetermined = solve_rule(content, g)
-			if undetermined:
-				solved_str += "2"
-			elif xor_true == 1:
-				solved_str += "1"
-			else:
-				solved_str += "0"
-	xor_true, undetermined = solve_rule(solved_str, g)
-	if undetermined:
-		solved_str = "2"
-	elif xor_true == 1:
-		solved_str = "1"
-	else:
-		solved_str = "0"
-	return solved_str
