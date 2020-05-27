@@ -134,7 +134,7 @@ class graph:
 								fact.add_parent_rule(rule)
 
 	def print_graph(self):
-		print("\n\n\x1b[1m#### ---- GRAPH ---- ####\x1b[0m")
+		print("\n\x1b[1m#### ---- GRAPH ---- ####\x1b[0m")
 		print("\n\x1b[1mRules:\x1b[0m")
 		for rule in self.rules:
 			print("{} => {}".format(rule.parents, rule.children))

@@ -53,105 +53,75 @@ def parse_parenthesis(parents):
 	# print("\n#### -- parents final: {} -- ####\n".format(parents))######
 	return parents
 
-# def solve_parenthesis(parents, g): ## replace parenthesis with 0 = false, 1 = true, 2 = undetermined
-# 	# print("parents before:	{}".format(parents))
-# 	solved_str = ""
-# 	found_list = False
-# 	for parent in parents:
-# 		print("parent:	{}".format(parent))####
-# 		# print(type(parent))#########
-# 		if isinstance(parent, list):
-# 			print("parent is list:	{}".format(parent))####
-# 			# parent_solved = solve_parenthesis(parent, g)
-# 			solved_str += solve_parenthesis(parent, g)
-# 			found_list = True
-# 			print("\nparent_solved:	{}".format(parent))####
-# 			# print("list!")######
-# 		else:
-# 			solved_str += parent
-# 	if found_list == False:
-# 		xor_true, undetermined = solve_rule(parent, g)
-# 		# print("xor_true: {}".format(xor_true))#####
-# 		# print("undetermined: {}".format(undetermined))#####
-# 		if undetermined:
-# 			solved_str += "2"
-# 		elif xor_true == 1:
-# 			solved_str += "1"
-# 		else:
-# 			solved_str += "0"
-
-# 	print("solved_str: {}".format(solved_str))
-# 	return solved_str
-
-# def solve_parenthesis(parents, g): ## replace parenthesis with 0 = false, 1 = true, 2 = undetermined
-# 	print("parents before:	{}".format(parents))
-# 	solved_str = ""
-# 	for parent in parents:
-# 		# print("parent:	{}".format(parent))####
-# 		# print(type(parent))#########
-# 		if isinstance(parent, list):
-# 			print("parent ist:	{}".format(parent))
-# 			print("len(parent):	{}".format(len(parent)))####
-# 			solve_parenthesis(parent, g)
-
-# 			for content in parent:
-# 				print("content:	{}".format(content))####
-# 				print(type(content))#########
-# 				if isinstance(content, str):
-# 					print("str:	{}".format(content))####
-# 					xor_true, undetermined = solve_rule(content, g)
-# 					print("xor_true: {}".format(xor_true))#####
-# 					print("undetermined: {}".format(undetermined))#####
-# 					if undetermined:
-# 						solved_str += "2"
-# 					elif xor_true == 1:
-# 						solved_str += "1"
-# 					else:
-# 						solved_str += "0"
-# 		else:
-# 			solved_str += parent
-# 			# 	if isinstance(content, list):
-# 			# 		print("content:	{}".format(content))
-# 	# 				solve_parenthesis(parent, g)
-# 	# 		# if len(parent) > 1:
-# 	# 		else:
-# 	# 			for content in parent:
-# 	# 				xor_true, undetermined = solve_rule(content, g)
-# 	# 				if undetermined:
-# 	# 					solved_str += "2"
-# 	# 				elif xor_true == 1:
-# 	# 					solved_str += "1"
-# 	# 				else:
-# 	# 					solved_str += "0"
-# 	# 	else:
-# 	# 		solved_str += parent
-# 	print("solved_str:	{}\n".format(solved_str))
-# 	return solved_str
 
 ### works for one set of parenthesis
 def solve_parenthesis(parents, g): ## replace parenthesis with 0 = false, 1 = true, 2 = undetermined
 	# print("parents before:	{}".format(parents))
 	solved_str = ""
+	contains_list = False
 	for parent in parents:
-		# print("parent:	{}".format(parent))####
-		# print(type(parent))#########
 		if isinstance(parent, list):
-			# print("list!")######
-			for content in parent:
-				# print(content)#######
-				xor_true, undetermined = solve_rule(content, g)
-				# print("xor_true: {}".format(xor_true))#####
-				# print("undetermined: {}".format(undetermined))#####
-				if undetermined:
-					solved_str += "2"
-				elif xor_true == 1:
-					solved_str += "1"
-				else:
-					solved_str += "0"			
-		else:
-			solved_str += parent
-	# print("solved_str: {}".format(solved_str))
+			contains_list = True
+	if contains_list:
+		# print("LIST!!!!!")######
+		for parent in parents:
+			# print("parent:	{}".format(parent))#######
+			if isinstance(parent, list):
+				solved_str += solve_parenthesis(parent, g)
+			else:
+				solved_str += parent
+	else:
+		# print("STR!!!!!!!")#########
+		for content in parents:
+			# print("content: {}".format(content))
+			xor_true, undetermined = solve_rule(content, g)
+			# print("xor_true: {}".format(xor_true))#####
+			# print("undetermined: {}".format(undetermined))#####
+			if undetermined:
+				solved_str += "2"
+			elif xor_true == 1:
+				solved_str += "1"
+			else:
+				solved_str += "0"
+
+	# print("solved_str before: {}\n".format(solved_str))########
+	xor_true, undetermined = solve_rule(solved_str, g)
+	# print("xor_true: {}".format(xor_true))#####
+	# print("undetermined: {}".format(undetermined))#####
+	if undetermined:
+		solved_str = "2"
+	elif xor_true == 1:
+		solved_str = "1"
+	else:
+		solved_str = "0"
+	# print("solved_str after: {}\n".format(solved_str))########
 	return solved_str
+
+
+# ### works for one set of parenthesis
+# def solve_parenthesis(parents, g): ## replace parenthesis with 0 = false, 1 = true, 2 = undetermined
+# 	# print("parents before:	{}".format(parents))
+# 	solved_str = ""
+# 	for parent in parents:
+# 		# print("parent:	{}".format(parent))####
+# 		# print(type(parent))#########
+# 		if isinstance(parent, list):
+# 			# print("list!")######
+# 			for content in parent:
+# 				# print(content)#######
+# 				xor_true, undetermined = solve_rule(content, g)
+# 				# print("xor_true: {}".format(xor_true))#####
+# 				# print("undetermined: {}".format(undetermined))#####
+# 				if undetermined:
+# 					solved_str += "2"
+# 				elif xor_true == 1:
+# 					solved_str += "1"
+# 				else:
+# 					solved_str += "0"			
+# 		else:
+# 			solved_str += parent
+# 	# print("solved_str: {}".format(solved_str))
+# 	return solved_str
 
 def solve_rule(parents, g):
 	undetermined = False
@@ -509,6 +479,9 @@ def solve(g, logic):
 													rules.append(rule_orig)
 
 			rules.remove(rule)
+
+	if logic:
+		print
 			# for rule in rules:
 			# 	print("\n\n\x1b[1m#### ---- RULES LIST: {} => {} ----####\x1b[0m".format(rule.parents, rule.children))########
 			# print ############
