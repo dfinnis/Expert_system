@@ -193,7 +193,6 @@ def print_logic(logic, rule, xor_true, undetermined, g):
 			print("\x1b[32m#### ---- Apply rule: {} => {} ----####\x1b[0m".format(rule.parents, rule.children))
 		else:
 			print("\x1b[31m#### ---- Apply rule: {} => {} ----####\x1b[0m".format(rule.parents, rule.children))
-
 		for parent in rule.parents:
 			if parent.isalpha():
 				for fact in g.facts:
@@ -222,7 +221,6 @@ def print_logic(logic, rule, xor_true, undetermined, g):
 					for letter in child:
 						if letter.isalpha():
 							print("\x1b[33mConsequent deduced Undetermined: {}\x1b[0m".format(letter))
-
 		else:
 			print("\x1b[31m---- Antecedent False ----\x1b[0m")
 		print
@@ -233,14 +231,15 @@ def rule_in_list(rule, rules):
 			return True
 	return False
 
+# def init_rules_list(g):
+# 	return rules
+
 def solve(g, logic):
 	check_error(g)
 
 	## Create list of rules to evaluate
 	rules = []
-	rules_original = []
 	for rule in g.rules:
-		rules_original.append(rule)
 		parents = rule.parents.split("+")
 		for parent in parents:
 			# print("\n\n\x1b[33m#### ---- parent: {} ----####\x1b[0m".format(parent))########
@@ -303,7 +302,7 @@ def solve(g, logic):
 								# print("deduce true!")
 								fact.deduce_true()
 								## add rule to list of rules
-								for rule_orig in rules_original:
+								for rule_orig in g.rules:
 									# print("\n\x1b[35m#### ---- APPENDING RULE: RULE ORIG = {} => {} ----####\x1b[0m".format(rule_orig.parents, rule_orig.children))########
 									for parent_orig in rule_orig.parents:
 										# print(parent_orig)#############
@@ -346,7 +345,7 @@ def solve(g, logic):
 								if child == fact.symbol:
 									fact.deduce_undetermined()
 									### append to rules list?#########
-									for rule_orig in rules_original:
+									for rule_orig in g.rules:
 										# print("\n\x1b[35m#### ---- APPENDING RULE: RULE ORIG = {} => {} ----####\x1b[0m".format(rule_orig.parents, rule_orig.children))########
 										for parent_orig in rule_orig.parents:
 											# print(parent_orig)#############
@@ -366,7 +365,7 @@ def solve(g, logic):
 									if child == fact.symbol:
 										fact.deduce_undetermined()
 										### append to rules list?#######
-										for rule_orig in rules_original:
+										for rule_orig in g.rules:
 											# print("\n\x1b[35m#### ---- APPENDING RULE: RULE ORIG = {} => {} ----####\x1b[0m".format(rule_orig.parents, rule_orig.children))########
 											for parent_orig in rule_orig.parents:
 												# print(parent_orig)#############
@@ -389,7 +388,7 @@ def solve(g, logic):
 							if child == fact.symbol:
 								# print("child = {}, fact = {}".format(child, fact.symbol))########
 								fact.deduce_undetermined()
-								for rule_orig in rules_original:
+								for rule_orig in g.rules:
 									# print("\n\x1b[35m#### ---- APPENDING RULE: RULE ORIG = {} => {} ----####\x1b[0m".format(rule_orig.parents, rule_orig.children))########
 									for parent_orig in rule_orig.parents:
 										# print(parent_orig)#############
@@ -407,6 +406,3 @@ def solve(g, logic):
 
 	if logic:
 		print
-			# for rule in rules:
-			# 	print("\n\n\x1b[1m#### ---- RULES LIST: {} => {} ----####\x1b[0m".format(rule.parents, rule.children))########
-			# print ############
