@@ -45,6 +45,21 @@ fi
 #### -- MORE AND -- ####
 echo
 
+cmd="python3 expert_system.py input/valid/and_3.txt -c"
+output=$(eval "$cmd")
+desired="C is True
+F is False"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mand_3:\t\t\tOK\x1b[0m"
+else
+	echo "\x1b[31mand_3:\t\t\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
 cmd="python3 expert_system.py input/valid/and_long.txt -c"
 output=$(eval "$cmd")
 desired="Z is True"
@@ -68,6 +83,39 @@ then
 	echo "\x1b[32mand_long_2:\t\tOK\x1b[0m"
 else
 	echo "\x1b[31mand_long_2:\t\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
+cmd="python3 expert_system.py input/valid/and_conclusion.txt -c"
+output=$(eval "$cmd")
+desired="C is True
+D is True
+U is True"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mand_conclusion:\t\tOK\x1b[0m"
+else
+	echo "\x1b[31mand_conclusion:\t\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
+cmd="python3 expert_system.py input/valid/and_comments.txt -c"
+output=$(eval "$cmd")
+desired="C is True
+D is True
+F is True
+I is True"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mand_comments:\t\tOK\x1b[0m"
+else
+	echo "\x1b[31mand_comments:\t\tERROR\x1b[0m"
 	echo "desired output: $desired"
 	echo "actual output:  $output\n"
 fi
@@ -443,7 +491,7 @@ else
 fi
 ((count+=1))
 
-#### -- MORE OR -- ####
+#### -- MORE XOR -- ####
 echo
 
 cmd="python3 expert_system.py input/valid/xor_long.txt -c"
@@ -469,6 +517,39 @@ then
 	echo "\x1b[32mxor_long_2:\t\tOK\x1b[0m"
 else
 	echo "\x1b[31mxor_long_2:\t\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
+cmd="python3 expert_system.py input/valid/xor_mix.txt -c"
+output=$(eval "$cmd")
+desired="P is False
+N is True
+G is True
+M is True
+T is False
+X is False"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mxor_mix:\t\tOK\x1b[0m"
+else
+	echo "\x1b[31mxor_mix:\t\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
+cmd="python3 expert_system.py input/valid/xor_mix_2.txt -c"
+output=$(eval "$cmd")
+desired="C is True"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mxor_mix_2:\t\tOK\x1b[0m"
+else
+	echo "\x1b[31mxor_mix_2:\t\tERROR\x1b[0m"
 	echo "desired output: $desired"
 	echo "actual output:  $output\n"
 fi
@@ -1575,6 +1656,20 @@ then
 	echo "\x1b[32mempty_rules:\t\tOK\x1b[0m"
 else
 	echo "\x1b[31mempty_rules:\t\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
+cmd="python3 expert_system.py input/invalid/max_lines.txt -c"
+output=$(eval "$cmd")
+desired="Error: File too long"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mmax_lines:\t\tOK\x1b[0m"
+else
+	echo "\x1b[31mmax_lines:\t\tERROR\x1b[0m"
 	echo "desired output: $desired"
 	echo "actual output:  $output\n"
 fi

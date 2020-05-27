@@ -1,0 +1,8 @@
+A + B => C
+D + E => F
+
+=ABD
+?CF
+
+# C is True
+# F is False
