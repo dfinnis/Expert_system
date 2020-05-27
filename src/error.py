@@ -42,38 +42,25 @@ def check_syntax(g):
 
 def check_loop(g):
 	for rule in g.rules:
-		# print("\n\n\x1b[36m#### ---- RULES LIST: {} => {} ----####\x1b[0m".format(rule.parents, rule.children))########
 		rules_tree = []
-		# rules_tree_orig = []######
 		for child in rule.children:
 			for letter in child:
-				# print(letter)#######
 				if letter.isalpha():
 					deduced = letter
-					# print(deduced)###
 					for rule_implied in g.rules:
 						for parent in rule_implied.parents:
 							for letter in parent:
 								if letter == deduced:
 									rules_tree.append(rule_implied)
-									# rules_tree_orig.append(rule_implied)#####
-					# while rules_tree:
-					# print(len(rules_tree))########
-					# for rule_implied in rules_tree_orig:#########
-					# 	print("\n\n\x1b[32m#### ---- RULE IMPLIED: {} => {} ----####\x1b[0m".format(rule_implied.parents, rule_implied.children))########
 					for rule_implied in rules_tree:
-						# print(len(rules_tree))########
-						if len(rules_tree) > 420000:######## Lazy hack!!! is this number right?
+						if len(rules_tree) > 420000: ## complexity limit
 							error_exit("Bad Logic, infinite loop")
-						# print("\n\n\x1b[32m#### ---- RULE IMPLIED: {} => {} ----####\x1b[0m".format(rule_implied.parents, rule_implied.children))########
 						for child in rule_implied.children:
 							for letter in child:
 								if letter.isalpha():
 									deduced = letter
 									for rule_orig in g.rules:
-										# print("\n\n\x1b[34m#### ---- RULE ORIGINAL: {} => {} ----####\x1b[0m".format(rule_orig.parents, rule_orig.children))########										
 										for parent in rule_orig.parents:
-											# print("\x1b[33mparent: {}\x1b[0m".format(parent))##########
 											for letter in parent:
 												if letter == deduced:
 													if rule_orig.parents == rule.parents and rule_orig.children == rule.children:
