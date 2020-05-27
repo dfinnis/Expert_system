@@ -1619,6 +1619,64 @@ else
 fi
 ((count+=1))
 
+#### -- ERROR: Rules -- ####
+
+cmd="python3 expert_system.py input/invalid/bad_rule_1.txt -c"
+output=$(eval "$cmd")
+desired="Error: Bad Syntax, combined conditions"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mbad_rule_1:\t\tOK\x1b[0m"
+else
+	echo "\x1b[31mbad_rule_1:\t\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
+cmd="python3 expert_system.py input/invalid/bad_rule_2.txt -c"
+output=$(eval "$cmd")
+desired="Error: Bad Syntax, combined conditions"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mbad_rule_2:\t\tOK\x1b[0m"
+else
+	echo "\x1b[31mbad_rule_2:\t\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
+cmd="python3 expert_system.py input/invalid/bad_rule_3.txt -c"
+output=$(eval "$cmd")
+desired="Error: Non-alphabet character in initial facts"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mbad_rule_3:\t\tOK\x1b[0m"
+else
+	echo "\x1b[31mbad_rule_3:\t\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
+cmd="python3 expert_system.py input/invalid/bad_rule_4.txt -c"
+output=$(eval "$cmd")
+desired="Error: Non-alphabet character in initial facts"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mbad_rule_4:\t\tOK\x1b[0m"
+else
+	echo "\x1b[31mbad_rule_4:\t\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
 #### -- ERROR: And -- ####
 
 cmd="python3 expert_system.py input/invalid/bad_and_1.txt -c"
@@ -1716,6 +1774,94 @@ then
 	echo "\x1b[32mbad_or_4:\t\tOK\x1b[0m"
 else
 	echo "\x1b[31mbad_or_4:\t\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
+#### -- ERROR: Xor -- ####
+
+cmd="python3 expert_system.py input/invalid/bad_xor_1.txt -c"
+output=$(eval "$cmd")
+desired="Error: Bad Syntax, ^ missing symbol"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mbad_xor_1:\t\tOK\x1b[0m"
+else
+	echo "\x1b[31mbad_xor_1:\t\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
+cmd="python3 expert_system.py input/invalid/bad_xor_2.txt -c"
+output=$(eval "$cmd")
+desired="Error: Bad Syntax, ^ missing symbol"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mbad_xor_2:\t\tOK\x1b[0m"
+else
+	echo "\x1b[31mbad_xor_2:\t\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
+cmd="python3 expert_system.py input/invalid/bad_xor_3.txt -c"
+output=$(eval "$cmd")
+desired="Error: Bad Syntax, ^ missing symbol"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mbad_xor_3:\t\tOK\x1b[0m"
+else
+	echo "\x1b[31mbad_xor_3:\t\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
+#### -- ERROR: Not -- ####
+
+cmd="python3 expert_system.py input/invalid/bad_not_1.txt -c"
+output=$(eval "$cmd")
+desired="Error: Bad Syntax, too many combined conditions"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mbad_not_1:\t\tOK\x1b[0m"
+else
+	echo "\x1b[31mbad_not_1:\t\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
+cmd="python3 expert_system.py input/invalid/bad_not_2.txt -c"
+output=$(eval "$cmd")
+desired="Error: Bad Syntax, too many combined conditions"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mbad_not_2:\t\tOK\x1b[0m"
+else
+	echo "\x1b[31mbad_not_2:\t\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
+cmd="python3 expert_system.py input/invalid/bad_not_3.txt -c"
+output=$(eval "$cmd")
+desired="Error: Bad Syntax, too many combined conditions"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mbad_not_3:\t\tOK\x1b[0m"
+else
+	echo "\x1b[31mbad_not_3:\t\tERROR\x1b[0m"
 	echo "desired output: $desired"
 	echo "actual output:  $output\n"
 fi
@@ -2518,6 +2664,192 @@ else
 	echo "actual output:  $output\n"
 fi
 ((count+=1))
+
+#### -- ERROR: More parenthesis -- ####
+
+cmd="python3 expert_system.py input/invalid/bad_parenthesis_1.txt -c"
+output=$(eval "$cmd")
+desired="Error: Bad Syntax, parenthesis with non-alphabet symbol"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mbad_parenthesis_1:\tOK\x1b[0m"
+else
+	echo "\x1b[31mbad_parenthesis_1:\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
+cmd="python3 expert_system.py input/invalid/bad_parenthesis_2.txt -c"
+output=$(eval "$cmd")
+desired="Error: Bad Syntax, parenthesis empty ()"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mbad_parenthesis_2:\tOK\x1b[0m"
+else
+	echo "\x1b[31mbad_parenthesis_2:\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
+cmd="python3 expert_system.py input/invalid/bad_parenthesis_3.txt -c"
+output=$(eval "$cmd")
+desired="Error: Bad Syntax, parenthesis with non-alphabet symbol"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mbad_parenthesis_3:\tOK\x1b[0m"
+else
+	echo "\x1b[31mbad_parenthesis_3:\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
+cmd="python3 expert_system.py input/invalid/bad_parenthesis_4.txt -c"
+output=$(eval "$cmd")
+desired="Error: Bad Syntax, parenthesis with non-alphabet symbol"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mbad_parenthesis_4:\tOK\x1b[0m"
+else
+	echo "\x1b[31mbad_parenthesis_4:\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
+cmd="python3 expert_system.py input/invalid/bad_parenthesis_5.txt -c"
+output=$(eval "$cmd")
+desired="Error: Bad Syntax, parenthesis with non-alphabet symbol"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mbad_parenthesis_5:\tOK\x1b[0m"
+else
+	echo "\x1b[31mbad_parenthesis_5:\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
+cmd="python3 expert_system.py input/invalid/bad_parenthesis_6.txt -c"
+output=$(eval "$cmd")
+desired="Error: Bad Syntax, parenthesis empty ()"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mbad_parenthesis_6:\tOK\x1b[0m"
+else
+	echo "\x1b[31mbad_parenthesis_6:\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
+cmd="python3 expert_system.py input/invalid/bad_parenthesis_7.txt -c"
+output=$(eval "$cmd")
+desired="Error: Bad Syntax, parenthesis unbalanced"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mbad_parenthesis_7:\tOK\x1b[0m"
+else
+	echo "\x1b[31mbad_parenthesis_7:\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
+cmd="python3 expert_system.py input/invalid/bad_parenthesis_8.txt -c"
+output=$(eval "$cmd")
+desired="Error: Bad Syntax, parenthesis unbalanced"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mbad_parenthesis_8:\tOK\x1b[0m"
+else
+	echo "\x1b[31mbad_parenthesis_8:\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
+cmd="python3 expert_system.py input/invalid/bad_parenthesis_9.txt -c"
+output=$(eval "$cmd")
+desired="Error: Bad Syntax, parenthesis unbalanced"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mbad_parenthesis_9:\tOK\x1b[0m"
+else
+	echo "\x1b[31mbad_parenthesis_9:\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
+cmd="python3 expert_system.py input/invalid/bad_parenthesis_10.txt -c"
+output=$(eval "$cmd")
+desired="Error: Bad Syntax, parenthesis unbalanced"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mbad_parenthesis_10:\tOK\x1b[0m"
+else
+	echo "\x1b[31mbad_parenthesis_10:\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
+cmd="python3 expert_system.py input/invalid/bad_parenthesis_11.txt -c"
+output=$(eval "$cmd")
+desired="Error: Bad Syntax, parenthesis unbalanced"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mbad_parenthesis_11:\tOK\x1b[0m"
+else
+	echo "\x1b[31mbad_parenthesis_11:\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
+cmd="python3 expert_system.py input/invalid/bad_parenthesis_12.txt -c"
+output=$(eval "$cmd")
+desired="Error: Bad Syntax, parenthesis unbalanced"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mbad_parenthesis_12:\tOK\x1b[0m"
+else
+	echo "\x1b[31mbad_parenthesis_12:\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
+cmd="python3 expert_system.py input/invalid/bad_parenthesis_13.txt -c"
+output=$(eval "$cmd")
+desired="Error: Bad Syntax, parenthesis with non-alphabet symbol"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mbad_parenthesis_13:\tOK\x1b[0m"
+else
+	echo "\x1b[31mbad_parenthesis_13:\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
+#### -- ERROR: Contradiction -- ####
 
 cmd="python3 expert_system.py input/invalid/contradiction.txt -c"
 output=$(eval "$cmd")
