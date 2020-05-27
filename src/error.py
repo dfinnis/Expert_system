@@ -5,9 +5,22 @@ def check_parenthesis(parents):
 	if parents.count("(") != parents.count(")"):
 		error_exit("Bad Syntax, parenthesis unbalanced")
 	_ = parse_parenthesis(parents)
+	found_opening = False
+	for letter in parents:
+		if found_opening:
+			if not (letter.isalpha() or letter == "(" or letter == "!"):
+				error_exit("Bad Syntax, parenthesis with non-alphabet symbol")
+		if letter == ")":
+			if not (last.isalpha() or last == ")"):
+				error_exit("Bad Syntax, parenthesis with non-alphabet symbol")
+		found_opening = False
+		if letter == "(":
+			found_opening = True
+		last = letter
 
 def check_parents(parents):
 	parents = parents.replace('(', '').replace(')', '').split("+")
+	# print("parents: {}".format(parents))##############################
 	for parent in parents:
 		if not parent:
 			error_exit("Bad Syntax, + missing symbol")
@@ -40,10 +53,18 @@ def check_parents(parents):
 							if parent[0] != "!" or not parent[1].isalpha():
 								error_exit("Bad Syntax, many combined conditions")
 						else:
+							# print("parents_xor: {}".format(parents_xor))################
 							for content in parents_xor:
+								i = 0
 								for letter in content:
+									i += 1
 									last = letter
-									if not (letter == "!" or letter.isalpha()):
+								j = 0
+								for letter in content:
+									j += 1
+									if i == j:
+										break
+									if letter != "!":
 										error_exit("Bad Syntax, too many combined conditions")
 								if not last.isalpha():
 									error_exit("Bad Syntax, too many combined conditions")
