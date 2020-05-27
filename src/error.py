@@ -84,7 +84,6 @@ def check_syntax(g):
 		check_parents(rule.parents)
 		check_children(rule.children)
 
-
 def check_loop(g):
 	for rule in g.rules:
 		rules_tree = []

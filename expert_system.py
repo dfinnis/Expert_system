@@ -98,6 +98,8 @@ class graph:
 
 	def add_initial_fact(self, initial_fact):
 		assigned_true = False
+		if not initial_fact.isalpha():
+			error_exit("Non-alphabet character in initial facts")
 		for fact in self.facts:
 			if initial_fact == fact.symbol:
 				fact.initialize_true()
@@ -110,6 +112,8 @@ class graph:
 
 	def add_queries(self, query):
 		found_fact = False
+		if not query.isalpha():
+			error_exit("Non-alphabet character in query")
 		for fact in self.facts:
 			if query == fact.symbol:
 				found_fact = True
@@ -211,16 +215,22 @@ def parse(filepath):
 					initial_facts_found = True
 					if g.initial_facts:
 						error_exit("Multiple lines of initial facts")
-					initial_facts = line.split("=")[1]
+					initial_facts = line
+					i = 0
 					for letter in initial_facts:
-						g.add_initial_fact(letter)
+						if i > 0:
+							g.add_initial_fact(letter)
+						i += 1
 
 				elif line[0] == '?':
 					if g.queries:
 						error_exit("Multiple lines of queries")
-					queries = line.split("?")[1]
+					queries = line
+					i = 0
 					for letter in queries:
-						g.add_queries(letter)
+						if i > 0:
+							g.add_queries(letter)
+						i += 1
 
 				else:
 					for letter in line:

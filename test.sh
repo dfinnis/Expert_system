@@ -1645,6 +1645,166 @@ else
 fi
 ((count+=1))
 
+#### -- ERROR: Initial facts -- ####
+
+cmd="python3 expert_system.py input/invalid/bad_initial_facts1.txt -c"
+output=$(eval "$cmd")
+desired="Error: Non-alphabet character in initial facts"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mbad_initial_facts_1:\tOK\x1b[0m"
+else
+	echo "\x1b[31mbad_initial_facts_1:\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
+cmd="python3 expert_system.py input/invalid/bad_initial_facts2.txt -c"
+output=$(eval "$cmd")
+desired="Error: Bad Syntax, missing =>"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mbad_initial_facts_2:\tOK\x1b[0m"
+else
+	echo "\x1b[31mbad_initial_facts_2:\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
+cmd="python3 expert_system.py input/invalid/bad_initial_facts3.txt -c"
+output=$(eval "$cmd")
+desired="Error: Invalid symbol in file"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mbad_initial_facts_3:\tOK\x1b[0m"
+else
+	echo "\x1b[31mbad_initial_facts_3:\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
+cmd="python3 expert_system.py input/invalid/bad_initial_facts4.txt -c"
+output=$(eval "$cmd")
+desired="Error: Invalid symbol in file"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mbad_initial_facts_4:\tOK\x1b[0m"
+else
+	echo "\x1b[31mbad_initial_facts_4:\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
+#### -- ERROR: Queries -- ####
+
+cmd="python3 expert_system.py input/invalid/bad_query1.txt -c"
+output=$(eval "$cmd")
+desired="Error: Non-alphabet character in query"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mbad_query_1:\t\tOK\x1b[0m"
+else
+	echo "\x1b[31mbad_query_1:\t\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
+cmd="python3 expert_system.py input/invalid/bad_query2.txt -c"
+output=$(eval "$cmd")
+desired="Error: Non-alphabet character in query"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mbad_query_2:\t\tOK\x1b[0m"
+else
+	echo "\x1b[31mbad_query_2:\t\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
+cmd="python3 expert_system.py input/invalid/bad_query3.txt -c"
+output=$(eval "$cmd")
+desired="Error: Invalid symbol in file"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mbad_query_3:\t\tOK\x1b[0m"
+else
+	echo "\x1b[31mbad_query_3:\t\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
+#### -- ERROR: Implies -- ####
+
+cmd="python3 expert_system.py input/invalid/bad_implies1.txt -c"
+output=$(eval "$cmd")
+desired="Error: Bad Syntax, missing =>"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mbad_implies_1:\t\tOK\x1b[0m"
+else
+	echo "\x1b[31mbad_implies_1:\t\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
+cmd="python3 expert_system.py input/invalid/bad_implies2.txt -c"
+output=$(eval "$cmd")
+desired="Error: Bad Syntax, missing =>"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mbad_implies_2:\t\tOK\x1b[0m"
+else
+	echo "\x1b[31mbad_implies_2:\t\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
+cmd="python3 expert_system.py input/invalid/bad_implies3.txt -c"
+output=$(eval "$cmd")
+desired="Error: Bad Syntax, missing =>"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mbad_implies_3:\t\tOK\x1b[0m"
+else
+	echo "\x1b[31mbad_implies_3:\t\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
+cmd="python3 expert_system.py input/invalid/bad_implies4.txt -c"
+output=$(eval "$cmd")
+desired="Error: Bad Syntax, parenthesis unbalanced"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mbad_implies_4:\t\tOK\x1b[0m"
+else
+	echo "\x1b[31mbad_implies_4:\t\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
 cmd="python3 expert_system.py input/invalid/2_implies.txt -c"
 output=$(eval "$cmd")
 desired="Error: Bad Syntax, two implies in one rule"
