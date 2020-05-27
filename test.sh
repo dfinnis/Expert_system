@@ -194,6 +194,23 @@ else
 fi
 ((count+=1))
 
+cmd="python3 expert_system.py input/valid/undetermined_or_3.txt -c"
+output=$(eval "$cmd")
+desired="B is Undetermined
+C is Undetermined
+D is Undetermined
+E is Undetermined"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mor_undetermined_3:\tOK\x1b[0m"
+else
+	echo "\x1b[31mor_undetermined_3:\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
 cmd="python3 expert_system.py input/valid/undetermined_long.txt -c"
 output=$(eval "$cmd")
 desired="C is Undetermined
@@ -483,6 +500,23 @@ then
 	echo "\x1b[32mxor_undetermined_2:\tOK\x1b[0m"
 else
 	echo "\x1b[31mxor_undetermined_2:\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
+cmd="python3 expert_system.py input/valid/undetermined_xor_3.txt -c"
+output=$(eval "$cmd")
+desired="B is Undetermined
+C is Undetermined
+D is Undetermined
+E is Undetermined"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mxor_undetermined_3:\tOK\x1b[0m"
+else
+	echo "\x1b[31mxor_undetermined_3:\tERROR\x1b[0m"
 	echo "desired output: $desired"
 	echo "actual output:  $output\n"
 fi

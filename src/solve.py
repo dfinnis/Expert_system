@@ -335,6 +335,9 @@ def solve(g, logic):
 
 			xor_true, undetermined = solve_rule(parents, g)
 
+			if "|" in rule.children or "^" in rule.children:
+				undetermined = True
+
 			print_logic(logic, rule, xor_true, undetermined, g)
 
 			## Deduce True
