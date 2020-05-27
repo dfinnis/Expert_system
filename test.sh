@@ -1687,6 +1687,332 @@ else
 fi
 ((count+=1))
 
+#### -- ERROR: Conclusion -- ####
+
+cmd="python3 expert_system.py input/invalid/bad_conclusion1.txt -c"
+output=$(eval "$cmd")
+desired="Error: Bad syntax"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mbad_conclusion_1:\t\tOK\x1b[0m"
+else
+	echo "\x1b[31mbad_conclusion_1:\t\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
+cmd="python3 expert_system.py input/invalid/bad_conclusion2.txt -c"
+output=$(eval "$cmd")
+desired="Error: Bad syntax"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mbad_conclusion_2:\t\tOK\x1b[0m"
+else
+	echo "\x1b[31mbad_conclusion_2:\t\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
+cmd="python3 expert_system.py input/invalid/bad_conclusion3.txt -c"
+output=$(eval "$cmd")
+desired="Error: Bad syntax"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mbad_conclusion_3:\t\tOK\x1b[0m"
+else
+	echo "\x1b[31mbad_conclusion_3:\t\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
+cmd="python3 expert_system.py input/invalid/bad_conclusion4.txt -c"
+output=$(eval "$cmd")
+desired="Error: Bad syntax"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mbad_conclusion_4:\t\tOK\x1b[0m"
+else
+	echo "\x1b[31mbad_conclusion_4:\t\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
+cmd="python3 expert_system.py input/invalid/bad_conclusion5.txt -c"
+output=$(eval "$cmd")
+desired="Error: Bad syntax"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mbad_conclusion_5:\t\tOK\x1b[0m"
+else
+	echo "\x1b[31mbad_conclusion_5:\t\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
+cmd="python3 expert_system.py input/invalid/bad_conclusion6.txt -c"
+output=$(eval "$cmd")
+desired="Error: Bad syntax"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mbad_conclusion_6:\t\tOK\x1b[0m"
+else
+	echo "\x1b[31mbad_conclusion_6:\t\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
+cmd="python3 expert_system.py input/invalid/bad_conclusion7.txt -c"
+output=$(eval "$cmd")
+desired="Error: Bad syntax"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mbad_conclusion_7:\t\tOK\x1b[0m"
+else
+	echo "\x1b[31mbad_conclusion_7:\t\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
+cmd="python3 expert_system.py input/invalid/bad_conclusion8.txt -c"
+output=$(eval "$cmd")
+desired="Error: Bad syntax"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mbad_conclusion_8:\t\tOK\x1b[0m"
+else
+	echo "\x1b[31mbad_conclusion_8:\t\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
+cmd="python3 expert_system.py input/invalid/bad_conclusion9.txt -c"
+output=$(eval "$cmd")
+desired="Error: Bad syntax"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mbad_conclusion_9:\t\tOK\x1b[0m"
+else
+	echo "\x1b[31mbad_conclusion_9:\t\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
+cmd="python3 expert_system.py input/invalid/bad_conclusion10.txt -c"
+output=$(eval "$cmd")
+desired="Error: Bad syntax"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mbad_conclusion_10:\t\tOK\x1b[0m"
+else
+	echo "\x1b[31mbad_conclusion_10:\t\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
+cmd="python3 expert_system.py input/invalid/bad_conclusion11.txt -c"
+output=$(eval "$cmd")
+desired="Error: Bad syntax"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mbad_conclusion_11:\t\tOK\x1b[0m"
+else
+	echo "\x1b[31mbad_conclusion_11:\t\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
+cmd="python3 expert_system.py input/invalid/bad_conclusion12.txt -c"
+output=$(eval "$cmd")
+desired="Error: Bad syntax"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mbad_conclusion_12:\t\tOK\x1b[0m"
+else
+	echo "\x1b[31mbad_conclusion_12:\t\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
+cmd="python3 expert_system.py input/invalid/bad_conclusion13.txt -c"
+output=$(eval "$cmd")
+desired="Error: Bad syntax"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mbad_conclusion_13:\t\tOK\x1b[0m"
+else
+	echo "\x1b[31mbad_conclusion_13:\t\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
+cmd="python3 expert_system.py input/invalid/bad_conclusion14.txt -c"
+output=$(eval "$cmd")
+desired="Error: Bad syntax"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mbad_conclusion_14:\t\tOK\x1b[0m"
+else
+	echo "\x1b[31mbad_conclusion_14:\t\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
+cmd="python3 expert_system.py input/invalid/bad_conclusion15.txt -c"
+output=$(eval "$cmd")
+desired="Error: Bad syntax"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mbad_conclusion_15:\t\tOK\x1b[0m"
+else
+	echo "\x1b[31mbad_conclusion_15:\t\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
+cmd="python3 expert_system.py input/invalid/bad_conclusion16.txt -c"
+output=$(eval "$cmd")
+desired="Error: Bad syntax"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mbad_conclusion_16:\t\tOK\x1b[0m"
+else
+	echo "\x1b[31mbad_conclusion_16:\t\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
+cmd="python3 expert_system.py input/invalid/bad_conclusion17.txt -c"
+output=$(eval "$cmd")
+desired="Error: Bad syntax"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mbad_conclusion_17:\t\tOK\x1b[0m"
+else
+	echo "\x1b[31mbad_conclusion_17:\t\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
+cmd="python3 expert_system.py input/invalid/bad_conclusion18.txt -c"
+output=$(eval "$cmd")
+desired="Error: Bad syntax"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mbad_conclusion_18:\t\tOK\x1b[0m"
+else
+	echo "\x1b[31mbad_conclusion_18:\t\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
+cmd="python3 expert_system.py input/invalid/bad_conclusion19.txt -c"
+output=$(eval "$cmd")
+desired="Error: Bad syntax"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mbad_conclusion_19:\t\tOK\x1b[0m"
+else
+	echo "\x1b[31mbad_conclusion_19:\t\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
+cmd="python3 expert_system.py input/invalid/bad_conclusion20.txt -c"
+output=$(eval "$cmd")
+desired="Error: Bad syntax"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mbad_conclusion_20:\t\tOK\x1b[0m"
+else
+	echo "\x1b[31mbad_conclusion_20:\t\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
+cmd="python3 expert_system.py input/invalid/bad_conclusion21.txt -c"
+output=$(eval "$cmd")
+desired="Error: Bad syntax"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mbad_conclusion_21:\t\tOK\x1b[0m"
+else
+	echo "\x1b[31mbad_conclusion_21:\t\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
+cmd="python3 expert_system.py input/invalid/bad_conclusion22.txt -c"
+output=$(eval "$cmd")
+desired="Error: Bad syntax"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mbad_conclusion_22:\t\tOK\x1b[0m"
+else
+	echo "\x1b[31mbad_conclusion_22:\t\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
+cmd="python3 expert_system.py input/invalid/bad_conclusion23.txt -c"
+output=$(eval "$cmd")
+desired="Error: Bad syntax"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mbad_conclusion_23:\t\tOK\x1b[0m"
+else
+	echo "\x1b[31mbad_conclusion_23:\t\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
+#### -- ERROR: Empty -- ####
+
 cmd="python3 expert_system.py input/invalid/empty.txt -c"
 output=$(eval "$cmd")
 desired="Error: No initial facts"

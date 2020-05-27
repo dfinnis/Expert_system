@@ -6,45 +6,52 @@ def check_parenthesis(parents):
 		error_exit("Bad syntax, parenthesis unbalanced")
 	_ = parse_parenthesis(parents)
 
+def check_parents(parents):
+	parents = parents.replace('(', '').replace(')', '').split("+")
+	for parent in parents:
+		if not parent:
+			error_exit("Bad Syntax, + missing symbol")
+		if len(parent) == 1: ## AND
+			if not parent.isalpha():
+				error_exit("Bad Syntax, non-alphabet symbol")
+		elif len(parent) == 2: ## NOT
+			if parent[0] != "!" or not parent[1].isalpha():
+				error_exit("Bad Syntax, combined conditions")
+		else: ## OR / XOR
+			parents_or = parent.split("|")
+			for parent in parents_or:
+				if len(parent) == 1: ## OR
+					if not parent.isalpha():
+						error_exit("Bad Syntax, non-alphabet symbol with |")
+				elif len(parent) == 2: ## OR NOT
+					if parent[0] != "!" or not parent[1].isalpha():
+						error_exit("Bad Syntax, 2 combined conditions")
+				else: ## XOR
+					parents_xor = parent.split("^")
+					for parent in parents_xor:
+						if len(parent) == 1: ## XOR
+							if not parent.isalpha():
+								error_exit("Bad Syntax, non-alphabet symbol with ^")
+						elif len(parent) == 2: ## XOR NOT
+							if parent[0] != "!" or not parent[1].isalpha():
+								error_exit("Bad Syntax, many combined conditions")
+						else:
+							for content in parents_xor:
+								for letter in content:
+									last = letter
+									if not (letter == "!" or letter.isalpha()):
+										error_exit("Bad Syntax, too many combined conditions")
+								if not last.isalpha():
+									error_exit("Bad Syntax, too many combined conditions")
+
+# def check_children(children):
+
 def check_syntax(g):
 	for rule in g.rules:
 		check_parenthesis(rule.parents)
-		parents = rule.parents.replace('(', '').replace(')', '').split("+")
-		for parent in parents:
-			if not parent:
-				error_exit("Bad Syntax, + missing symbol")
-			if len(parent) == 1: ## AND
-				if not parent.isalpha():
-					error_exit("Bad Syntax, non-alphabet symbol")
-			elif len(parent) == 2: ## NOT
-				if parent[0] != "!" or not parent[1].isalpha():
-					error_exit("Bad Syntax, combined conditions")
-			else: ## OR / XOR
-				parents_or = parent.split("|")
-				for parent in parents_or:
-					if len(parent) == 1: ## OR
-						if not parent.isalpha():
-							error_exit("Bad Syntax, non-alphabet symbol with |")
-					elif len(parent) == 2: ## OR NOT
-						if parent[0] != "!" or not parent[1].isalpha():
-							error_exit("Bad Syntax, 2 combined conditions")
-					else: ## XOR
-						parents_xor = parent.split("^")
-						for parent in parents_xor:
-							if len(parent) == 1: ## XOR
-								if not parent.isalpha():
-									error_exit("Bad Syntax, non-alphabet symbol with ^")
-							elif len(parent) == 2: ## XOR NOT
-								if parent[0] != "!" or not parent[1].isalpha():
-									error_exit("Bad Syntax, many combined conditions")
-							else:
-								for content in parents_xor:
-									for letter in content:
-										last = letter
-										if not (letter == "!" or letter.isalpha()):
-											error_exit("Bad Syntax, too many combined conditions")
-									if not last.isalpha():
-										error_exit("Bad Syntax, too many combined conditions")
+		check_parents(rule.parents)
+		# check_children(rule.children)
+
 
 def check_loop(g):
 	for rule in g.rules:
