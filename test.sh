@@ -1680,6 +1680,48 @@ else
 fi
 ((count+=1))
 
+cmd="python3 expert_system.py input/invalid/parenthesis_balance_7.txt -c"
+output=$(eval "$cmd")
+desired="Error: Bad syntax, parenthesis"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mparenthesis balance_7:\tOK\x1b[0m"
+else
+	echo "\x1b[31mparenthesis balance_7:\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
+cmd="python3 expert_system.py input/invalid/parenthesis_balance_8.txt -c"
+output=$(eval "$cmd")
+desired="Error: Bad syntax, parenthesis"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mparenthesis balance_8:\tOK\x1b[0m"
+else
+	echo "\x1b[31mparenthesis balance_8:\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
+cmd="python3 expert_system.py input/invalid/parenthesis_balance_9.txt -c"
+output=$(eval "$cmd")
+desired="Error: Bad syntax, parenthesis"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mparenthesis balance_9:\tOK\x1b[0m"
+else
+	echo "\x1b[31mparenthesis balance_9:\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
 cmd="python3 expert_system.py input/invalid/parenthesis_empty.txt -c"
 output=$(eval "$cmd")
 desired="Error: Bad Syntax, + missing symbol"
