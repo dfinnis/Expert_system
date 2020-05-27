@@ -12,7 +12,7 @@ def find_bracket(parents):
 			else:
 				pair -= 1
 		i += 1
-	error_exit("Bad syntax, parenthesis")
+	error_exit("Bad Syntax, parenthesis")
 
 def parse_parenthesis(parents):
 	if isinstance(parents, str):
@@ -34,7 +34,7 @@ def parse_parenthesis(parents):
 				parenthesis = parenthesis[:right_i]
 				parenthesis = [parenthesis]
 				if parenthesis == [""]:
-					error_exit("Bad syntax, parenthesis empty ()")
+					error_exit("Bad Syntax, parenthesis empty ()")
 				for content in parenthesis:
 					if "(" in content:
 						parenthesis = parse_parenthesis(parenthesis) ## recursive parse [inside]()

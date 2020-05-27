@@ -3,7 +3,7 @@ from parenthesis import parse_parenthesis
 
 def check_parenthesis(parents):
 	if parents.count("(") != parents.count(")"):
-		error_exit("Bad syntax, parenthesis unbalanced")
+		error_exit("Bad Syntax, parenthesis unbalanced")
 	_ = parse_parenthesis(parents)
 
 def check_parents(parents):
@@ -44,13 +44,45 @@ def check_parents(parents):
 								if not last.isalpha():
 									error_exit("Bad Syntax, too many combined conditions")
 
-# def check_children(children):
+def check_children(children):
+	if "(" in children or ")" in children:
+		error_exit("Bad Syntax, parenthesis in conclusion")
+	children = children.split("+")
+	for child in children:
+		if not child:
+			error_exit("Bad Syntax, + missing symbol in conclusion")
+		if len(child) == 1: ## AND
+			if not child.isalpha():
+				error_exit("Bad Syntax, non-alphabet symbol")
+		elif len(child) == 2: ## NOT
+			if child[0] != "!" or not child[1].isalpha():
+				error_exit("Bad Syntax, combined conditions")
+		else: ## OR / XOR
+			children_or = child.split("|")
+			for child_or in children_or:
+				if len(child_or) == 1: ## OR
+					if not child_or.isalpha():
+						error_exit("Bad Syntax, non-alphabet symbol with |")
+				elif len(child_or) == 2: ## OR NOT
+					if child_or[0] != "!" or not child_or[1].isalpha():
+						error_exit("Bad Syntax, 2 combined conditions")
+				else: ## XOR
+					children_xor = child_or.split("^")
+					for child_xor in children_xor:
+						if len(child_xor) == 1: ## XOR
+							if not child_xor.isalpha():
+								error_exit("Bad Syntax, non-alphabet symbol with ^")
+						elif len(child_xor) == 2: ## XOR NOT
+							if child_xor[0] != "!" or not child_xor[1].isalpha():
+								error_exit("Bad Syntax, many combined conditions")
+						else:
+							error_exit("Bad Syntax, too many combined conditions")
 
 def check_syntax(g):
 	for rule in g.rules:
 		check_parenthesis(rule.parents)
 		check_parents(rule.parents)
-		# check_children(rule.children)
+		check_children(rule.children)
 
 
 def check_loop(g):

@@ -1479,7 +1479,7 @@ fi
 
 cmd="python3 expert_system.py input/invalid/missing_symbol.txt -c"
 output=$(eval "$cmd")
-desired="Error: Bad Syntax, + missing symbol"
+desired="Error: Bad Syntax, + missing symbol in conclusion"
 if [ "$output" == "$desired" ]
 then
 	((passed+=1))
@@ -1691,13 +1691,13 @@ fi
 
 cmd="python3 expert_system.py input/invalid/bad_conclusion1.txt -c"
 output=$(eval "$cmd")
-desired="Error: Bad syntax"
+desired="Error: Bad Syntax, + missing symbol in conclusion"
 if [ "$output" == "$desired" ]
 then
 	((passed+=1))
-	echo "\x1b[32mbad_conclusion_1:\t\tOK\x1b[0m"
+	echo "\x1b[32mbad_conclusion_1:\tOK\x1b[0m"
 else
-	echo "\x1b[31mbad_conclusion_1:\t\tERROR\x1b[0m"
+	echo "\x1b[31mbad_conclusion_1:\tERROR\x1b[0m"
 	echo "desired output: $desired"
 	echo "actual output:  $output\n"
 fi
@@ -1705,13 +1705,13 @@ fi
 
 cmd="python3 expert_system.py input/invalid/bad_conclusion2.txt -c"
 output=$(eval "$cmd")
-desired="Error: Bad syntax"
+desired="Error: Bad Syntax, + missing symbol in conclusion"
 if [ "$output" == "$desired" ]
 then
 	((passed+=1))
-	echo "\x1b[32mbad_conclusion_2:\t\tOK\x1b[0m"
+	echo "\x1b[32mbad_conclusion_2:\tOK\x1b[0m"
 else
-	echo "\x1b[31mbad_conclusion_2:\t\tERROR\x1b[0m"
+	echo "\x1b[31mbad_conclusion_2:\tERROR\x1b[0m"
 	echo "desired output: $desired"
 	echo "actual output:  $output\n"
 fi
@@ -1719,13 +1719,13 @@ fi
 
 cmd="python3 expert_system.py input/invalid/bad_conclusion3.txt -c"
 output=$(eval "$cmd")
-desired="Error: Bad syntax"
+desired="Error: Bad Syntax, parenthesis in conclusion"
 if [ "$output" == "$desired" ]
 then
 	((passed+=1))
-	echo "\x1b[32mbad_conclusion_3:\t\tOK\x1b[0m"
+	echo "\x1b[32mbad_conclusion_3:\tOK\x1b[0m"
 else
-	echo "\x1b[31mbad_conclusion_3:\t\tERROR\x1b[0m"
+	echo "\x1b[31mbad_conclusion_3:\tERROR\x1b[0m"
 	echo "desired output: $desired"
 	echo "actual output:  $output\n"
 fi
@@ -1733,13 +1733,13 @@ fi
 
 cmd="python3 expert_system.py input/invalid/bad_conclusion4.txt -c"
 output=$(eval "$cmd")
-desired="Error: Bad syntax"
+desired="Error: Bad Syntax, parenthesis in conclusion"
 if [ "$output" == "$desired" ]
 then
 	((passed+=1))
-	echo "\x1b[32mbad_conclusion_4:\t\tOK\x1b[0m"
+	echo "\x1b[32mbad_conclusion_4:\tOK\x1b[0m"
 else
-	echo "\x1b[31mbad_conclusion_4:\t\tERROR\x1b[0m"
+	echo "\x1b[31mbad_conclusion_4:\tERROR\x1b[0m"
 	echo "desired output: $desired"
 	echo "actual output:  $output\n"
 fi
@@ -1747,13 +1747,13 @@ fi
 
 cmd="python3 expert_system.py input/invalid/bad_conclusion5.txt -c"
 output=$(eval "$cmd")
-desired="Error: Bad syntax"
+desired="Error: Bad Syntax, parenthesis in conclusion"
 if [ "$output" == "$desired" ]
 then
 	((passed+=1))
-	echo "\x1b[32mbad_conclusion_5:\t\tOK\x1b[0m"
+	echo "\x1b[32mbad_conclusion_5:\tOK\x1b[0m"
 else
-	echo "\x1b[31mbad_conclusion_5:\t\tERROR\x1b[0m"
+	echo "\x1b[31mbad_conclusion_5:\tERROR\x1b[0m"
 	echo "desired output: $desired"
 	echo "actual output:  $output\n"
 fi
@@ -1761,13 +1761,13 @@ fi
 
 cmd="python3 expert_system.py input/invalid/bad_conclusion6.txt -c"
 output=$(eval "$cmd")
-desired="Error: Bad syntax"
+desired="Error: Bad Syntax, parenthesis in conclusion"
 if [ "$output" == "$desired" ]
 then
 	((passed+=1))
-	echo "\x1b[32mbad_conclusion_6:\t\tOK\x1b[0m"
+	echo "\x1b[32mbad_conclusion_6:\tOK\x1b[0m"
 else
-	echo "\x1b[31mbad_conclusion_6:\t\tERROR\x1b[0m"
+	echo "\x1b[31mbad_conclusion_6:\tERROR\x1b[0m"
 	echo "desired output: $desired"
 	echo "actual output:  $output\n"
 fi
@@ -1775,13 +1775,13 @@ fi
 
 cmd="python3 expert_system.py input/invalid/bad_conclusion7.txt -c"
 output=$(eval "$cmd")
-desired="Error: Bad syntax"
+desired="Error: Bad Syntax, + missing symbol in conclusion"
 if [ "$output" == "$desired" ]
 then
 	((passed+=1))
-	echo "\x1b[32mbad_conclusion_7:\t\tOK\x1b[0m"
+	echo "\x1b[32mbad_conclusion_7:\tOK\x1b[0m"
 else
-	echo "\x1b[31mbad_conclusion_7:\t\tERROR\x1b[0m"
+	echo "\x1b[31mbad_conclusion_7:\tERROR\x1b[0m"
 	echo "desired output: $desired"
 	echo "actual output:  $output\n"
 fi
@@ -1789,13 +1789,13 @@ fi
 
 cmd="python3 expert_system.py input/invalid/bad_conclusion8.txt -c"
 output=$(eval "$cmd")
-desired="Error: Bad syntax"
+desired="Error: Bad Syntax, + missing symbol in conclusion"
 if [ "$output" == "$desired" ]
 then
 	((passed+=1))
-	echo "\x1b[32mbad_conclusion_8:\t\tOK\x1b[0m"
+	echo "\x1b[32mbad_conclusion_8:\tOK\x1b[0m"
 else
-	echo "\x1b[31mbad_conclusion_8:\t\tERROR\x1b[0m"
+	echo "\x1b[31mbad_conclusion_8:\tERROR\x1b[0m"
 	echo "desired output: $desired"
 	echo "actual output:  $output\n"
 fi
@@ -1803,13 +1803,13 @@ fi
 
 cmd="python3 expert_system.py input/invalid/bad_conclusion9.txt -c"
 output=$(eval "$cmd")
-desired="Error: Bad syntax"
+desired="Error: Bad Syntax, combined conditions"
 if [ "$output" == "$desired" ]
 then
 	((passed+=1))
-	echo "\x1b[32mbad_conclusion_9:\t\tOK\x1b[0m"
+	echo "\x1b[32mbad_conclusion_9:\tOK\x1b[0m"
 else
-	echo "\x1b[31mbad_conclusion_9:\t\tERROR\x1b[0m"
+	echo "\x1b[31mbad_conclusion_9:\tERROR\x1b[0m"
 	echo "desired output: $desired"
 	echo "actual output:  $output\n"
 fi
@@ -1817,13 +1817,13 @@ fi
 
 cmd="python3 expert_system.py input/invalid/bad_conclusion10.txt -c"
 output=$(eval "$cmd")
-desired="Error: Bad syntax"
+desired="Error: Bad Syntax, too many combined conditions"
 if [ "$output" == "$desired" ]
 then
 	((passed+=1))
-	echo "\x1b[32mbad_conclusion_10:\t\tOK\x1b[0m"
+	echo "\x1b[32mbad_conclusion_10:\tOK\x1b[0m"
 else
-	echo "\x1b[31mbad_conclusion_10:\t\tERROR\x1b[0m"
+	echo "\x1b[31mbad_conclusion_10:\tERROR\x1b[0m"
 	echo "desired output: $desired"
 	echo "actual output:  $output\n"
 fi
@@ -1831,13 +1831,13 @@ fi
 
 cmd="python3 expert_system.py input/invalid/bad_conclusion11.txt -c"
 output=$(eval "$cmd")
-desired="Error: Bad syntax"
+desired="Error: Bad Syntax, too many combined conditions"
 if [ "$output" == "$desired" ]
 then
 	((passed+=1))
-	echo "\x1b[32mbad_conclusion_11:\t\tOK\x1b[0m"
+	echo "\x1b[32mbad_conclusion_11:\tOK\x1b[0m"
 else
-	echo "\x1b[31mbad_conclusion_11:\t\tERROR\x1b[0m"
+	echo "\x1b[31mbad_conclusion_11:\tERROR\x1b[0m"
 	echo "desired output: $desired"
 	echo "actual output:  $output\n"
 fi
@@ -1845,13 +1845,13 @@ fi
 
 cmd="python3 expert_system.py input/invalid/bad_conclusion12.txt -c"
 output=$(eval "$cmd")
-desired="Error: Bad syntax"
+desired="Error: Bad Syntax, parenthesis in conclusion"
 if [ "$output" == "$desired" ]
 then
 	((passed+=1))
-	echo "\x1b[32mbad_conclusion_12:\t\tOK\x1b[0m"
+	echo "\x1b[32mbad_conclusion_12:\tOK\x1b[0m"
 else
-	echo "\x1b[31mbad_conclusion_12:\t\tERROR\x1b[0m"
+	echo "\x1b[31mbad_conclusion_12:\tERROR\x1b[0m"
 	echo "desired output: $desired"
 	echo "actual output:  $output\n"
 fi
@@ -1859,13 +1859,13 @@ fi
 
 cmd="python3 expert_system.py input/invalid/bad_conclusion13.txt -c"
 output=$(eval "$cmd")
-desired="Error: Bad syntax"
+desired="Error: Bad Syntax, parenthesis in conclusion"
 if [ "$output" == "$desired" ]
 then
 	((passed+=1))
-	echo "\x1b[32mbad_conclusion_13:\t\tOK\x1b[0m"
+	echo "\x1b[32mbad_conclusion_13:\tOK\x1b[0m"
 else
-	echo "\x1b[31mbad_conclusion_13:\t\tERROR\x1b[0m"
+	echo "\x1b[31mbad_conclusion_13:\tERROR\x1b[0m"
 	echo "desired output: $desired"
 	echo "actual output:  $output\n"
 fi
@@ -1873,13 +1873,13 @@ fi
 
 cmd="python3 expert_system.py input/invalid/bad_conclusion14.txt -c"
 output=$(eval "$cmd")
-desired="Error: Bad syntax"
+desired="Error: Bad Syntax, parenthesis in conclusion"
 if [ "$output" == "$desired" ]
 then
 	((passed+=1))
-	echo "\x1b[32mbad_conclusion_14:\t\tOK\x1b[0m"
+	echo "\x1b[32mbad_conclusion_14:\tOK\x1b[0m"
 else
-	echo "\x1b[31mbad_conclusion_14:\t\tERROR\x1b[0m"
+	echo "\x1b[31mbad_conclusion_14:\tERROR\x1b[0m"
 	echo "desired output: $desired"
 	echo "actual output:  $output\n"
 fi
@@ -1887,13 +1887,13 @@ fi
 
 cmd="python3 expert_system.py input/invalid/bad_conclusion15.txt -c"
 output=$(eval "$cmd")
-desired="Error: Bad syntax"
+desired="Error: Bad Syntax, parenthesis in conclusion"
 if [ "$output" == "$desired" ]
 then
 	((passed+=1))
-	echo "\x1b[32mbad_conclusion_15:\t\tOK\x1b[0m"
+	echo "\x1b[32mbad_conclusion_15:\tOK\x1b[0m"
 else
-	echo "\x1b[31mbad_conclusion_15:\t\tERROR\x1b[0m"
+	echo "\x1b[31mbad_conclusion_15:\tERROR\x1b[0m"
 	echo "desired output: $desired"
 	echo "actual output:  $output\n"
 fi
@@ -1901,13 +1901,13 @@ fi
 
 cmd="python3 expert_system.py input/invalid/bad_conclusion16.txt -c"
 output=$(eval "$cmd")
-desired="Error: Bad syntax"
+desired="Error: Bad Syntax, parenthesis in conclusion"
 if [ "$output" == "$desired" ]
 then
 	((passed+=1))
-	echo "\x1b[32mbad_conclusion_16:\t\tOK\x1b[0m"
+	echo "\x1b[32mbad_conclusion_16:\tOK\x1b[0m"
 else
-	echo "\x1b[31mbad_conclusion_16:\t\tERROR\x1b[0m"
+	echo "\x1b[31mbad_conclusion_16:\tERROR\x1b[0m"
 	echo "desired output: $desired"
 	echo "actual output:  $output\n"
 fi
@@ -1915,13 +1915,13 @@ fi
 
 cmd="python3 expert_system.py input/invalid/bad_conclusion17.txt -c"
 output=$(eval "$cmd")
-desired="Error: Bad syntax"
+desired="Error: Bad Syntax, parenthesis in conclusion"
 if [ "$output" == "$desired" ]
 then
 	((passed+=1))
-	echo "\x1b[32mbad_conclusion_17:\t\tOK\x1b[0m"
+	echo "\x1b[32mbad_conclusion_17:\tOK\x1b[0m"
 else
-	echo "\x1b[31mbad_conclusion_17:\t\tERROR\x1b[0m"
+	echo "\x1b[31mbad_conclusion_17:\tERROR\x1b[0m"
 	echo "desired output: $desired"
 	echo "actual output:  $output\n"
 fi
@@ -1929,13 +1929,13 @@ fi
 
 cmd="python3 expert_system.py input/invalid/bad_conclusion18.txt -c"
 output=$(eval "$cmd")
-desired="Error: Bad syntax"
+desired="Error: Bad Syntax, parenthesis in conclusion"
 if [ "$output" == "$desired" ]
 then
 	((passed+=1))
-	echo "\x1b[32mbad_conclusion_18:\t\tOK\x1b[0m"
+	echo "\x1b[32mbad_conclusion_18:\tOK\x1b[0m"
 else
-	echo "\x1b[31mbad_conclusion_18:\t\tERROR\x1b[0m"
+	echo "\x1b[31mbad_conclusion_18:\tERROR\x1b[0m"
 	echo "desired output: $desired"
 	echo "actual output:  $output\n"
 fi
@@ -1943,13 +1943,13 @@ fi
 
 cmd="python3 expert_system.py input/invalid/bad_conclusion19.txt -c"
 output=$(eval "$cmd")
-desired="Error: Bad syntax"
+desired="Error: Bad Syntax, + missing symbol in conclusion"
 if [ "$output" == "$desired" ]
 then
 	((passed+=1))
-	echo "\x1b[32mbad_conclusion_19:\t\tOK\x1b[0m"
+	echo "\x1b[32mbad_conclusion_19:\tOK\x1b[0m"
 else
-	echo "\x1b[31mbad_conclusion_19:\t\tERROR\x1b[0m"
+	echo "\x1b[31mbad_conclusion_19:\tERROR\x1b[0m"
 	echo "desired output: $desired"
 	echo "actual output:  $output\n"
 fi
@@ -1957,13 +1957,13 @@ fi
 
 cmd="python3 expert_system.py input/invalid/bad_conclusion20.txt -c"
 output=$(eval "$cmd")
-desired="Error: Bad syntax"
+desired="Error: Bad Syntax, + missing symbol in conclusion"
 if [ "$output" == "$desired" ]
 then
 	((passed+=1))
-	echo "\x1b[32mbad_conclusion_20:\t\tOK\x1b[0m"
+	echo "\x1b[32mbad_conclusion_20:\tOK\x1b[0m"
 else
-	echo "\x1b[31mbad_conclusion_20:\t\tERROR\x1b[0m"
+	echo "\x1b[31mbad_conclusion_20:\tERROR\x1b[0m"
 	echo "desired output: $desired"
 	echo "actual output:  $output\n"
 fi
@@ -1971,13 +1971,13 @@ fi
 
 cmd="python3 expert_system.py input/invalid/bad_conclusion21.txt -c"
 output=$(eval "$cmd")
-desired="Error: Bad syntax"
+desired="Error: Bad Syntax, parenthesis in conclusion"
 if [ "$output" == "$desired" ]
 then
 	((passed+=1))
-	echo "\x1b[32mbad_conclusion_21:\t\tOK\x1b[0m"
+	echo "\x1b[32mbad_conclusion_21:\tOK\x1b[0m"
 else
-	echo "\x1b[31mbad_conclusion_21:\t\tERROR\x1b[0m"
+	echo "\x1b[31mbad_conclusion_21:\tERROR\x1b[0m"
 	echo "desired output: $desired"
 	echo "actual output:  $output\n"
 fi
@@ -1985,13 +1985,13 @@ fi
 
 cmd="python3 expert_system.py input/invalid/bad_conclusion22.txt -c"
 output=$(eval "$cmd")
-desired="Error: Bad syntax"
+desired="Error: Bad Syntax, parenthesis in conclusion"
 if [ "$output" == "$desired" ]
 then
 	((passed+=1))
-	echo "\x1b[32mbad_conclusion_22:\t\tOK\x1b[0m"
+	echo "\x1b[32mbad_conclusion_22:\tOK\x1b[0m"
 else
-	echo "\x1b[31mbad_conclusion_22:\t\tERROR\x1b[0m"
+	echo "\x1b[31mbad_conclusion_22:\tERROR\x1b[0m"
 	echo "desired output: $desired"
 	echo "actual output:  $output\n"
 fi
@@ -1999,13 +1999,13 @@ fi
 
 cmd="python3 expert_system.py input/invalid/bad_conclusion23.txt -c"
 output=$(eval "$cmd")
-desired="Error: Bad syntax"
+desired="Error: Bad Syntax, parenthesis in conclusion"
 if [ "$output" == "$desired" ]
 then
 	((passed+=1))
-	echo "\x1b[32mbad_conclusion_23:\t\tOK\x1b[0m"
+	echo "\x1b[32mbad_conclusion_23:\tOK\x1b[0m"
 else
-	echo "\x1b[31mbad_conclusion_23:\t\tERROR\x1b[0m"
+	echo "\x1b[31mbad_conclusion_23:\tERROR\x1b[0m"
 	echo "desired output: $desired"
 	echo "actual output:  $output\n"
 fi
@@ -2099,7 +2099,7 @@ fi
 
 cmd="python3 expert_system.py input/invalid/random_alphabet.txt -c"
 output=$(eval "$cmd")
-desired="Error: Bad syntax, missing =>"
+desired="Error: Bad Syntax, missing =>"
 if [ "$output" == "$desired" ]
 then
 	((passed+=1))
@@ -2115,7 +2115,7 @@ fi
 
 cmd="python3 expert_system.py input/invalid/parenthesis_balance.txt -c"
 output=$(eval "$cmd")
-desired="Error: Bad syntax, parenthesis unbalanced"
+desired="Error: Bad Syntax, parenthesis unbalanced"
 if [ "$output" == "$desired" ]
 then
 	((passed+=1))
@@ -2129,7 +2129,7 @@ fi
 
 cmd="python3 expert_system.py input/invalid/parenthesis_balance_2.txt -c"
 output=$(eval "$cmd")
-desired="Error: Bad syntax, parenthesis unbalanced"
+desired="Error: Bad Syntax, parenthesis unbalanced"
 if [ "$output" == "$desired" ]
 then
 	((passed+=1))
@@ -2143,7 +2143,7 @@ fi
 
 cmd="python3 expert_system.py input/invalid/parenthesis_balance_3.txt -c"
 output=$(eval "$cmd")
-desired="Error: Bad syntax, parenthesis unbalanced"
+desired="Error: Bad Syntax, parenthesis unbalanced"
 if [ "$output" == "$desired" ]
 then
 	((passed+=1))
@@ -2157,7 +2157,7 @@ fi
 
 cmd="python3 expert_system.py input/invalid/parenthesis_balance_4.txt -c"
 output=$(eval "$cmd")
-desired="Error: Bad syntax, parenthesis unbalanced"
+desired="Error: Bad Syntax, parenthesis unbalanced"
 if [ "$output" == "$desired" ]
 then
 	((passed+=1))
@@ -2171,7 +2171,7 @@ fi
 
 cmd="python3 expert_system.py input/invalid/parenthesis_balance_5.txt -c"
 output=$(eval "$cmd")
-desired="Error: Bad syntax, parenthesis unbalanced"
+desired="Error: Bad Syntax, parenthesis unbalanced"
 if [ "$output" == "$desired" ]
 then
 	((passed+=1))
@@ -2185,7 +2185,7 @@ fi
 
 cmd="python3 expert_system.py input/invalid/parenthesis_balance_6.txt -c"
 output=$(eval "$cmd")
-desired="Error: Bad syntax, parenthesis unbalanced"
+desired="Error: Bad Syntax, parenthesis unbalanced"
 if [ "$output" == "$desired" ]
 then
 	((passed+=1))
@@ -2199,7 +2199,7 @@ fi
 
 cmd="python3 expert_system.py input/invalid/parenthesis_balance_7.txt -c"
 output=$(eval "$cmd")
-desired="Error: Bad syntax, parenthesis"
+desired="Error: Bad Syntax, parenthesis"
 if [ "$output" == "$desired" ]
 then
 	((passed+=1))
@@ -2213,7 +2213,7 @@ fi
 
 cmd="python3 expert_system.py input/invalid/parenthesis_balance_8.txt -c"
 output=$(eval "$cmd")
-desired="Error: Bad syntax, parenthesis"
+desired="Error: Bad Syntax, parenthesis"
 if [ "$output" == "$desired" ]
 then
 	((passed+=1))
@@ -2227,7 +2227,7 @@ fi
 
 cmd="python3 expert_system.py input/invalid/parenthesis_balance_9.txt -c"
 output=$(eval "$cmd")
-desired="Error: Bad syntax, parenthesis"
+desired="Error: Bad Syntax, parenthesis"
 if [ "$output" == "$desired" ]
 then
 	((passed+=1))
@@ -2241,7 +2241,7 @@ fi
 
 cmd="python3 expert_system.py input/invalid/parenthesis_empty.txt -c"
 output=$(eval "$cmd")
-desired="Error: Bad syntax, parenthesis empty ()"
+desired="Error: Bad Syntax, parenthesis empty ()"
 if [ "$output" == "$desired" ]
 then
 	((passed+=1))
