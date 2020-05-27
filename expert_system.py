@@ -196,7 +196,11 @@ def parse(filepath):
 	g = graph()
 
 	with open(filepath, 'r') as file:
+		i = 0
 		for line in file:
+			i += 1
+			if i > 10000:
+				error_exit("File too long")
 			line = line.replace(" ", "").replace("\t", "").replace("\n", "").split("#")[0]
 			if line != "":
 				if not allowedSymbols.issuperset(line):
