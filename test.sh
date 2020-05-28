@@ -1516,6 +1516,20 @@ else
 fi
 ((count+=1))
 
+cmd="python3 expert_system.py input/invalid/2_initial_fact_lines_3.txt -c"
+output=$(eval "$cmd")
+desired="Error: Rule given after initial facts"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32m2 initial fact lines_3:\tOK\x1b[0m"
+else
+	echo "\x1b[31m2 initial fact lines_3:\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
 cmd="python3 expert_system.py input/invalid/2_query_lines.txt -c"
 output=$(eval "$cmd")
 desired="Error: Multiple lines of queries"
@@ -2522,7 +2536,7 @@ fi
 
 cmd="python3 expert_system.py input/invalid/empty_facts.txt -c"
 output=$(eval "$cmd")
-desired="Error: No initial facts"
+desired="Error: Queries given before initial facts"
 if [ "$output" == "$desired" ]
 then
 	((passed+=1))
@@ -2536,7 +2550,7 @@ fi
 
 cmd="python3 expert_system.py input/invalid/empty_facts_2.txt -c"
 output=$(eval "$cmd")
-desired="Error: No initial facts"
+desired="Error: Queries given before initial facts"
 if [ "$output" == "$desired" ]
 then
 	((passed+=1))
@@ -2571,6 +2585,50 @@ then
 	echo "\x1b[32mempty_rules:\t\tOK\x1b[0m"
 else
 	echo "\x1b[31mempty_rules:\t\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
+#### -- ERROR: max line -- ####
+
+cmd="python3 expert_system.py input/invalid/max_line.txt -c"
+output=$(eval "$cmd")
+desired="Error: Rule too long"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mmax_line:\t\tOK\x1b[0m"
+else
+	echo "\x1b[31mmax_line:\t\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
+cmd="python3 expert_system.py input/invalid/max_line_2.txt -c"
+output=$(eval "$cmd")
+desired="Error: Initial facts too long"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mmax_line_2:\t\tOK\x1b[0m"
+else
+	echo "\x1b[31mmax_line_2:\t\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
+cmd="python3 expert_system.py input/invalid/max_line_3.txt -c"
+output=$(eval "$cmd")
+desired="Error: Queries too long"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mmax_line_3:\t\tOK\x1b[0m"
+else
+	echo "\x1b[31mmax_line_3:\t\tERROR\x1b[0m"
 	echo "desired output: $desired"
 	echo "actual output:  $output\n"
 fi

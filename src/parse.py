@@ -42,6 +42,8 @@ def parse_initial_facts(line, g):
 		if i > 0:
 			g.add_initial_fact(letter)
 		i += 1
+		if i > 26:
+			error_exit("Initial facts too long")
 
 def parse_queries(line, g):
 	if g.queries:
@@ -52,9 +54,15 @@ def parse_queries(line, g):
 		if i > 0:
 			g.add_queries(letter)
 		i += 1
+		if i > 26:
+			error_exit("Queries too long")
 
 def parse_rule(line, g):
+	i = 0
 	for letter in line:
+		i += 1
+		if i > 100000:
+			error_exit("Rule too long")
 		if letter.isalpha() == True:
 			found = False
 			for fact in g.facts:
@@ -86,8 +94,14 @@ def parse_file(filepath):
 					parse_initial_facts(line, g)
 					initial_facts_found = True
 				elif line[0] == '?':
+					if not initial_facts_found:
+						error_exit("Queries given before initial facts")
 					parse_queries(line, g)
 				else:
+					if initial_facts_found:
+						error_exit("Rule given after initial facts")
+					if g.queries:
+						error_exit("Rule given after queries")
 					parse_rule(line, g)
 
 		if initial_facts_found == False:
