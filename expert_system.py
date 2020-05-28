@@ -73,10 +73,6 @@ class rule:
 			error_exit("Bad Syntax, missing =>")
 		if rule.count('=') != 1 or rule.count('>') != 1:
 			error_exit("Bad Syntax, two implies in one rule")
-		# left = rule.split("=>")[0]######
-		# # self.parents = left.split("+")########
-		# right = rule.split("=>")[1]#######
-		# # self.children = right.split("+")#######
 		self.parents = rule.split("=>")[0]
 		self.children = rule.split("=>")[1]
 
@@ -257,7 +253,6 @@ def main():
 		if timer:
 			start = time.time()
 		g = parse(filepath)
-		# g.solve()#######
 		solve(g, logic)
 		if graph:
 			g.print_graph()
@@ -271,8 +266,3 @@ def main():
 
 if __name__ == '__main__':
 	main()
-
-### if all parents true, all children made true
-### parenthesis: cut out new rule, put between parent and current rule (append list to list)
-### make list of parents/children to process, add add new symbols(facts) to list as children are deduced
-### contradiction in the facts, or a syntax error

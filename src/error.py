@@ -20,7 +20,6 @@ def check_parenthesis(parents):
 
 def check_parents(parents):
 	parents = parents.replace('(', '').replace(')', '').split("+")
-	# print("parents: {}".format(parents))##############################
 	for parent in parents:
 		if not parent:
 			error_exit("Bad Syntax, + missing symbol")
@@ -53,7 +52,6 @@ def check_parents(parents):
 							if parent[0] != "!" or not parent[1].isalpha():
 								error_exit("Bad Syntax, many combined conditions")
 						else:
-							# print("parents_xor: {}".format(parents_xor))################
 							for content in parents_xor:
 								i = 0
 								for letter in content:
