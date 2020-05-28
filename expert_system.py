@@ -1,12 +1,10 @@
-# import argparse
 import time
 import sys
 sys.path.extend(["./src/"])
-from solve import solve
-from error_exit import error_exit
 from objects import graph
 from parse import parse_args
 from parse import parse_file
+from solve import solve
 
 def main():
 	try:
