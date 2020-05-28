@@ -1,6 +1,5 @@
 # import argparse
 import time
-import os
 import sys
 sys.path.extend(["./src/"])
 from solve import solve
