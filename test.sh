@@ -1460,6 +1460,20 @@ else
 fi
 ((count+=1))
 
+cmd="python3 expert_system.py input/invalid/"
+output=$(eval "$cmd")
+desired="Error: Invalid filepath"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32minvalid filepath_2:\tOK\x1b[0m"
+else
+	echo "\x1b[31minvalid filepath_2:\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
 cmd="python3 expert_system.py input/invalid/invalid_symbol.txt -c"
 output=$(eval "$cmd")
 desired="Error: Invalid symbol in file"
