@@ -39,8 +39,17 @@ def parse_initial_facts(line, g):
 	initial_facts = line
 	i = 0
 	for letter in initial_facts:
+		fact_found = False
 		if i > 0:
-			g.add_initial_fact(letter)
+			for fact in g.facts:
+				if letter == fact.symbol:
+					fact_found = True
+					break
+			if fact_found:
+				g.add_initial_fact(letter)
+			else:
+				g.add_fact(letter)
+				g.add_initial_fact(letter)
 		i += 1
 		if i > 26:
 			error_exit("Initial facts too long")

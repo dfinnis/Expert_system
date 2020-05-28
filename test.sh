@@ -88,6 +88,36 @@ else
 fi
 ((count+=1))
 
+cmd="python3 expert_system.py input/valid/and_long_3.txt -c"
+output=$(eval "$cmd")
+desired="Y is True
+Z is True"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mand_long_3:\t\tOK\x1b[0m"
+else
+	echo "\x1b[31mand_long_3:\t\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
+cmd="python3 expert_system.py input/valid/and_long_4.txt -c"
+output=$(eval "$cmd")
+desired="Y is False
+Z is False"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mand_long_4:\t\tOK\x1b[0m"
+else
+	echo "\x1b[31mand_long_4:\t\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
 cmd="python3 expert_system.py input/valid/and_conclusion.txt -c"
 output=$(eval "$cmd")
 desired="C is True
@@ -116,6 +146,39 @@ then
 	echo "\x1b[32mand_comments:\t\tOK\x1b[0m"
 else
 	echo "\x1b[31mand_comments:\t\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
+cmd="python3 expert_system.py input/valid/initial_fact_not_in_rules.txt -c"
+output=$(eval "$cmd")
+desired="A is True
+F is True
+K is True
+P is True
+Z is True"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32minital_fact_!in_rules:\tOK\x1b[0m"
+else
+	echo "\x1b[31minital_fact_!in_rules:\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
+cmd="python3 expert_system.py input/valid/no_rules.txt -c"
+output=$(eval "$cmd")
+desired="A is True
+Z is True"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mno_rules:\t\tOK\x1b[0m"
+else
+	echo "\x1b[31mno_rules:\t\tERROR\x1b[0m"
 	echo "desired output: $desired"
 	echo "actual output:  $output\n"
 fi
@@ -1539,20 +1602,6 @@ then
 	echo "\x1b[32m2 query lines:\t\tOK\x1b[0m"
 else
 	echo "\x1b[31m2 query lines:\t\tERROR\x1b[0m"
-	echo "desired output: $desired"
-	echo "actual output:  $output\n"
-fi
-((count+=1))
-
-cmd="python3 expert_system.py input/invalid/inital_fact_not_in_rules.txt -c"
-output=$(eval "$cmd")
-desired="Error: Inital fact not in rules"
-if [ "$output" == "$desired" ]
-then
-	((passed+=1))
-	echo "\x1b[32minital fact !in rules:\tOK\x1b[0m"
-else
-	echo "\x1b[31minital fact !in rules:\tERROR\x1b[0m"
 	echo "desired output: $desired"
 	echo "actual output:  $output\n"
 fi
