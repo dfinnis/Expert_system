@@ -41,6 +41,8 @@ def parse_initial_facts(line, g):
 	for letter in initial_facts:
 		fact_found = False
 		if i > 0:
+			if not letter.isalpha():
+				error_exit("Non-alphabet character in initial facts")
 			for fact in g.facts:
 				if letter == fact.symbol:
 					fact_found = True

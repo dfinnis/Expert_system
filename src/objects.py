@@ -57,17 +57,11 @@ class graph:
 		self.rules.append(r)
 
 	def add_initial_fact(self, initial_fact):
-		assigned_true = False
-		if not initial_fact.isalpha():
-			error_exit("Non-alphabet character in initial facts")
 		for fact in self.facts:
 			if initial_fact == fact.symbol:
 				fact.initialize_true()
 				fact.deduce_true()
-				assigned_true = True
 				break
-		if not assigned_true:
-			error_exit("Inital fact not in rules")
 		self.initial_facts.append(initial_fact)
 
 	def add_queries(self, query):
