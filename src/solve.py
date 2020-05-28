@@ -229,6 +229,42 @@ def append_rule(child, rules, g):
 							rules.append(rule_orig)
 	return rules
 
+def deduce(children, rules, g, xor_true, undetermined):
+	## Deduce True
+	children = children.split("+")
+	if xor_true == 1:
+		for child in children:
+			if len(child) == 1: ## SIMPLE CASE
+				for fact in g.facts:
+					if child == fact.symbol:
+						fact.deduce_true()
+						rules = append_rule(child, rules, g)
+
+			if len(child) == 2: ## NOT!
+				for fact in g.facts:
+					if child[1] == fact.symbol:
+						if fact.initially_true:
+							error_exit("Bad Logic, contradiction")
+
+	## Deduce False
+	else:
+		for child in children:
+			if len(child) == 1: ## SIMPLE CASE
+				for fact in g.facts:
+					if child == fact.symbol:
+						fact.deduce_false()
+
+	## Deduce undetermined
+	for content in children:
+		if "|" in content or "^" in content or undetermined:
+			for child in content:
+				if child.isalpha():
+					for fact in g.facts:
+						if child == fact.symbol:
+							fact.deduce_undetermined()
+							rules = append_rule(child, rules, g)
+	return rules
+
 def solve(g, logic):
 	check_error(g)
 	if logic:
@@ -248,39 +284,7 @@ def solve(g, logic):
 
 			print_logic(logic, rule, xor_true, undetermined, g)
 
-			## Deduce True
-			children = rule.children.split("+")
-			if xor_true == 1:
-				for child in children:
-					if len(child) == 1: ## SIMPLE CASE
-						for fact in g.facts:
-							if child == fact.symbol:
-								fact.deduce_true()
-								rules = append_rule(child, rules, g)
-
-					if len(child) == 2: ## NOT!
-						for fact in g.facts:
-							if child[1] == fact.symbol:
-								if fact.initially_true:
-									error_exit("Bad Logic, contradiction")
-
-			## Deduce False
-			else:
-				for child in children:
-					if len(child) == 1: ## SIMPLE CASE
-						for fact in g.facts:
-							if child == fact.symbol:
-								fact.deduce_false()
-
-			## Deduce undetermined
-			for content in children:
-				if "|" in content or "^" in content or undetermined:
-					for child in content:
-						if child.isalpha():
-							for fact in g.facts:
-								if child == fact.symbol:
-									fact.deduce_undetermined()
-									rules = append_rule(child, rules, g)
+			deduce(rule.children, rules, g, xor_true, undetermined)
 
 			rules.remove(rule)
 
