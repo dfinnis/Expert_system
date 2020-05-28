@@ -268,11 +268,10 @@ def solve(g, logic):
 								fact.deduce_false()
 
 			## Deduce undetermined
-			for child in children:
-				if len(child) > 2:
-					children_or = child.split("|")
-					for child in children_or:
-						if len(child) == 1:
+			for content in children:
+				if "|" in content or "^" in content or undetermined:
+					for child in content:
+						if child.isalpha():
 							for fact in g.facts:
 								if child == fact.symbol:
 									fact.deduce_undetermined()
@@ -282,34 +281,7 @@ def solve(g, logic):
 												if letter.isalpha():
 													if child == letter:
 														if not rule_in_list(rule_orig, rules):
-															rules.append(rule_orig)
-						children_xor = child.split("^")
-						for child in children_xor:
-							if len(child) == 1:
-								for fact in g.facts:
-									if child == fact.symbol:
-										fact.deduce_undetermined()
-										for rule_orig in g.rules: ## append to rules list
-											for parent_orig in rule_orig.parents:
-												for letter in parent_orig:
-													if letter.isalpha():
-														if child == letter:
-															if not rule_in_list(rule_orig, rules):
-																rules.append(rule_orig)
-					
-			if undetermined:
-				for child in children:
-					if len(child) == 1: ## SIMPLE CASE
-						for fact in g.facts:
-							if child == fact.symbol:
-								fact.deduce_undetermined()
-								for rule_orig in g.rules:
-									for parent_orig in rule_orig.parents:
-										for letter in parent_orig:
-											if letter.isalpha():
-												if child == letter:
-													if not rule_in_list(rule_orig, rules):
-														rules.append(rule_orig)
+															rules.append(rule_orig)	
 
 			rules.remove(rule)
 
