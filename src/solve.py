@@ -219,6 +219,16 @@ def init_rules_list(g):
 					negative = True
 	return rules
 
+def append_rule(child, rules, g):
+	for rule_orig in g.rules:
+		for parent_orig in rule_orig.parents:
+			for letter in parent_orig:
+				if letter.isalpha():
+					if child == letter:
+						if not rule_in_list(rule_orig, rules):
+							rules.append(rule_orig)
+	return rules
+
 def solve(g, logic):
 	check_error(g)
 	if logic:
@@ -246,13 +256,8 @@ def solve(g, logic):
 						for fact in g.facts:
 							if child == fact.symbol:
 								fact.deduce_true()
-								for rule_orig in g.rules: ## add rule to list of rules
-									for parent_orig in rule_orig.parents:
-										for letter in parent_orig:
-											if letter.isalpha():
-												if child == letter:
-													if not rule_in_list(rule_orig, rules):
-														rules.append(rule_orig)
+								rules = append_rule(child, rules, g)
+
 					if len(child) == 2: ## NOT!
 						for fact in g.facts:
 							if child[1] == fact.symbol:
@@ -275,13 +280,7 @@ def solve(g, logic):
 							for fact in g.facts:
 								if child == fact.symbol:
 									fact.deduce_undetermined()
-									for rule_orig in g.rules: ## append to rules list
-										for parent_orig in rule_orig.parents:
-											for letter in parent_orig:
-												if letter.isalpha():
-													if child == letter:
-														if not rule_in_list(rule_orig, rules):
-															rules.append(rule_orig)	
+									rules = append_rule(child, rules, g)
 
 			rules.remove(rule)
 
