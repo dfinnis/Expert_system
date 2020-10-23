@@ -1552,6 +1552,66 @@ else
 fi
 ((count+=1))
 
+cmd="python3 expert_system.py /dev/random"
+output=$(eval "$cmd")
+desired="Error: Invalid filepath"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32m/dev/random:\t\tOK\x1b[0m"
+else
+	echo "\x1b[31m/dev/random:\t\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
+cmd="python3 expert_system.py /dev/null"
+output=$(eval "$cmd")
+desired="Error: Invalid filepath"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32m/dev/null:\t\tOK\x1b[0m"
+else
+	echo "\x1b[31m/dev/null:\t\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
+cmd="python3 expert_system.py input/symbolic_link"
+output=$(eval "$cmd")
+desired="Error: Invalid filepath"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32msymbolic_link:\t\tOK\x1b[0m"
+else
+	echo "\x1b[31msymbolic_link:\t\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
+touch input/no_permissions.txt
+chmod 000 input/no_permissions.txt
+cmd="python3 expert_system.py input/no_permissions.txt"
+output=$(eval "$cmd")
+desired=""
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mno_permissions:\t\tOK\x1b[0m"
+else
+	echo "\x1b[31mno_permissions:\t\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+chmod 755 input/no_permissions.txt
+rm input/no_permissions.txt
+
 cmd="python3 expert_system.py input/invalid/2_initial_fact_lines.txt -c"
 output=$(eval "$cmd")
 desired="Error: Multiple lines of initial facts"
