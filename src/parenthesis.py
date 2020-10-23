@@ -1,5 +1,6 @@
 from error_exit import error_exit
 
+### find_bracket returns len to corresponding closing bracket
 def find_bracket(parents):
 	i = 0
 	pair = 0
@@ -14,6 +15,7 @@ def find_bracket(parents):
 		i += 1
 	error_exit("Bad Syntax, parenthesis")
 
+### parse_parenthesis replaces brackets with lists
 def parse_parenthesis(parents):
 	if isinstance(parents, str):
 		if "(" in parents or ")" in parents:

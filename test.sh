@@ -1,5 +1,6 @@
 #### -- Expert System Test -- ####
-echo "\n\x1b[1mLaunching Expert System tests...\x1B[0m\n"
+printf "\E[H\E[2J"
+echo "\x1b[1mLaunching Expert System tests...\x1B[0m\n"
 
 passed=0
 count=0

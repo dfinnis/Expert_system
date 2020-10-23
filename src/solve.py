@@ -4,7 +4,7 @@ from parenthesis import parse_parenthesis
 from print_logic import print_logic
 from solve_rule import solve_rule
 
-### replace parenthesis with 0 = false, 1 = true, 2 = undetermined
+### solve_parenthesis replaces parenthesis with 0 = false, 1 = true, 2 = undetermined
 def solve_parenthesis(parents, g):
 	solved_str = ""
 	contains_list = False
@@ -41,6 +41,7 @@ def rule_in_list(rule, rules):
 			return True
 	return False
 
+### init_rules_list returns a list of all rules with initially true parents
 def init_rules_list(g):
 	rules = []
 	for rule in g.rules:
@@ -85,7 +86,7 @@ def deduce(children, rules, g, xor_true, undetermined):
 						if child == fact.symbol:
 							fact.deduce_undetermined()
 							rules = append_rule(child, rules, g)
-	
+
 	## Deduce True
 	children = children.split("+")
 	if xor_true == 1:
@@ -105,7 +106,7 @@ def deduce(children, rules, g, xor_true, undetermined):
 	## Deduce False
 	else:
 		for child in children:
-			if len(child) == 1: ## SIMPLE CASE
+			if len(child) == 1:
 				for fact in g.facts:
 					if child == fact.symbol:
 						fact.deduce_false()
