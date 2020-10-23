@@ -1,11 +1,11 @@
 def print_logic(logic, rule, xor_true, undetermined, g):
 	if logic:
 		if undetermined:
-			print("\x1b[33m#### ---- Apply rule: {} => {} ----####\x1b[0m".format(rule.parents, rule.children))
+			print("\x1b[33m#### ---- Apply rule: {} => {} ---- ####\x1b[0m".format(rule.parents, rule.children))
 		elif xor_true == 1:
-			print("\x1b[32m#### ---- Apply rule: {} => {} ----####\x1b[0m".format(rule.parents, rule.children))
+			print("\x1b[32m#### ---- Apply rule: {} => {} ---- ####\x1b[0m".format(rule.parents, rule.children))
 		else:
-			print("\x1b[31m#### ---- Apply rule: {} => {} ----####\x1b[0m".format(rule.parents, rule.children))
+			print("\x1b[31m#### ---- Apply rule: {} => {} ---- ####\x1b[0m".format(rule.parents, rule.children))
 		for parent in rule.parents:
 			if parent.isalpha():
 				for fact in g.facts:

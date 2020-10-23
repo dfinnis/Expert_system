@@ -1,4 +1,4 @@
-from check_error import check_error
+from error import check_error
 from error_exit import error_exit
 from parenthesis import parse_parenthesis
 from print_logic import print_logic
