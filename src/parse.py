@@ -83,6 +83,7 @@ def parse_rule(line, g):
 				g.add_fact(letter)
 	g.add_rule(line)
 
+### parse_file converts Rules, Initial facts, & Queries into a graph of fact nodes linked with parent & child rules
 def parse_file(filepath):
 	if not os.path.isfile(filepath):
 		error_exit("Invalid filepath")
@@ -103,14 +104,14 @@ def parse_file(filepath):
 				if not allowedSymbols.issuperset(line):
 					error_exit("Invalid symbol in file")
 
-				if line[0] == '=':
+				if line[0] == '=': ## Initial facts
 					parse_initial_facts(line, g)
 					initial_facts_found = True
-				elif line[0] == '?':
+				elif line[0] == '?': ## Queries
 					if not initial_facts_found:
 						error_exit("Queries given before initial facts")
 					parse_queries(line, g)
-				else:
+				else: ## Rule
 					if initial_facts_found:
 						error_exit("Rule given after initial facts")
 					if g.queries:
