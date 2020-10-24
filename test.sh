@@ -1598,7 +1598,7 @@ touch input/no_permissions.txt
 chmod 000 input/no_permissions.txt
 cmd="python3 expert_system.py input/no_permissions.txt"
 output=$(eval "$cmd")
-desired=""
+desired="Error: file has no read permissions"
 if [ "$output" == "$desired" ]
 then
 	((passed+=1))

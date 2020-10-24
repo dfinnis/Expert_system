@@ -86,6 +86,8 @@ def parse_rule(line, g):
 def parse_file(filepath):
 	if not os.path.isfile(filepath):
 		error_exit("Invalid filepath")
+	if not os.access(filepath, os.R_OK):
+		error_exit("file has no read permissions")
 	allowedSymbols = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '(', ')', '+', '!', '|', '^', '=', '>', '?'}
 
 	g = graph()
