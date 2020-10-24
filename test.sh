@@ -2772,6 +2772,92 @@ else
 fi
 ((count+=1))
 
+#### -- ERROR: Binary -- ####
+
+cmd="python expert_system.py input/invalid/random_binary0.txt -c"
+output=$(eval "$cmd")
+desired="Error: Invalid symbol in file"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mrandom_binary0:\t\tOK\x1b[0m"
+else
+	echo "\x1b[31mrandom_binary0:\t\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
+cmd="python expert_system.py input/invalid/random_binary1.txt -c"
+output=$(eval "$cmd")
+desired="Error: Invalid symbol in file"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mrandom_binary1:\t\tOK\x1b[0m"
+else
+	echo "\x1b[31mrandom_binary1:\t\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
+cmd="python expert_system.py input/invalid/random_binary2.txt -c"
+output=$(eval "$cmd")
+desired="Error: Invalid symbol in file"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mrandom_binary2:\t\tOK\x1b[0m"
+else
+	echo "\x1b[31mrandom_binary2:\t\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
+cmd="python expert_system.py input/invalid/random_binary3.txt -c"
+output=$(eval "$cmd")
+desired="Error: Invalid symbol in file"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mrandom_binary3:\t\tOK\x1b[0m"
+else
+	echo "\x1b[31mrandom_binary3:\t\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
+cmd="python expert_system.py input/invalid/random_binary4.txt -c"
+output=$(eval "$cmd")
+desired="Error: Invalid symbol in file"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mrandom_binary4:\t\tOK\x1b[0m"
+else
+	echo "\x1b[31mrandom_binary4:\t\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
+cmd="python expert_system.py input/invalid/random_binary5.txt -c"
+output=$(eval "$cmd")
+desired="Error: Invalid symbol in file"
+if [ "$output" == "$desired" ]
+then
+	((passed+=1))
+	echo "\x1b[32mrandom_binary5:\t\tOK\x1b[0m"
+else
+	echo "\x1b[31mrandom_binary5:\t\tERROR\x1b[0m"
+	echo "desired output: $desired"
+	echo "actual output:  $output\n"
+fi
+((count+=1))
+
 #### -- ERROR: Parenthesis -- ####
 
 cmd="python3 expert_system.py input/invalid/parenthesis_balance.txt -c"
