@@ -1,4 +1,4 @@
-# expert-system
+# Expert System
 
 An expert system for propositional calculus, written in python.
 
@@ -18,6 +18,7 @@ Run with input filepath as argument
 
 ### input file formatting
 
+Input files contain rules, initial facts and queries in the following format.
 ```
 # this is a comment, spacing is not important
 
@@ -55,6 +56,7 @@ Python
 
 ## Tests
 
+Run the test script ```./test.sh```.
 The test script runs input files from the ```input``` folder, and ensures the output is correct.
 
 Tests are grouped into and, or, xor, not, same conclusion, parenthesis and error tests.
@@ -63,6 +65,38 @@ Tests are grouped into and, or, xor, not, same conclusion, parenthesis and error
 
 ## Flags
 
-## References
+### Graph
 
+-g, --graph  display graph of facts and rules nodes.
 
+After reading the input file, first the rules, initial facts and queries are printed as read.
+Then the facts are linked in a graph by parent and child rules.
+
+For each fact node, the following is printed:
+* initially true = True/False
+* deduced true = True/False
+* undetermined = True/False
+* child rules: (list of rules)
+* parent rules: (list of rules)
+
+![Graph](https://github.com/dfinnis/expert-system/blob/master/img/graph.png?raw=true)
+
+### Logic
+
+-l, --logic  display reasoning, visualize logical steps taken.
+
+This is a forward-chaining inference engine.
+At first all rules with initalially true parents are added to the list of rules to be checked.
+One at a time, each rule is checked.
+
+If the antecedents are determined true, the consequents are deduced true.
+Importantly, all rules with the newly deduced true facts as parents are now added to the list of rules to be checked.
+This ensures logical truth is propogated through the graph, and rules are re-evaluated if their antecedent facts are updated as deduced true.
+This rule applying loop runs until all rules necessary have been checked, and the truth of all facts has been determined.
+
+![Logic](https://github.com/dfinnis/expert-system/blob/master/img/logic.png?raw=true)
+
+#### Why forwards not backwards-chaining?
+
+The implementation is much simpler and more elegant, and the result is the same.
+The only difference is the truth of all facts, not just the queried facts, is deduced.
