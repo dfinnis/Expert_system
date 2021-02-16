@@ -12,6 +12,8 @@ Simply clone this repo.
 
 ### Usage
 
+Run with input filepath as argument
+
 ![Usage](https://github.com/dfinnis/expert-system/blob/master/img/usage.png?raw=true)
 
 ### input file formatting
@@ -27,23 +29,37 @@ A + B => C    # Rule: A and B implies D
 ?B            # Queries: is B true?
 ```
 
+All facts not initially true are initially false. i.e. B is initially false, but deduced true.
+
 ### Logical operations
 
 The following symbols are defined, in order of decreasing priority:
 
-* ()    Parenthesis   Example: A + (B | C) => D
-* \+    AND           Example: A + B
-* |   # OR            Example: A | B
-* ˆ   # XOR           Example: A ˆ B
-* =>  # implies       Example: A + B => C
+| Symbol | Meaning     | Example           |
+| ------ | ----------- | ----------------- |
+| ()     | Parenthesis | A + (B \| C) => D |
+| \+     | AND         | A + B             |
+| \|     | OR          | A \| B            |
+| ˆ      | XOR         | A ˆ B             |
+| =>     | implies     | A + B => C        |
 
 ### Examples
+
+Let's have a look at an example input file, and run it with expert system.
+
+![Example_and_2](https://github.com/dfinnis/expert-system/blob/master/img/example_and_2.png?raw=true)
 
 ### Dependencies
 
 Python
 
 ## Tests
+
+The test script runs input files from the ```input``` folder, and ensures the output is correct.
+
+Tests are grouped into and, or, xor, not, same conclusion, parenthesis and error tests.
+
+![Tests](https://github.com/dfinnis/expert-system/blob/master/img/tests.gif)
 
 ## Flags
 
