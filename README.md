@@ -50,6 +50,15 @@ Let's have a look at an example input file, and run it with expert system.
 
 ![Example_and_2](https://github.com/dfinnis/expert-system/blob/master/img/example_and_2.png?raw=true)
 
+#### Undetermined
+
+If the consequent is determined true, but includes or / xor, then the truth of the consequent facts is undetermined.
+
+Let's clarify with an example.
+
+![Undetermined](https://github.com/dfinnis/expert-system/blob/master/img/undetermined.png?raw=true)
+
+
 ### Dependencies
 
 Python
@@ -98,5 +107,5 @@ This rule applying loop runs until all rules necessary have been checked, and th
 
 #### Why forwards not backwards-chaining?
 
-The implementation is much simpler and more elegant, and the result is the same.
+The implementation is simpler and more elegant, and the result is the same.
 The only difference is the truth of all facts, not just the queried facts, is deduced.
