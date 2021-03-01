@@ -58,15 +58,6 @@ If the consequent is determined true, but includes or / xor, then the truth of t
 
 <img src="https://github.com/dfinnis/expert-system/blob/master/img/undetermined.png" width="640">
 
-## Tests
-
-Run the test script ```./test.sh```.
-The test script runs input files from the ```input``` folder, and ensures the output is correct.
-
-Tests are grouped into and, or, xor, not, same conclusion, parenthesis and error tests.
-
-![Tests](https://github.com/dfinnis/expert-system/blob/master/img/tests.gif)
-
 ## Flags
 
 ### Graph
@@ -99,6 +90,15 @@ This ensures logical truth is propogated through the graph, and rules are re-eva
 This rule applying loop runs until all rules necessary have been checked, and the truth of all facts has been determined.
 
 <img src="https://github.com/dfinnis/expert-system/blob/master/img/logic.png" width="640">
+
+## Tests
+
+Run the test script ```./test.sh```.
+The test script runs input files from the ```input``` folder, and ensures the output is correct.
+
+Tests are grouped into and, or, xor, not, same conclusion, parenthesis and error tests.
+
+![Tests](https://github.com/dfinnis/expert-system/blob/master/img/tests.gif)
 
 #### Why forwards not backwards-chaining?
 
