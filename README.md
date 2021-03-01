@@ -58,10 +58,6 @@ If the consequent is determined true, but includes or / xor, then the truth of t
 
 <img src="https://github.com/dfinnis/expert-system/blob/master/img/undetermined.png" width="640">
 
-### Dependencies
-
-Python
-
 ## Tests
 
 Run the test script ```./test.sh```.
@@ -108,3 +104,7 @@ This rule applying loop runs until all rules necessary have been checked, and th
 
 The implementation is simpler and more elegant, and the result is the same.
 The only difference is the truth of all facts, not just the queried facts, is deduced.
+
+### Dependencies
+
+Python
