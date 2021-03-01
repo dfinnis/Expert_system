@@ -46,13 +46,13 @@ The following symbols are defined, in order of decreasing priority:
 | ˆ      | XOR         | A ˆ B             |
 | =>     | implies     | A + B => C        |
 
-### Examples
+### Example
 
 Let's have a look at an example input file, and run it with expert system.
 
 <img src="https://github.com/dfinnis/expert-system/blob/master/img/example_and_2.png" width="640">
 
-#### Undetermined
+### Undetermined
 
 If the consequent is determined true, but includes or / xor, then the truth of the consequent facts is undetermined.
 
@@ -100,11 +100,11 @@ Tests are grouped into and, or, xor, not, same conclusion, parenthesis and error
 
 ![Tests](https://github.com/dfinnis/expert-system/blob/master/img/tests.gif)
 
-#### Why forwards not backwards-chaining?
+## Why forwards not backwards-chaining?
 
 The implementation is simpler and more elegant, and the result is the same.
 The only difference is the truth of all facts, not just the queried facts, is deduced.
 
-### Dependencies
+## Dependencies
 
 Python
