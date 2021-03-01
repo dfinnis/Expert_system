@@ -6,6 +6,8 @@ A forward-chaining inference engine.
 
 Accepts a list of rules, facts, and queries. It applies logic, then for each query it prints True/False/Undetermined.
 
+#### Final Score 125/100
+
 ## Getting Started
 
 Simply clone this repo.
