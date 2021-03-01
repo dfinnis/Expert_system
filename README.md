@@ -16,7 +16,7 @@ Simply clone this repo.
 
 Run with input filepath as argument
 
-![Usage](https://github.com/dfinnis/expert-system/blob/master/img/usage.png?raw=true)
+<img src="https://github.com/dfinnis/expert-system/blob/master/img/usage.png" width="640">
 
 ### input file formatting
 
@@ -50,16 +50,13 @@ The following symbols are defined, in order of decreasing priority:
 
 Let's have a look at an example input file, and run it with expert system.
 
-![Example_and_2](https://github.com/dfinnis/expert-system/blob/master/img/example_and_2.png?raw=true)
+<img src="https://github.com/dfinnis/expert-system/blob/master/img/example_and_2.png" width="640">
 
 #### Undetermined
 
 If the consequent is determined true, but includes or / xor, then the truth of the consequent facts is undetermined.
 
-Let's clarify with an example.
-
-![Undetermined](https://github.com/dfinnis/expert-system/blob/master/img/undetermined.png?raw=true)
-
+<img src="https://github.com/dfinnis/expert-system/blob/master/img/undetermined.png" width="640">
 
 ### Dependencies
 
@@ -90,7 +87,7 @@ For each fact node, the following is printed:
 * child rules: (list of rules)
 * parent rules: (list of rules)
 
-![Graph](https://github.com/dfinnis/expert-system/blob/master/img/graph.png?raw=true)
+<img src="https://github.com/dfinnis/expert-system/blob/master/img/graph.png" width="640">
 
 ### Logic
 
@@ -105,7 +102,7 @@ Importantly, all rules with the newly deduced true facts as parents are now adde
 This ensures logical truth is propogated through the graph, and rules are re-evaluated if their antecedent facts are updated as deduced true.
 This rule applying loop runs until all rules necessary have been checked, and the truth of all facts has been determined.
 
-![Logic](https://github.com/dfinnis/expert-system/blob/master/img/logic.png?raw=true)
+<img src="https://github.com/dfinnis/expert-system/blob/master/img/logic.png" width="640">
 
 #### Why forwards not backwards-chaining?
 
