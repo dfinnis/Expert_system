@@ -20,7 +20,7 @@ Then run with input filepath as argument.
 
 <img src="https://github.com/dfinnis/expert-system/blob/master/img/example.png" width="640">
 
-### input file formatting
+### Input file formatting
 
 Input files contain rules, initial facts and queries in the following format.
 ```
