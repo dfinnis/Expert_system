@@ -109,4 +109,4 @@ The only difference is the truth of all facts, not just the queried facts, is de
 
 ## Dependencies
 
-Python
+Python (no requirements.txt required)
