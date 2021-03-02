@@ -12,11 +12,11 @@ Accepts a list of rules, facts, and queries. It applies logic, then for each que
 
 Simply clone this repo.
 
-### Usage
+```git clone https://github.com/dfinnis/expert-system.git; cd expert-system```
 
-Run with input filepath as argument
+Then run with input filepath as argument.
 
-<img src="https://github.com/dfinnis/expert-system/blob/master/img/usage.png" width="640">
+<img src="https://github.com/dfinnis/expert-system/blob/master/img/example.png" width="640">
 
 ### input file formatting
 
