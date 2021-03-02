@@ -16,6 +16,8 @@ Simply clone this repo.
 
 Then run with input filepath as argument.
 
+```python expert_system.py input/correction/and_1.txt```
+
 <img src="https://github.com/dfinnis/expert-system/blob/master/img/example.png" width="640">
 
 ### input file formatting
