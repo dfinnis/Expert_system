@@ -52,11 +52,15 @@ The following symbols are defined, in order of decreasing priority:
 
 Let's have a look at an example input file, and run it with expert system.
 
+```python expert_system.py input/correction/and_2.txt```
+
 <img src="https://github.com/dfinnis/expert-system/blob/master/img/example_and_2.png" width="640">
 
 ### Undetermined
 
 If the consequent is determined true, but includes or / xor, then the truth of the consequent facts is undetermined.
+
+```python expert_system.py input/valid/undetermined_or.txt```
 
 <img src="https://github.com/dfinnis/expert-system/blob/master/img/undetermined.png" width="640">
 
@@ -76,6 +80,8 @@ For each fact node, the following is printed:
 * child rules: (list of rules)
 * parent rules: (list of rules)
 
+```python expert_system.py input/correction/or_2.txt -g```
+
 <img src="https://github.com/dfinnis/expert-system/blob/master/img/graph.png" width="640">
 
 ### Logic
@@ -91,14 +97,17 @@ Importantly, all rules with the newly deduced true facts as parents are now adde
 This ensures logical truth is propogated through the graph, and rules are re-evaluated if their antecedent facts are updated as deduced true.
 This rule applying loop runs until all rules necessary have been checked, and the truth of all facts has been determined.
 
+```python expert_system.py input/correction/and_2.txt -l```
+
 <img src="https://github.com/dfinnis/expert-system/blob/master/img/logic.png" width="640">
 
 ## Tests
 
-Run the test script ```./test.sh```.
-The test script runs input files from the ```input``` folder, and ensures the output is correct.
+*test.sh* runs input files from the *input/* folder, and ensures the output is correct.
 
 Tests are grouped into and, or, xor, not, same conclusion, parenthesis and error tests.
+
+```./test.sh```
 
 ![Tests](https://github.com/dfinnis/expert-system/blob/master/img/tests.gif)
 
