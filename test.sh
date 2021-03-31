@@ -6,7 +6,7 @@ Green="\x1b[32m"
 Clear_screen="\E[H\E[2J"
 
 printf $Clear_screen
-echo $Bright
+printf $Bright
 echo "Launching Expert System tests... $Reset\n"
 
 passed=0
