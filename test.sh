@@ -2,9 +2,40 @@
 printf "\E[H\E[2J"
 echo "\x1b[1mLaunching Expert System tests...\x1B[0m\n"
 
+Reset="\x1b[0m"
+Bright="\x1b[1m"
+Red="\x1b[31m"
+Green="\x1b[32m"
+
 passed=0
 count=0
 SECONDS=0
+
+# #### -- unit_test() -- ####
+# unit_test()
+# {
+# 	FILEPATH=$1
+# 	DESIRED=$2
+# 	Filename=$(echo $FILEPATH | cut -d "/" -f 3 | cut -d "." -f 1)
+# 	cmd="python3 expert_system.py $FILEPATH -c"
+# 	output=$(eval "$cmd")
+# 	if [ "$output" == "$DESIRED" ]
+# 	then
+# 		((passed+=1))
+# 		printf "$Green%-23s OK$Reset\n" $Filename
+# 	else
+# 		printf "$Red%-23s ERROR$Reset\n" Filename
+# 		echo "desired output: $DESIRED"
+# 		echo "actual output:  $output\n"
+# 	fi
+# 	((count+=1))
+# }
+
+# unit_test input/correction/and_1.txt "A is True
+# F is True
+# K is True
+# P is True"
+
 
 #### -- AND -- ####
 echo "\x1b[1mand tests:\x1b[0m"
