@@ -18,7 +18,7 @@ unit_test()
 {
 	## Initialize
 	FILEPATH=$1
-	DESIRED=$2
+	TRUTH=$2
 	Filename=$(echo $FILEPATH | cut -d "." -f 1 | rev | cut -d "/" -f 1 | rev)
 	cmd="python expert_system.py $FILEPATH -c"
 
@@ -29,20 +29,20 @@ unit_test()
 	runtime=$( echo "scale=3; (($end - $start) / 1000000000)" | bc -l )
 
 	## Print 
-	if [ "$output" == "$DESIRED" ]
+	if [ "$output" == "$TRUTH" ]
 	then
 		((passed+=1))
 		printf "$Green%-25s %-6s %ss$Reset\n" $Filename "OK" $runtime
 	else
 		printf "$Red%-25s %-6s %ss$Reset\n" $Filename "ERROR" $runtime
-		echo "desired output: $DESIRED"
-		echo "actual output:  $output\n"
+		echo "Truth:  $TRUTH"
+		echo "Output: $output\n"
 	fi
 	((count+=1))
 }
 
 #### -- AND -- ####
-printf "$Bright%-25s %-6s %s$Reset\n" "and tests" "Pass" "Runtime"
+printf "$Bright%-25s %-6s %s$Reset\n" "And tests" "Pass" "Runtime"
 unit_test input/correction/and_1.txt "A is True
 F is True
 K is True
@@ -79,7 +79,7 @@ Z is True"
 
 #### -- OR -- ####
 echo $Bright 
-echo "or tests$Reset"
+echo "Or tests$Reset"
 unit_test input/correction/or_1.txt "A is False"
 unit_test input/correction/or_2.txt "A is True"
 unit_test input/correction/or_3.txt "A is True"
@@ -127,7 +127,7 @@ unit_test input/valid/or_precedence_6.txt "E is True"
 
 #### -- XOR -- ####
 echo $Bright 
-echo "xor tests$Reset"
+echo "Xor tests$Reset"
 unit_test input/correction/xor_1.txt "A is False"
 unit_test input/correction/xor_2.txt "A is True"
 unit_test input/correction/xor_3.txt "A is True"
@@ -188,7 +188,7 @@ unit_test input/valid/xor_precedence_6.txt "E is True"
 
 #### -- NOT -- ####
 echo $Bright 
-echo "not tests$Reset"
+echo "Not tests$Reset"
 unit_test input/correction/not_1.txt "A is False"
 unit_test input/correction/not_2.txt "A is True"
 unit_test input/correction/not_3.txt "A is False"
@@ -201,14 +201,14 @@ D is True"
 
 #### -- SAME CONCLUSION -- ####
 echo $Bright 
-echo "same conclusion tests$Reset"
+echo "Same conclusion tests$Reset"
 unit_test input/correction/same_conclusion_1.txt "A is False"
 unit_test input/correction/same_conclusion_2.txt "A is True"
 unit_test input/correction/same_conclusion_3.txt "A is True"
 unit_test input/correction/same_conclusion_4.txt "A is True"
 #### -- PARENTHESIS -- ####
 echo $Bright 
-echo "parenthesis tests$Reset"
+echo "Parenthesis tests$Reset"
 
 unit_test input/correction/parenthesis_1.txt "E is False"
 unit_test input/correction/parenthesis_2.txt "E is True"
@@ -263,7 +263,7 @@ Z is True"
 
 #### -- ERROR -- ####
 echo $Bright 
-echo "error tests$Reset"
+echo "Error tests$Reset"
 unit_test input/invalid/bullshit_filepath "Error: Invalid filepath"
 unit_test input/invalid/bullshit_folder.txt/ "Error: Invalid filepath"
 unit_test input/invalid/invalid_symbol.txt "Error: Invalid symbol in file"
