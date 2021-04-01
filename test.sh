@@ -1,13 +1,12 @@
 #### -- Expert System Test -- ####
-Reset="\x1b[0m"
-Bright="\x1b[1m"
-Red="\x1b[31m"
-Green="\x1b[32m"
-Clear_screen="\E[H\E[2J"
+RESET="\x1b[0m"
+BRIGHT="\x1b[1m"
+RED="\x1b[31m"
+GREEN="\x1b[32m"
 
-printf $Clear_screen
-printf $Bright
-echo "Launching Expert System tests... $Reset\n"
+printf "\E[H\E[2J" ## Clear Screen
+printf $BRIGHT
+echo "Launching Expert System tests... $RESET\n"
 
 passed=0
 count=0
@@ -32,9 +31,9 @@ unit_test()
 	if [ "$output" == "$TRUTH" ]
 	then
 		((passed+=1))
-		printf "$Green%-25s %-6s %ss$Reset\n" $Filename "OK" $runtime
+		printf "$GREEN%-25s %-6s %ss$RESET\n" $Filename "OK" $runtime
 	else
-		printf "$Red%-25s %-6s %ss$Reset\n" $Filename "ERROR" $runtime
+		printf "$RED%-25s %-6s %ss$RESET\n" $Filename "ERROR" $runtime
 		echo "Truth:  $TRUTH"
 		echo "Output: $output\n"
 	fi
@@ -42,7 +41,7 @@ unit_test()
 }
 
 #### -- AND -- ####
-printf "$Bright%-25s %-6s %s$Reset\n" "And tests" "Pass" "Runtime"
+printf "$BRIGHT%-25s %-6s %s$RESET\n" "And tests" "Pass" "Runtime"
 unit_test input/correction/and_1.txt "A is True
 F is True
 K is True
@@ -78,8 +77,8 @@ unit_test input/valid/no_rules.txt "A is True
 Z is True"
 
 #### -- OR -- ####
-echo $Bright 
-echo "Or tests$Reset"
+echo $BRIGHT 
+echo "Or tests$RESET"
 unit_test input/correction/or_1.txt "A is False"
 unit_test input/correction/or_2.txt "A is True"
 unit_test input/correction/or_3.txt "A is True"
@@ -126,8 +125,8 @@ unit_test input/valid/or_precedence_5.txt "E is True"
 unit_test input/valid/or_precedence_6.txt "E is True"
 
 #### -- XOR -- ####
-echo $Bright 
-echo "Xor tests$Reset"
+echo $BRIGHT 
+echo "Xor tests$RESET"
 unit_test input/correction/xor_1.txt "A is False"
 unit_test input/correction/xor_2.txt "A is True"
 unit_test input/correction/xor_3.txt "A is True"
@@ -187,8 +186,8 @@ unit_test input/valid/xor_precedence_5.txt "E is True"
 unit_test input/valid/xor_precedence_6.txt "E is True"
 
 #### -- NOT -- ####
-echo $Bright 
-echo "Not tests$Reset"
+echo $BRIGHT 
+echo "Not tests$RESET"
 unit_test input/correction/not_1.txt "A is False"
 unit_test input/correction/not_2.txt "A is True"
 unit_test input/correction/not_3.txt "A is False"
@@ -200,15 +199,15 @@ unit_test input/valid/not_5.txt "B is False
 D is True"
 
 #### -- SAME CONCLUSION -- ####
-echo $Bright 
-echo "Same conclusion tests$Reset"
+echo $BRIGHT 
+echo "Same conclusion tests$RESET"
 unit_test input/correction/same_conclusion_1.txt "A is False"
 unit_test input/correction/same_conclusion_2.txt "A is True"
 unit_test input/correction/same_conclusion_3.txt "A is True"
 unit_test input/correction/same_conclusion_4.txt "A is True"
 #### -- PARENTHESIS -- ####
-echo $Bright 
-echo "Parenthesis tests$Reset"
+echo $BRIGHT 
+echo "Parenthesis tests$RESET"
 
 unit_test input/correction/parenthesis_1.txt "E is False"
 unit_test input/correction/parenthesis_2.txt "E is True"
@@ -262,8 +261,8 @@ F is True
 Z is True"
 
 #### -- ERROR -- ####
-echo $Bright 
-echo "Error tests$Reset"
+echo $BRIGHT 
+echo "Error tests$RESET"
 unit_test input/invalid/bullshit_filepath "Error: Invalid filepath"
 unit_test input/invalid/bullshit_folder.txt/ "Error: Invalid filepath"
 unit_test input/invalid/invalid_symbol.txt "Error: Invalid symbol in file"
@@ -438,15 +437,15 @@ unit_test input/invalid/infinite_loop_3.txt "Error: circular Logic, infinite loo
 
 #### -- TOTAL -- ####
 echo
-echo $Bright
-echo "All Expert System tests finished\nTotal runtime $SECONDS seconds$Reset"
+echo $BRIGHT
+echo "All Expert System tests finished\nTotal runtime $SECONDS seconds$RESET"
 
 if [ "$passed" == "$count" ]
 then
-	echo "\n\x1b[32mPassed $passed of $count total tests$Reset\n"
+	echo "\n\x1b[32mPassed $passed of $count total tests$RESET\n"
 elif [ "$passed" == "0" ]
 then
-	echo "\n\x1b[31mPassed $passed of $count total tests$Reset\n"	
+	echo "\n\x1b[31mPassed $passed of $count total tests$RESET\n"	
 else
-	echo "\n\x1b[33mPassed $passed of $count total tests$Reset\n"
+	echo "\n\x1b[33mPassed $passed of $count total tests$RESET\n"
 fi
