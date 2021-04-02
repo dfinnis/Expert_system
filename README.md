@@ -10,12 +10,10 @@ Accepts a list of rules, facts, and queries. It applies logic, then for each que
 
 ## Getting Started
 
-Simply clone this repo.
-
+Simply clone this repo. <br>
 ```git clone https://github.com/dfinnis/expert-system.git; cd expert-system```
 
-Then run with input filepath as argument.
-
+Then run with input filepath as argument. <br>
 ```python expert_system.py input/correction/and_1.txt```
 
 <img src="https://github.com/dfinnis/expert-system/blob/master/img/example.png" width="640">
