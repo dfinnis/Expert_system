@@ -6,7 +6,10 @@ A forward-chaining inference engine.
 
 Accepts a list of rules, facts, and queries. It applies logic, then for each query it prints True/False/Undetermined.
 
-#### Final Score 125/100
+See the [subject](https://github.com/dfinnis/Expert_system/blob/master/subject.pdf) for more details.
+
+*Final Score 125/100*
+
 
 ## Getting Started
 
