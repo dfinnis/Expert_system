@@ -14,7 +14,7 @@ See the [subject](https://github.com/dfinnis/Expert_system/blob/master/subject.p
 ## Getting Started
 
 Simply clone this repo. <br>
-```git clone https://github.com/dfinnis/expert-system.git; cd expert-system```
+```git clone https://github.com/dfinnis/Expert_system.git; cd Expert_system```
 
 Then run with input filepath as argument. <br>
 ```python expert_system.py input/correction/and_1.txt```
